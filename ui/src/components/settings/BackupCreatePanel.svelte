@@ -46,7 +46,7 @@
 
             hide();
             dispatch("submit");
-            addSuccessToast("Successfully generated new backup.");
+            addSuccessToast("Бэкап успешно создан.");
         } catch (err) {
             if (!err.isAbort) {
                 ApiClient.error(err);
@@ -67,7 +67,7 @@
     class="backup-create-panel"
     beforeOpen={() => {
         if (isSubmitting) {
-            addInfoToast("A backup has already been started, please wait.");
+            addInfoToast("Бэкап уже создаётся, подожди.");
             return false;
         }
 
@@ -75,10 +75,7 @@
     }}
     beforeHide={() => {
         if (isSubmitting) {
-            addInfoToast(
-                "The backup was started but may take a while to complete. You can come back later.",
-                4500
-            );
+            addInfoToast("Бэкап уже запущен, но ему может понадобиться время. Можешь вернуться позже.", 4500);
         }
 
         return true;
@@ -88,7 +85,7 @@
     on:hide
 >
     <svelte:fragment slot="header">
-        <h4 class="center txt-break">Initialize new backup</h4>
+        <h4 class="center txt-break">Создать новый бэкап</h4>
     </svelte:fragment>
 
     <div class="alert alert-info">
@@ -97,33 +94,33 @@
         </div>
         <div class="content">
             <p>
-                Please note that during the backup other concurrent write requests may fail since the
-                database will be temporary "locked" (this usually happens only during the ZIP generation).
+                Учти: во время бэкапа параллельные запросы на запись могут падать — база временно “лочится”
+                (обычно только на этапе генерации ZIP).
             </p>
             <p class="txt-bold">
-                If you are using S3 storage for the collections file upload, you'll have to backup them
-                separately since they are not locally stored and will not be included in the final backup!
+                Если у тебя включено S3‑хранилище для загруженных файлов коллекций — их нужно бэкапить
+                отдельно, потому что они не лежат локально и не попадут в итоговый архив!
             </p>
         </div>
     </div>
 
     <form id={formId} autocomplete="off" on:submit|preventDefault={submit}>
         <Field class="form-field m-0" name="name" let:uniqueId>
-            <label for={uniqueId}>Backup name</label>
+            <label for={uniqueId}>Имя бэкапа</label>
             <input
                 type="text"
                 id={uniqueId}
-                placeholder={"Leave empty to autogenerate"}
+                placeholder={"Оставь пустым для авто‑генерации"}
                 pattern="^[a-z0-9_-]+\.zip$"
                 bind:value={name}
             />
-            <em class="help-block">Must be in the format [a-z0-9_-].zip</em>
+            <em class="help-block">Формат: [a-z0-9_-].zip</em>
         </Field>
     </form>
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={hide} disabled={isSubmitting}>
-            <span class="txt">Cancel</span>
+            <span class="txt">Отмена</span>
         </button>
         <button
             type="submit"
@@ -132,7 +129,7 @@
             class:btn-loading={isSubmitting}
             disabled={isSubmitting}
         >
-            <span class="txt">Start backup</span>
+            <span class="txt">Запустить бэкап</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

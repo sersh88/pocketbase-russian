@@ -6,7 +6,7 @@
     import CommonHelper from "@/utils/CommonHelper";
 
     const uniqueId = "field_" + CommonHelper.randomString(7);
-    const defaultError = "Invalid value";
+    const defaultError = "Некорректное значение";
 
     export let name = "";
     export let inlineError = false;

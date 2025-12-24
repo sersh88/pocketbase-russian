@@ -34,6 +34,21 @@
     const tabFormKey = "form";
     const tabProviderKey = "providers";
 
+    const ui = {
+        cancel: "Отмена",
+        create: "Создать",
+        saveChanges: "Сохранить изменения",
+        saveAndCloseTitle: "Сохранить и закрыть",
+        saveAndContinue: "Сохранить и продолжить",
+        sendPasswordResetEmail: "Отправить письмо для сброса пароля",
+        impersonate: "Войти как пользователь",
+        copyRawJson: "Скопировать raw JSON",
+        duplicate: "Дублировать",
+        delete: "Удалить",
+        tabAccount: "Аккаунт",
+        tabAuthorizedProviders: "Авторизованные провайдеры",
+    };
+
     export let collection;
 
     let recordPanel;
@@ -140,7 +155,7 @@
                 if (!err.isAbort) {
                     forceHide();
                     console.warn("resolveModel:", err);
-                    addErrorToast(`Unable to load record with id "${id}"`);
+                    addErrorToast(`Не удалось загрузить запись с id "${id}"`);
                 }
             }
         }
@@ -281,7 +296,7 @@
                 result = await ApiClient.collection(collection.id).update(record.id, data);
             }
 
-            addSuccessToast(isNew ? "Successfully created record." : "Successfully updated record.");
+            addSuccessToast(isNew ? "Запись успешно создана." : "Запись успешно обновлена.");
 
             deleteDraft();
 
@@ -316,12 +331,12 @@
             return; // nothing to delete
         }
 
-        confirm(`Do you really want to delete the selected record?`, () => {
+        confirm(`Точно хочешь удалить эту запись?`, () => {
             return ApiClient.collection(original.collectionId)
                 .delete(original.id)
                 .then(() => {
                     forceHide();
-                    addSuccessToast("Successfully deleted record.");
+                    addSuccessToast("Запись успешно удалена.");
                     dispatch("delete", original);
                 })
                 .catch((err) => {
@@ -415,11 +430,11 @@
             return;
         }
 
-        confirm(`Do you really want to sent verification email to ${original.email}?`, () => {
+        confirm(`Точно хочешь отправить письмо для подтверждения на ${original.email}?`, () => {
             return ApiClient.collection(collection.id)
                 .requestVerification(original.email)
                 .then(() => {
-                    addSuccessToast(`Successfully sent verification email to ${original.email}.`);
+                    addSuccessToast(`Письмо для подтверждения отправлено на ${original.email}.`);
                 })
                 .catch((err) => {
                     ApiClient.error(err);
@@ -432,11 +447,11 @@
             return;
         }
 
-        confirm(`Do you really want to sent password reset email to ${original.email}?`, () => {
+        confirm(`Точно хочешь отправить письмо для сброса пароля на ${original.email}?`, () => {
             return ApiClient.collection(collection.id)
                 .requestPasswordReset(original.email)
                 .then(() => {
-                    addSuccessToast(`Successfully sent password reset email to ${original.email}.`);
+                    addSuccessToast(`Письмо для сброса пароля отправлено на ${original.email}.`);
                 })
                 .catch((err) => {
                     ApiClient.error(err);
@@ -446,7 +461,7 @@
 
     function duplicateConfirm() {
         if (hasChanges) {
-            confirm("You have unsaved changes. Do you really want to discard them?", () => {
+            confirm("Есть несохранённые изменения. Точно хочешь их выкинуть?", () => {
                 duplicate();
             });
         } else {
@@ -488,7 +503,7 @@
 
     function copyJSON() {
         CommonHelper.copyToClipboard(JSON.stringify(original, null, 2));
-        addInfoToast("The record JSON was copied to your clipboard!", 3000);
+        addInfoToast("JSON записи скопирован в буфер обмена!", 3000);
     }
 </script>
 
@@ -504,7 +519,7 @@
     overlayClose={!isLoading}
     beforeHide={() => {
         if (hasChanges && confirmHide) {
-            confirm("You have unsaved changes. Do you really want to close the panel?", () => {
+            confirm("Есть несохранённые изменения. Точно хочешь закрыть панель?", () => {
                 forceHide();
             });
 
@@ -522,11 +537,10 @@
     <svelte:fragment slot="header">
         {#if isLoading}
             <span class="loader loader-sm" />
-            <h4 class="panel-title txt-hint">Loading...</h4>
+            <h4 class="panel-title txt-hint">Загрузка...</h4>
         {:else}
             <h4 class="panel-title">
-                {isNew ? "New" : "Edit"}
-                <strong>{collection?.name}</strong> record
+                {isNew ? "Новая" : "Редактировать"} запись <strong>{collection?.name}</strong>
             </h4>
 
             {#if !isNew}
@@ -534,7 +548,7 @@
                 <div
                     tabindex="0"
                     role="button"
-                    aria-label="More record options"
+                    aria-label="Ещё действия с записью"
                     class="btn btn-sm btn-circle btn-transparent flex-gap-0"
                 >
                     <i class="ri-more-line" aria-hidden="true" />
@@ -547,7 +561,7 @@
                                 on:click={() => sendVerificationEmail()}
                             >
                                 <i class="ri-mail-check-line" aria-hidden="true" />
-                                <span class="txt">Send verification email</span>
+                                <span class="txt">Отправить письмо для подтверждения</span>
                             </button>
                         {/if}
                         {#if isAuthCollection && original.email}
@@ -558,7 +572,7 @@
                                 on:click={() => sendPasswordResetEmail()}
                             >
                                 <i class="ri-mail-lock-line" aria-hidden="true" />
-                                <span class="txt">Send password reset email</span>
+                                <span class="txt">{ui.sendPasswordResetEmail}</span>
                             </button>
                         {/if}
                         {#if isAuthCollection}
@@ -569,7 +583,7 @@
                                 on:click={() => impersonatePopup?.show()}
                             >
                                 <i class="ri-id-card-line" aria-hidden="true" />
-                                <span class="txt">Impersonate</span>
+                                <span class="txt">{ui.impersonate}</span>
                             </button>
                         {/if}
                         <button
@@ -579,7 +593,7 @@
                             on:click={() => copyJSON()}
                         >
                             <i class="ri-braces-line" aria-hidden="true" />
-                            <span class="txt">Copy raw JSON</span>
+                            <span class="txt">{ui.copyRawJson}</span>
                         </button>
                         <button
                             type="button"
@@ -588,7 +602,7 @@
                             on:click={() => duplicateConfirm()}
                         >
                             <i class="ri-file-copy-line" aria-hidden="true" />
-                            <span class="txt">Duplicate</span>
+                            <span class="txt">{ui.duplicate}</span>
                         </button>
                         <hr />
                         <button
@@ -598,7 +612,7 @@
                             on:click|preventDefault|stopPropagation={() => deleteConfirm()}
                         >
                             <i class="ri-delete-bin-7-line" aria-hidden="true" />
-                            <span class="txt">Delete</span>
+                            <span class="txt">{ui.delete}</span>
                         </button>
                     </Toggler>
                 </div>
@@ -613,7 +627,7 @@
                     class:active={activeTab === tabFormKey}
                     on:click={() => (activeTab = tabFormKey)}
                 >
-                    Account
+                    {ui.tabAccount}
                 </button>
                 <button
                     type="button"
@@ -621,7 +635,7 @@
                     class:active={activeTab === tabProviderKey}
                     on:click={() => (activeTab = tabProviderKey)}
                 >
-                    Authorized providers
+                    {ui.tabAuthorizedProviders}
                 </button>
             </div>
         {/if}
@@ -644,20 +658,20 @@
                             <i class="ri-information-line" />
                         </div>
                         <div class="flex flex-gap-xs">
-                            The record has previous unsaved changes.
+                            У этой записи есть предыдущие несохранённые изменения.
                             <button
                                 type="button"
                                 class="btn btn-sm btn-secondary"
                                 on:click={() => restoreDraft()}
                             >
-                                Restore draft
+                                Восстановить черновик
                             </button>
                         </div>
                         <button
                             type="button"
                             class="close"
-                            aria-label="Discard draft"
-                            use:tooltip={"Discard draft"}
+                            aria-label="Удалить черновик"
+                            use:tooltip={"Удалить черновик"}
                             on:click|preventDefault={() => deleteDraft()}
                         >
                             <i class="ri-close-line" />
@@ -682,7 +696,7 @@
                     type="text"
                     id={uniqueId}
                     placeholder={!isLoading && !CommonHelper.isEmpty(idField?.autogeneratePattern)
-                        ? "Leave empty to auto generate..."
+                        ? "Оставь пустым для автогенерации..."
                         : ""}
                     minlength={idField?.min || null}
                     maxlength={idField?.max || null}
@@ -751,21 +765,21 @@
             disabled={isSaving || isLoading}
             on:click={() => hide()}
         >
-            <span class="txt">Cancel</span>
+            <span class="txt">{ui.cancel}</span>
         </button>
 
         <div class="btns-group no-gap">
             <button
                 type="submit"
                 form={formId}
-                title="Save and close"
+                title={ui.saveAndCloseTitle}
                 class="btn"
                 class:btn-expanded={isNew}
                 class:btn-expanded-sm={!isNew}
                 class:btn-loading={isSaving || isLoading}
                 disabled={!canSave || isSaving}
             >
-                <span class="txt">{isNew ? "Create" : "Save changes"}</span>
+                <span class="txt">{isNew ? ui.create : ui.saveChanges}</span>
             </button>
 
             {#if !isNew}
@@ -779,7 +793,7 @@
                             role="menuitem"
                             on:click={() => save(false)}
                         >
-                            <span class="txt">Save and continue</span>
+                            <span class="txt">{ui.saveAndContinue}</span>
                         </button>
                     </Toggler>
                 </button>

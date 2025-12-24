@@ -172,7 +172,7 @@
                     </button>
                 </div>
             {/if}
-            <input type="text" placeholder="Search address..." bind:value={searchTerm} />
+            <input type="text" placeholder="Поиск адреса..." bind:value={searchTerm} />
         </div>
         {#if searchTerm.length && searchResults.length}
             <div class="dropdown dropdown-sm dropdown-block">
@@ -180,7 +180,7 @@
                     <button
                         type="button"
                         class="dropdown-item"
-                        use:tooltip={"Select address coordinates"}
+                        use:tooltip={"Выбрать координаты адреса"}
                         on:click={() => select(result.lat, result.lon)}
                     >
                         {result.name}

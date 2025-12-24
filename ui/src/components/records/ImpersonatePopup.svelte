@@ -68,7 +68,7 @@
     on:hide
 >
     <svelte:fragment slot="header">
-        <h4>Impersonate auth token</h4>
+        <h4>Токен для входа под пользователем</h4>
     </svelte:fragment>
 
     <div class="clearfix"></div>
@@ -106,17 +106,17 @@
         <form id={formId} on:submit|preventDefault={submit}>
             <div class="content">
                 <p>
-                    Generate a nonrenewable auth token for
+                    Сгенерировать одноразовый auth‑токен для
                     <strong>{CommonHelper.displayValue(record)}:</strong>
                 </p>
             </div>
 
             <Field class="form-field m-b-xs m-t-sm" name="duration" let:uniqueId>
-                <label for={uniqueId}>Token duration (in seconds)</label>
+                <label for={uniqueId}>Время жизни токена (в секундах)</label>
                 <input
                     type="number"
                     id={uniqueId}
-                    placeholder="Default to the collection setting ({collection?.authToken?.duration || 0}s)"
+                    placeholder="По умолчанию как в настройках коллекции ({collection?.authToken?.duration || 0}s)"
                     min="0"
                     step="1"
                     value={duration || ""}
@@ -128,7 +128,7 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={hide} disabled={isSubmitting}>
-            <span class="txt">Close</span>
+            <span class="txt">Закрыть</span>
         </button>
         {#if impersonateClient?.authStore?.token}
             <button
@@ -137,7 +137,7 @@
                 disabled={isSubmitting}
                 on:click={() => reset()}
             >
-                <span class="txt">Generate a new one</span>
+                <span class="txt">Сгенерировать новый</span>
             </button>
         {:else}
             <button
@@ -148,7 +148,7 @@
                 disabled={isSubmitting}
                 on:click={() => submit()}
             >
-                <span class="txt">Generate token</span>
+                <span class="txt">Сгенерировать токен</span>
             </button>
         {/if}
     </svelte:fragment>

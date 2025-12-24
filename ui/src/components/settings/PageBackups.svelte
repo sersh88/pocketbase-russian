@@ -15,7 +15,7 @@
     import S3Fields from "@/components/settings/S3Fields.svelte";
     import BackupUploadButton from "@/components/settings/BackupUploadButton.svelte";
 
-    $pageTitle = "Backups";
+    $pageTitle = "Бэкапы";
 
     let backupsListComponent;
     let originalFormSettings = {};
@@ -68,7 +68,7 @@
 
             init(settings);
 
-            addSuccessToast("Successfully saved application settings.");
+            addSuccessToast("Настройки успешно сохранены.");
         } catch (err) {
             ApiClient.error(err);
         }
@@ -101,7 +101,7 @@
 <PageWrapper>
     <header class="page-header">
         <nav class="breadcrumbs">
-            <div class="breadcrumb-item">Settings</div>
+            <div class="breadcrumb-item">Настройки</div>
             <div class="breadcrumb-item">{$pageTitle}</div>
         </nav>
     </header>
@@ -109,8 +109,8 @@
     <div class="wrapper">
         <div class="panel" autocomplete="off" on:submit|preventDefault={save}>
             <div class="flex m-b-sm flex-gap-10">
-                <span class="txt-xl">Backup and restore your PocketBase data</span>
-                <RefreshButton class="btn-sm" tooltip={"Refresh"} on:refresh={refreshList} />
+                <span class="txt-xl">Бэкап и восстановление данных PocketBase</span>
+                <RefreshButton class="btn-sm" tooltip={"Обновить"} on:refresh={refreshList} />
                 <BackupUploadButton class="btn-sm" on:success={refreshList} />
             </div>
 
@@ -125,7 +125,7 @@
                 disabled={isLoading}
                 on:click={() => (showBackupsSettings = !showBackupsSettings)}
             >
-                <span class="txt">Backups options</span>
+                <span class="txt">Настройки бэкапов</span>
                 {#if showBackupsSettings}
                     <i class="ri-arrow-up-s-line" />
                 {:else}
@@ -142,7 +142,7 @@
                 >
                     <Field class="form-field form-field-toggle m-t-base m-b-0" let:uniqueId>
                         <input type="checkbox" id={uniqueId} bind:checked={enableAutoBackups} />
-                        <label for={uniqueId}>Enable auto backups</label>
+                        <label for={uniqueId}>Включить автосоздание бэкапов</label>
                     </Field>
 
                     {#if enableAutoBackups}
@@ -150,7 +150,7 @@
                             <div class="grid p-t-base p-b-sm">
                                 <div class="col-lg-6">
                                     <Field class="form-field required" name="backups.cron" let:uniqueId>
-                                        <label for={uniqueId}>Cron expression</label>
+                                        <label for={uniqueId}>Cron выражение</label>
                                         <!-- svelte-ignore a11y-autofocus -->
                                         <input
                                             required
@@ -163,7 +163,7 @@
                                         />
                                         <div class="form-field-addon">
                                             <button type="button" class="btn btn-sm btn-outline p-r-0">
-                                                <span class="txt">Presets</span>
+                                                <span class="txt">Пресеты</span>
                                                 <i class="ri-arrow-drop-down-fill" />
                                                 <Toggler class="dropdown dropdown-nowrap dropdown-right">
                                                     <button
@@ -173,7 +173,7 @@
                                                             formSettings.backups.cron = "0 0 * * *";
                                                         }}
                                                     >
-                                                        <span class="txt">Every day at 00:00h</span>
+                                                        <span class="txt">Каждый день в 00:00</span>
                                                     </button>
                                                     <button
                                                         type="button"
@@ -182,7 +182,7 @@
                                                             formSettings.backups.cron = "0 0 * * 0";
                                                         }}
                                                     >
-                                                        <span class="txt">Every sunday at 00:00h</span>
+                                                        <span class="txt">Каждое воскресенье в 00:00</span>
                                                     </button>
                                                     <button
                                                         type="button"
@@ -191,7 +191,7 @@
                                                             formSettings.backups.cron = "0 0 * * 1,3";
                                                         }}
                                                     >
-                                                        <span class="txt">Every Mon and Wed at 00:00h</span>
+                                                        <span class="txt">Каждый пн и ср в 00:00</span>
                                                     </button>
                                                     <button
                                                         type="button"
@@ -201,7 +201,7 @@
                                                         }}
                                                     >
                                                         <span class="txt">
-                                                            Every first day of the month at 00:00h
+                                                            Каждый первый день месяца в 00:00
                                                         </span>
                                                     </button>
                                                 </Toggler>
@@ -210,13 +210,13 @@
                                         <div class="help-block">
                                             <!-- prettier-ignore -->
                                             <p>
-                                                Supports numeric list, steps, ranges or
+                                                Поддерживает списки чисел, шаги, диапазоны или
                                                 <span
                                                     class="link-primary"
                                                     use:tooltip={"@yearly\n@annually\n@monthly\n@weekly\n@daily\n@midnight\n@hourly"}
-                                                >macros</span>.
+                                                >макросы</span>.
                                                 <br>
-                                                The timezone is in UTC.
+                                                Таймзона: UTC.
                                             </p>
                                         </div>
                                     </Field>
@@ -264,12 +264,12 @@
                                     use:tooltip={testError.data?.message}
                                 >
                                     <i class="ri-error-warning-line txt-warning" />
-                                    <span class="txt">Failed to establish S3 connection</span>
+                                    <span class="txt">Не удалось подключиться к S3</span>
                                 </div>
                             {:else}
                                 <div class="label label-sm label-success entrance-right">
                                     <i class="ri-checkbox-circle-line txt-success" />
-                                    <span class="txt">S3 connected successfully</span>
+                                    <span class="txt">S3 подключено</span>
                                 </div>
                             {/if}
                         {/if}
@@ -281,7 +281,7 @@
                                 disabled={!hasChanges || isSaving}
                                 on:click={() => reset()}
                             >
-                                <span class="txt">Reset</span>
+                                <span class="txt">Сбросить</span>
                             </button>
                         {/if}
 
@@ -292,7 +292,7 @@
                             disabled={!hasChanges || isSaving}
                             on:click={() => save()}
                         >
-                            <span class="txt">Save changes</span>
+                            <span class="txt">Сохранить изменения</span>
                         </button>
                     </div>
                 </form>

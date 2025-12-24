@@ -42,7 +42,7 @@
                 if (!err.isAbort) {
                     hide();
                     console.warn("resolveModel:", err);
-                    addErrorToast(`Unable to load record with id "${model}"`);
+                    addErrorToast(`Не удалось загрузить запись с id "${model}"`);
                 }
             }
 
@@ -60,7 +60,7 @@
     on:show
 >
     <svelte:fragment slot="header">
-        <h4><strong>{collection?.name}</strong> record preview</h4>
+        <h4>Предпросмотр записи <strong>{collection?.name}</strong></h4>
     </svelte:fragment>
 
     <table class="table-border preview-table" class:table-loading={isLoading}>
@@ -78,7 +78,7 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={() => hide()}>
-            <span class="txt">Close</span>
+            <span class="txt">Закрыть</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

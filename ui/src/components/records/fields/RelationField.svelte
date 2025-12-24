@@ -154,7 +154,7 @@
                 use:tooltip={{
                     position: "left",
                     text:
-                        "The following relation ids were removed from the list because they are missing or invalid: " +
+                        "Следующие relation id были убраны из списка, потому что они отсутствуют или невалидны: " +
                         invalidIds.join(", "),
                 }}
             />
@@ -183,7 +183,7 @@
                             <button
                                 type="button"
                                 class="btn btn-transparent btn-hint btn-sm btn-circle btn-remove"
-                                use:tooltip={"Remove"}
+                                use:tooltip={"Убрать"}
                                 on:click={() => remove(record)}
                             >
                                 <i class="ri-close-line" />
@@ -210,7 +210,7 @@
             >
                 <i class="ri-magic-line" />
                 <!-- <i class="ri-layout-line" /> -->
-                <span class="txt">Open picker</span>
+                <span class="txt">Открыть выбор</span>
             </button>
         </div>
     </div>

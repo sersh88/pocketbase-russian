@@ -26,8 +26,8 @@
         }
 
         confirm(
-            `Note that we don't perform validations for the uploaded backup files. Proceed with caution and only if you trust the source.\n\n` +
-                `Do you really want to upload "${file.name}"?`,
+            `Учти: мы не выполняем проверку (валидацию) загружаемых файлов бэкапа. Действуй осторожно и только если доверяешь источнику.\n\n` +
+                `Точно хочешь загрузить "${file.name}"?`,
             () => {
                 upload(file);
             },
@@ -51,7 +51,7 @@
             await ApiClient.backups.upload(data, { requestKey: backupRequestKey });
             isUploading = false;
             dispatch("success");
-            addSuccessToast("Successfully uploaded a new backup.");
+            addSuccessToast("Новый бэкап успешно загружен.");
         } catch (err) {
             if (!err.isAbort) {
                 isUploading = false;
@@ -76,8 +76,8 @@
     class="btn btn-circle btn-transparent {classes}"
     class:btn-loading={isUploading}
     class:btn-disabled={isUploading}
-    aria-label="Upload backup"
-    use:tooltip={"Upload backup"}
+    aria-label="Загрузить бэкап"
+    use:tooltip={"Загрузить бэкап"}
     on:click={() => fileInput?.click()}
 >
     <i class="ri-upload-cloud-line" />

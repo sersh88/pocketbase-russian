@@ -64,7 +64,7 @@
 
 <RecordFilePicker
     bind:this={picker}
-    title="Select an image"
+    title="Выбрать изображение"
     fileTypes={["image"]}
     on:submit={(e) => {
         editor?.execCommand(

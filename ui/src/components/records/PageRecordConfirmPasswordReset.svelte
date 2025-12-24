@@ -43,33 +43,33 @@
         <div class="alert alert-success">
             <div class="icon"><i class="ri-checkbox-circle-line" /></div>
             <div class="content txt-bold">
-                <p>Successfully changed the user password.</p>
-                <p>You can now sign in with your new password.</p>
+                <p>Пароль пользователя успешно изменён.</p>
+                <p>Теперь можешь войти с новым паролем.</p>
             </div>
         </div>
 
         <button type="button" class="btn btn-transparent btn-block" on:click={() => window.close()}>
-            Close
+            Закрыть
         </button>
     {:else}
         <form on:submit|preventDefault={submit}>
             <div class="content txt-center m-b-base">
                 <h5>
-                    Reset your user password
+                    Сброс пароля пользователя
                     {#if email}
-                        for <strong>{email}</strong>
+                        для <strong>{email}</strong>
                     {/if}
                 </h5>
             </div>
 
             <Field class="form-field required" name="password" let:uniqueId>
-                <label for={uniqueId}>New password</label>
+                <label for={uniqueId}>Новый пароль</label>
                 <!-- svelte-ignore a11y-autofocus -->
                 <input type="password" id={uniqueId} required autofocus bind:value={newPassword} />
             </Field>
 
             <Field class="form-field required" name="passwordConfirm" let:uniqueId>
-                <label for={uniqueId}>New password confirm</label>
+                <label for={uniqueId}>Подтверждение нового пароля</label>
                 <input type="password" id={uniqueId} required bind:value={newPasswordConfirm} />
             </Field>
 
@@ -79,7 +79,7 @@
                 class:btn-loading={isLoading}
                 disabled={isLoading}
             >
-                <span class="txt">Set new password</span>
+                <span class="txt">Установить новый пароль</span>
             </button>
         </form>
     {/if}

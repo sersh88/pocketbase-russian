@@ -69,7 +69,7 @@
     }
 
     function deleteConfirm(name) {
-        confirm(`Do you really want to delete ${name}?`, () => deleteBackup(name));
+        confirm(`Точно хочешь удалить ${name}?`, () => deleteBackup(name));
     }
 
     async function deleteBackup(name) {
@@ -82,7 +82,7 @@
         try {
             await ApiClient.backups.delete(name);
             loadBackups();
-            addSuccessToast(`Successfully deleted ${name}.`);
+            addSuccessToast(`${name} успешно удалён.`);
         } catch (err) {
             if (!err.isAbort) {
                 ApiClient.error(err);
@@ -141,8 +141,8 @@
                             class="btn btn-sm btn-circle btn-hint btn-transparent"
                             class:btn-loading={isDownloading[backup.key]}
                             disabled={isDeleting[backup.key] || isDownloading[backup.key]}
-                            aria-label="Download"
-                            use:tooltip={"Download"}
+                            aria-label="Скачать"
+                            use:tooltip={"Скачать"}
                             on:click|preventDefault={() => download(backup.key)}
                         >
                             <i class="ri-download-line" />
@@ -151,8 +151,8 @@
                             type="button"
                             class="btn btn-sm btn-circle btn-hint btn-transparent"
                             disabled={isDeleting[backup.key]}
-                            aria-label="Restore"
-                            use:tooltip={"Restore"}
+                            aria-label="Восстановить"
+                            use:tooltip={"Восстановить"}
                             on:click|preventDefault={() => restorePanel.show(backup.key)}
                         >
                             <i class="ri-restart-line" />
@@ -162,8 +162,8 @@
                             class="btn btn-sm btn-circle btn-hint btn-transparent"
                             class:btn-loading={isDeleting[backup.key]}
                             disabled={isDeleting[backup.key]}
-                            aria-label="Delete"
-                            use:tooltip={"Delete"}
+                            aria-label="Удалить"
+                            use:tooltip={"Удалить"}
                             on:click|preventDefault={() => deleteConfirm(backup.key)}
                         >
                             <i class="ri-delete-bin-7-line" />
@@ -172,7 +172,7 @@
                 </div>
             {:else}
                 <div class="list-item list-item-placeholder">
-                    <span class="txt">No backups yet.</span>
+                    <span class="txt">Пока нет бэкапов.</span>
                 </div>
             {/each}
         {/if}
@@ -187,10 +187,10 @@
         >
             {#if canBackup}
                 <i class="ri-play-circle-line" />
-                <span class="txt">Initialize new backup</span>
+                <span class="txt">Создать новый бэкап</span>
             {:else}
                 <span class="loader loader-sm" />
-                <span class="txt">Backup/restore operation is in process</span>
+                <span class="txt">Операция бэкапа/восстановления уже выполняется</span>
             {/if}
         </button>
     </div>

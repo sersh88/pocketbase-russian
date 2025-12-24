@@ -98,7 +98,7 @@
             } else if (err.status != 400) {
                 ApiClient.error(err);
             } else {
-                addErrorToast("Invalid login credentials.");
+                addErrorToast("Неверные учётные данные для входа.");
             }
         }
 
@@ -153,7 +153,7 @@
 <FullPage>
     <div class="content txt-center m-b-base">
         <h4>
-            Superuser login
+            Вход суперпользователя
             {#if totalSteps > 1}
                 ({currentStep}/{totalSteps})
             {/if}
@@ -169,7 +169,7 @@
         <form class="block" on:submit|preventDefault={authWithPassword}>
             <Field class="form-field required" name="identity" let:uniqueId>
                 <label for={uniqueId}>
-                    {CommonHelper.sentenize(authMethods.password.identityFields.join(" or "), false)}
+                    {CommonHelper.sentenize(authMethods.password.identityFields.join(" или "), false)}
                 </label>
                 <!-- svelte-ignore a11y-autofocus -->
                 <input
@@ -188,10 +188,10 @@
             </Field>
 
             <Field class="form-field required" name="password" let:uniqueId>
-                <label for={uniqueId}>Password</label>
+                <label for={uniqueId}>Пароль</label>
                 <input type="password" id={uniqueId} bind:value={password} required />
                 <div class="help-block">
-                    <a href="/request-password-reset" class="link-hint" use:link>Forgotten password?</a>
+                    <a href="/request-password-reset" class="link-hint" use:link>Забыли пароль?</a>
                 </div>
             </Field>
 
@@ -201,7 +201,7 @@
                 class:btn-disabled={passwordAuthSubmitting}
                 class:btn-loading={passwordAuthSubmitting}
             >
-                <span class="txt">{totalSteps > 1 ? "Next" : "Login"}</span>
+                <span class="txt">{totalSteps > 1 ? "Далее" : "Войти"}</span>
                 <i class="ri-arrow-right-line" />
             </button>
         </form>
@@ -221,15 +221,14 @@
                     class:btn-loading={otpRequestSubmitting}
                 >
                     <i class="ri-mail-send-line" />
-                    <span class="txt">Send OTP</span>
+                    <span class="txt">Отправить код</span>
                 </button>
             </form>
         {:else}
             {#if otpEmail}
                 <div class="content txt-center m-b-sm">
                     <p>
-                        Check your <strong>{otpEmail}</strong> inbox and enter in the input below the received
-                        One-time password (OTP).
+                        Проверь почту <strong>{otpEmail}</strong> и введи ниже полученный одноразовый пароль (OTP).
                     </p>
                 </div>
             {/if}
@@ -263,7 +262,7 @@
                     class:btn-disabled={otpAuthSubmitting}
                     class:btn-loading={otpAuthSubmitting}
                 >
-                    <span class="txt">Login</span>
+                    <span class="txt">Войти</span>
                     <i class="ri-arrow-right-line" />
                 </button>
             </form>
@@ -277,7 +276,7 @@
                         otpId = "";
                     }}
                 >
-                    Request another OTP
+                    Запросить новый код
                 </button>
             </div>
         {/if}

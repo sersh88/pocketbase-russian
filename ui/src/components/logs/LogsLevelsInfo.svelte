@@ -6,7 +6,7 @@
 </script>
 
 <div class={classes}>
-    Default log levels:
+    Уровни логов по умолчанию:
     <div class="inline-flex flex-gap-5">
         {#each logLevels as options}
             <code class="txt-xs">{options.level}:{options.label}</code>

@@ -7,7 +7,7 @@
     import RefreshButton from "@/components/base/RefreshButton.svelte";
     import SettingsSidebar from "@/components/settings/SettingsSidebar.svelte";
 
-    $pageTitle = "Crons";
+    $pageTitle = "Кроны";
 
     let crons = [];
     let isLoading = false;
@@ -34,7 +34,7 @@
 
         try {
             await ApiClient.crons.run(jobId);
-            addSuccessToast(`Successfully triggered ${jobId}.`);
+            addSuccessToast(`${jobId} успешно запущен.`);
             isRunning[jobId] = false;
         } catch (err) {
             if (!err.isAbort) {
@@ -50,7 +50,7 @@
 <PageWrapper>
     <header class="page-header">
         <nav class="breadcrumbs">
-            <div class="breadcrumb-item">Settings</div>
+            <div class="breadcrumb-item">Настройки</div>
             <div class="breadcrumb-item">{$pageTitle}</div>
         </nav>
     </header>
@@ -58,8 +58,8 @@
     <div class="wrapper">
         <div class="panel" autocomplete="off">
             <div class="flex m-b-sm flex-gap-10">
-                <span class="txt-xl">Registered app cron jobs</span>
-                <RefreshButton class="btn-sm" tooltip={"Refresh"} on:refresh={loadCrons} />
+                <span class="txt-xl">Зарегистрированные cron‑задачи</span>
+                <RefreshButton class="btn-sm" tooltip={"Обновить"} on:refresh={loadCrons} />
             </div>
 
             <div class="list list-compact">
@@ -93,8 +93,8 @@
                                         class="btn btn-sm btn-circle btn-hint btn-transparent"
                                         class:btn-loading={isRunning[cron.id]}
                                         disabled={isRunning[cron.id]}
-                                        aria-label="Run"
-                                        use:tooltip={"Run"}
+                                        aria-label="Запустить"
+                                        use:tooltip={"Запустить"}
                                         on:click|preventDefault={() => cronRun(cron.id)}
                                     >
                                         <i class="ri-play-large-line"></i>
@@ -103,7 +103,7 @@
                             </div>
                         {:else}
                             <div class="list-item list-item-placeholder">
-                                <span class="txt">No app crons found.</span>
+                                <span class="txt">Cron‑задачи не найдены.</span>
                             </div>
                         {/each}
                     {/if}
@@ -111,7 +111,7 @@
             </div>
 
             <p class="txt-hint m-t-xs">
-                App cron jobs can be registered only programmatically with
+                Cron‑задачи приложения можно регистрировать только программно через
                 <a
                     href="{import.meta.env.PB_DOCS_URL}/go-jobs-scheduling/"
                     target="_blank"
@@ -119,7 +119,7 @@
                 >
                     Go
                 </a>
-                or
+                или
                 <a
                     href="{import.meta.env.PB_DOCS_URL}/js-jobs-scheduling/"
                     target="_blank"

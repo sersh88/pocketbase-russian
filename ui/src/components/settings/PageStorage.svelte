@@ -10,7 +10,7 @@
     import SettingsSidebar from "@/components/settings/SettingsSidebar.svelte";
     import S3Fields from "@/components/settings/S3Fields.svelte";
 
-    $pageTitle = "Files storage";
+    $pageTitle = "Хранилище файлов";
 
     const testRequestKey = "s3_test_request";
 
@@ -56,7 +56,7 @@
 
             removeAllToasts();
 
-            addSuccessToast("Successfully saved storage settings.");
+            addSuccessToast("Настройки хранилища успешно сохранены.");
         } catch (err) {
             ApiClient.error(err);
         }
@@ -82,7 +82,7 @@
 <PageWrapper>
     <header class="page-header">
         <nav class="breadcrumbs">
-            <div class="breadcrumb-item">Settings</div>
+            <div class="breadcrumb-item">Настройки</div>
             <div class="breadcrumb-item">{$pageTitle}</div>
         </nav>
     </header>
@@ -90,9 +90,9 @@
     <div class="wrapper">
         <form class="panel" autocomplete="off" on:submit|preventDefault={() => save()}>
             <div class="content txt-xl m-b-base">
-                <p>By default PocketBase uses the local file system to store uploaded files.</p>
+                <p>По умолчанию PocketBase хранит загруженные файлы в локальной файловой системе.</p>
                 <p>
-                    If you have limited disk space, you could optionally connect to an S3 compatible storage.
+                    Если на диске мало места — можно подключить S3‑совместимое хранилище.
                 </p>
             </div>
 
@@ -100,7 +100,7 @@
                 <div class="loader" />
             {:else}
                 <S3Fields
-                    toggleLabel="Use S3 storage"
+                    toggleLabel="Использовать S3 хранилище"
                     originalConfig={originalFormSettings.s3}
                     bind:config={formSettings.s3}
                     bind:isTesting
@@ -113,21 +113,20 @@
                                     <i class="ri-error-warning-line" />
                                 </div>
                                 <div class="content">
-                                    If you have existing uploaded files, you'll have to migrate them manually
-                                    from the
+                                    Если у тебя уже есть загруженные файлы — их нужно будет перенести вручную из
                                     <strong>
                                         {originalFormSettings.s3?.enabled
-                                            ? "S3 storage"
-                                            : "local file system"}
+                                            ? "S3‑хранилища"
+                                            : "локальной файловой системы"}
                                     </strong>
-                                    to the
+                                    в
                                     <strong
                                         >{formSettings.s3.enabled
-                                            ? "S3 storage"
-                                            : "local file system"}</strong
+                                            ? "S3‑хранилище"
+                                            : "локальную файловую систему"}</strong
                                     >.
                                     <br />
-                                    There are numerous command line tools that can help you, such as:
+                                    Могут помочь разные CLI‑утилиты, например:
                                     <a
                                         href="https://github.com/rclone/rclone"
                                         target="_blank"
@@ -163,12 +162,12 @@
                                 use:tooltip={testError.data?.message}
                             >
                                 <i class="ri-error-warning-line txt-warning" />
-                                <span class="txt">Failed to establish S3 connection</span>
+                                <span class="txt">Не удалось подключиться к S3</span>
                             </div>
                         {:else}
                             <div class="label label-sm label-success entrance-right">
                                 <i class="ri-checkbox-circle-line txt-success" />
-                                <span class="txt">S3 connected successfully</span>
+                                <span class="txt">S3 подключено</span>
                             </div>
                         {/if}
                     {/if}
@@ -180,7 +179,7 @@
                             disabled={isSaving}
                             on:click={() => reset()}
                         >
-                            <span class="txt">Reset</span>
+                            <span class="txt">Сбросить</span>
                         </button>
                     {/if}
 
@@ -191,7 +190,7 @@
                         disabled={!hasChanges || isSaving}
                         on:click={() => save()}
                     >
-                        <span class="txt">Save changes</span>
+                        <span class="txt">Сохранить изменения</span>
                     </button>
                 </div>
             {/if}

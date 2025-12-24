@@ -129,7 +129,7 @@
     on:hide
 >
     <svelte:fragment slot="header">
-        <h4 class="center txt-break">Side-by-side diff</h4>
+        <h4 class="center txt-break">Сравнение изменений</h4>
     </svelte:fragment>
 
     {#each pairs as pair}
@@ -137,7 +137,7 @@
     {/each}
 
     <svelte:fragment slot="footer">
-        <button type="button" class="btn btn-transparent" on:click={hide} disabled={isImporting}>Close</button
+        <button type="button" class="btn btn-transparent" on:click={hide} disabled={isImporting}>Закрыть</button
         >
         <button
             type="button"
@@ -146,7 +146,7 @@
             disabled={isImporting}
             on:click={() => submitConfirm()}
         >
-            <span class="txt">Confirm and import</span>
+            <span class="txt">Подтвердить и импортировать</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

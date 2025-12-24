@@ -26,7 +26,7 @@
         rel="noopener noreferrer"
         use:tooltip={{
             text:
-                "Open relation record in new tab:\n" +
+                "Открыть связанную запись в новой вкладке:\n" +
                 CommonHelper.truncate(
                     JSON.stringify(CommonHelper.truncateObject(excludeProps(record, "expand")), null, 2),
                     800,

@@ -15,8 +15,8 @@
     const uniqueId = "file_picker_" + CommonHelper.randomString(5);
     const batchSize = 50;
 
-    export let title = "Select a file";
-    export let submitText = "Insert";
+    export let title = "Выбрать файл";
+    export let submitText = "Вставить";
     export let fileTypes = ["image", "document", "video", "audio", "file"];
 
     let pickerPanel;
@@ -166,10 +166,10 @@
         }
 
         // construct the dropdown options
-        sizeOptions = [{ label: "Original size", value: "" }];
+        sizeOptions = [{ label: "Оригинал", value: "" }];
         for (const size of sizes) {
             sizeOptions.push({
-                label: `${size} thumb`,
+                label: `${size} превью`,
                 value: size,
             });
         }
@@ -224,9 +224,7 @@
     </svelte:fragment>
 
     {#if !fileCollections.length}
-        <h6 class="txt-center txt-hint">
-            You currently don't have any collection with <code>file</code> field.
-        </h6>
+        <h6 class="txt-center txt-hint">Сейчас нет ни одной коллекции с полем <code>file</code>.</h6>
     {:else}
         <div class="file-picker">
             <aside class="file-picker-sidebar">
@@ -248,7 +246,7 @@
                 <div class="flex m-b-base flex-gap-10">
                     <Searchbar
                         value={filter}
-                        placeholder="Record search term or filter..."
+                        placeholder="Поиск по записям или фильтр..."
                         autocompleteCollection={selectedCollection}
                         on:submit={(e) => (filter = e.detail)}
                     />
@@ -257,7 +255,7 @@
                         class="btn btn-pill btn-transparent btn-hint p-l-xs p-r-xs"
                         on:click={() => upsertPanel?.show()}
                     >
-                        <div class="txt">New record</div>
+                        <div class="txt">Новая запись</div>
                     </button>
                 </div>
                 <Scroller
@@ -276,7 +274,7 @@
                                 <button
                                     type="button"
                                     class="thumb handle"
-                                    use:tooltip={name + "\n(record: " + record.id + ")"}
+                                    use:tooltip={name + "\n(запись: " + record.id + ")"}
                                     class:thumb-warning={isSelected(record, name)}
                                     on:click|preventDefault={select(record, name)}
                                 >
@@ -294,14 +292,14 @@
                         {/each}
                     {:else if !isLoading}
                         <div class="inline-flex">
-                            <span class="txt txt-hint">No records with images found.</span>
+                            <span class="txt txt-hint">Не найдено записей с картинками.</span>
                             {#if filter?.length}
                                 <button
                                     type="button"
                                     class="btn btn-hint btn-sm"
                                     on:click|preventDefault={clearFilter}
                                 >
-                                    <span class="txt">Clear filter</span>
+                                    <span class="txt">Очистить фильтр</span>
                                 </button>
                             {/if}
                         </div>
@@ -319,7 +317,7 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent m-r-auto" disabled={isLoading} on:click={hide}>
-            <span class="txt">Cancel</span>
+            <span class="txt">Отмена</span>
         </button>
 
         {#if CommonHelper.hasImageExtension(selectedFile?.name)}
@@ -329,7 +327,7 @@
                     id={uniqueId}
                     items={sizeOptions}
                     disabled={!canSubmit}
-                    selectPlaceholder="Select size"
+                    selectPlaceholder="Выбери размер"
                     bind:keyOfSelected={selectedSize}
                 />
             </Field>

@@ -35,9 +35,9 @@
 <button
     tabindex="-1"
     type="button"
-    aria-label="Generate"
+    aria-label="Сгенерировать"
     class="btn btn-circle {classes}"
-    use:tooltip={togglerActive ? "" : "Generate"}
+    use:tooltip={togglerActive ? "" : "Сгенерировать"}
 >
     <i class="ri-sparkling-line" aria-hidden="true" />
     <Toggler
@@ -52,8 +52,8 @@
             <!-- svelte-ignore a11y-no-static-element-interactions -->
             <i
                 class="ri-refresh-line txt-sm link-hint"
-                use:tooltip={"Refresh"}
-                aria-label="Refresh"
+                use:tooltip={"Обновить"}
+                aria-label="Обновить"
                 on:click={generate}
             />
         </div>

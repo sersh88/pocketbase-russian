@@ -35,6 +35,6 @@
         bind:selected={value}
     />
     {#if isMultiple}
-        <div class="help-block">Select up to {maxSelect} items.</div>
+        <div class="help-block">Выбери до {maxSelect} значений.</div>
     {/if}
 </Field>

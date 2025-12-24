@@ -22,7 +22,7 @@
         <div class="txt txt-ellipsis">{rawValue}</div>
     </div>
     {#if record.collectionName == "_superusers" && record.id == $superuser.id}
-        <span class="label label-warning">You</span>
+        <span class="label label-warning">Ты</span>
     {/if}
 {:else if field.type === "json"}
     {@const stringifiedJson = CommonHelper.trimQuotedValue(JSON.stringify(rawValue)) || '""'}
@@ -39,9 +39,9 @@
         {/if}
     {/if}
 {:else if CommonHelper.isEmpty(rawValue)}
-    <span class="txt-hint">N/A</span>
+    <span class="txt-hint">Н/Д</span>
 {:else if field.type === "bool"}
-    <span class="label" class:label-success={!!rawValue}>{rawValue ? "True" : "False"}</span>
+    <span class="label" class:label-success={!!rawValue}>{rawValue ? "Да" : "Нет"}</span>
 {:else if field.type === "number"}
     <span class="txt">{rawValue}</span>
 {:else if field.type === "url"}
@@ -50,7 +50,7 @@
         href={rawValue}
         target="_blank"
         rel="noopener noreferrer"
-        use:tooltip={"Open in new tab"}
+        use:tooltip={"Открыть в новой вкладке"}
         on:click|stopPropagation
     >
         {CommonHelper.truncate(rawValue)}

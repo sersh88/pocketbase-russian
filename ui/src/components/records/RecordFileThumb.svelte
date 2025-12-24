@@ -46,7 +46,7 @@
         type="button"
         draggable={false}
         class="handle thumb {size ? `thumb-${size}` : ''}"
-        title={(hasPreview ? "Preview" : "Download") + " " + filename}
+        title={(hasPreview ? "Предпросмотр" : "Скачать") + " " + filename}
         on:click|stopPropagation={async () => {
             if (!hasPreview) {
                 return;
@@ -71,7 +71,7 @@
                 loading="lazy"
                 src={thumbUrl}
                 alt={filename}
-                title="Preview {filename}"
+                title="Предпросмотр {filename}"
                 on:error={onError}
             />
         {:else if type === "video" || type === "audio"}

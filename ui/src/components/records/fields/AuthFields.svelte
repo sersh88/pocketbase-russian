@@ -32,7 +32,7 @@
         <Field class="form-field {emailField?.required ? 'required' : ''}" name="email" let:uniqueId>
             <label for={uniqueId}>
                 <i class={CommonHelper.getFieldTypeIcon("email")} />
-                <span class="txt">email</span>
+                <span class="txt">Email</span>
             </label>
 
             {#if !isSuperusers}
@@ -43,12 +43,12 @@
                             ? 'btn-success'
                             : 'btn-hint'}"
                         use:tooltip={{
-                            text: "Make email public or private",
+                            text: "Сделать email публичным или приватным",
                             position: "top-right",
                         }}
                         on:click|preventDefault={() => (record.emailVisibility = !record.emailVisibility)}
                     >
-                        <span class="txt">Public: {record.emailVisibility ? "On" : "Off"}</span>
+                        <span class="txt">Публичный: {record.emailVisibility ? "Вкл" : "Выкл"}</span>
                     </button>
                 </div>
             {/if}
@@ -69,7 +69,7 @@
         {#if !isNew}
             <Field class="form-field form-field-toggle" name="verified" let:uniqueId>
                 <input type="checkbox" id={uniqueId} bind:checked={changePasswordToggle} />
-                <label for={uniqueId}>Change password</label>
+                <label for={uniqueId}>Сменить пароль</label>
             </Field>
         {/if}
 
@@ -80,7 +80,7 @@
                         <Field class="form-field required" name="password" let:uniqueId>
                             <label for={uniqueId}>
                                 <i class="ri-lock-line" />
-                                <span class="txt">Password</span>
+                                <span class="txt">Пароль</span>
                             </label>
                             <input
                                 type="password"
@@ -98,7 +98,7 @@
                         <Field class="form-field required" name="passwordConfirm" let:uniqueId>
                             <label for={uniqueId}>
                                 <i class="ri-lock-line" />
-                                <span class="txt">Password confirm</span>
+                                <span class="txt">Подтверждение пароля</span>
                             </label>
                             <input
                                 type="password"
@@ -126,7 +126,7 @@
                             return; // no confirmation required
                         }
                         confirm(
-                            `Do you really want to manually change the verified account state?`,
+                            `Точно хочешь вручную изменить статус подтверждения аккаунта?`,
                             () => {},
                             () => {
                                 record.verified = !e.target.checked;
@@ -134,7 +134,7 @@
                         );
                     }}
                 />
-                <label for={uniqueId}>Verified</label>
+                <label for={uniqueId}>Подтверждён</label>
             </Field>
         </div>
     {/if}

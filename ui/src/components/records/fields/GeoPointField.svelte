@@ -74,7 +74,7 @@
     <div class="list">
         <div class="list-item">
             <Field class="form-field form-field-inline m-0" let:uniqueId>
-                <label for={uniqueId}>Longitude:</label>
+                <label for={uniqueId}>Долгота:</label>
                 <input
                     type="number"
                     id={uniqueId}
@@ -88,7 +88,7 @@
             </Field>
             <span class="separator"></span>
             <Field class="form-field form-field-inline m-0" let:uniqueId>
-                <label for={uniqueId}>Latitude:</label>
+                <label for={uniqueId}>Широта:</label>
                 <input
                     type="number"
                     id={uniqueId}
@@ -106,8 +106,8 @@
                 class="btn btn-circle btn-sm btn-circle {isMapVisible
                     ? 'btn-secondary'
                     : 'btn-hint btn-transparent'}"
-                aria-label="Toggle map"
-                use:tooltip={"Toggle map"}
+                aria-label="Показать/скрыть карту"
+                use:tooltip={"Показать/скрыть карту"}
                 on:click={toggleMapVisibility}
             >
                 <i class="ri-map-2-line"></i>

@@ -65,36 +65,36 @@
     {#if isConfirming}
         <div class="txt-center">
             <div class="loader loader-lg">
-                <em>Please wait...</em>
+                <em>Подожди...</em>
             </div>
         </div>
     {:else if successConfirm}
         <div class="alert alert-success">
             <div class="icon"><i class="ri-checkbox-circle-line" /></div>
             <div class="content txt-bold">
-                <p>Successfully verified email address.</p>
+                <p>Email успешно подтверждён.</p>
             </div>
         </div>
 
         <button type="button" class="btn btn-transparent btn-block" on:click={() => window.close()}>
-            Close
+            Закрыть
         </button>
     {:else if successResend}
         <div class="alert alert-success">
             <div class="icon"><i class="ri-checkbox-circle-line" /></div>
             <div class="content txt-bold">
-                <p>Please check your email for the new verification link.</p>
+                <p>Проверь почту — я отправил новую ссылку для подтверждения.</p>
             </div>
         </div>
 
         <button type="button" class="btn btn-transparent btn-block" on:click={() => window.close()}>
-            Close
+            Закрыть
         </button>
     {:else}
         <div class="alert alert-danger">
             <div class="icon"><i class="ri-error-warning-line" /></div>
             <div class="content txt-bold">
-                <p>Invalid or expired verification token.</p>
+                <p>Токен подтверждения недействителен или истёк.</p>
             </div>
         </div>
 
@@ -106,11 +106,11 @@
                 disabled={isResending}
                 on:click={resend}
             >
-                <span class="txt">Resend</span>
+                <span class="txt">Отправить ещё раз</span>
             </button>
         {:else}
             <button type="button" class="btn btn-transparent btn-block" on:click={() => window.close()}>
-                Close
+                Закрыть
             </button>
         {/if}
     {/if}

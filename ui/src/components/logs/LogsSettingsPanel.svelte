@@ -67,7 +67,7 @@
 
             hide();
 
-            addSuccessToast("Successfully saved logs settings.");
+            addSuccessToast("Настройки логов успешно сохранены.");
 
             dispatch("save", settings);
         } catch (err) {
@@ -87,7 +87,7 @@
 
 <OverlayPanel bind:this={panel} popup class="superuser-panel" beforeHide={() => !isSaving} on:hide on:show>
     <svelte:fragment slot="header">
-        <h4>Logs settings</h4>
+        <h4>Настройки логов</h4>
     </svelte:fragment>
 
     {#if isLoading}
@@ -97,37 +97,37 @@
     {:else}
         <form id={formId} class="grid" autocomplete="off" on:submit|preventDefault={save}>
             <Field class="form-field required" name="logs.maxDays" let:uniqueId>
-                <label for={uniqueId}>Max days retention</label>
+                <label for={uniqueId}>Макс. дней хранения</label>
                 <input type="number" id={uniqueId} required bind:value={formSettings.logs.maxDays} />
                 <div class="help-block">
-                    Set to <code>0</code> to disable logs persistence.
+                    Поставь <code>0</code>, чтобы отключить хранение логов.
                 </div>
             </Field>
 
             <Field class="form-field" name="logs.minLevel" let:uniqueId>
-                <label for={uniqueId}>Min log level</label>
+                <label for={uniqueId}>Мин. уровень логов</label>
                 <input type="number" required bind:value={formSettings.logs.minLevel} min="-100" max="100" />
                 <div class="help-block">
-                    <p>Logs with level below the minimum will be ignored.</p>
+                    <p>Логи с уровнем ниже минимального будут игнорироваться.</p>
                     <LogsLevelsInfo />
                 </div>
             </Field>
 
             <Field class="form-field form-field-toggle" name="logs.logIP" let:uniqueId>
                 <input type="checkbox" id={uniqueId} bind:checked={formSettings.logs.logIP} />
-                <label for={uniqueId}>Enable IP logging</label>
+                <label for={uniqueId}>Логировать IP</label>
             </Field>
 
             <Field class="form-field form-field-toggle" name="logs.logAuthId" let:uniqueId>
                 <input type="checkbox" id={uniqueId} bind:checked={formSettings.logs.logAuthId} />
-                <label for={uniqueId}>Enable Auth Id logging</label>
+                <label for={uniqueId}>Логировать Auth ID</label>
             </Field>
         </form>
     {/if}
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" disabled={isSaving} on:click={hide}>
-            <span class="txt">Cancel</span>
+            <span class="txt">Отмена</span>
         </button>
         <button
             type="submit"
@@ -136,7 +136,7 @@
             class:btn-loading={isSaving}
             disabled={!hasChanges || isSaving}
         >
-            <span class="txt">Save changes</span>
+            <span class="txt">Сохранить изменения</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

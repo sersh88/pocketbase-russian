@@ -40,6 +40,15 @@
 
     $: areAllLogsSelected = logs.length && totalBulkSelected === logs.length;
 
+    function pluralizeLogs(count) {
+        const n = Math.abs(count) % 100;
+        const n1 = n % 10;
+        if (n > 10 && n < 20) return "логов";
+        if (n1 > 1 && n1 < 5) return "лога";
+        if (n1 === 1) return "лог";
+        return "логов";
+    }
+
     export async function load(page = 1, breakTasks = true) {
         isLoading = true;
 
@@ -309,7 +318,7 @@
                                         {:else}
                                             {keyItem.key}: {CommonHelper.stringifyValue(
                                                 log.data[keyItem.key],
-                                                "N/A",
+                                                "Н/Д",
                                                 80,
                                             )}
                                         {/if}
@@ -337,14 +346,14 @@
                 {:else}
                     <tr>
                         <td colspan="99" class="txt-center txt-hint p-xs">
-                            <h6>No logs found.</h6>
+                            <h6>Логи не найдены.</h6>
                             {#if filter?.length}
                                 <button
                                     type="button"
                                     class="btn btn-hint btn-expanded m-t-sm"
                                     on:click={() => (filter = "")}
                                 >
-                                    <span class="txt">Clear filters</span>
+                                    <span class="txt">Очистить фильтры</span>
                                 </button>
                             {/if}
                         </td>
@@ -364,7 +373,7 @@
             class:btn-disabled={isLoading}
             on:click={() => load(currentPage + 1)}
         >
-            <span class="txt">Load more</span>
+            <span class="txt">Загрузить ещё</span>
         </button>
     </div>
 {/if}
@@ -372,19 +381,19 @@
 {#if totalBulkSelected}
     <div class="bulkbar" transition:fly={{ duration: 150, y: 5 }}>
         <div class="txt">
-            Selected <strong>{totalBulkSelected}</strong>
-            {totalBulkSelected === 1 ? "log" : "logs"}
+            Выбрано <strong>{totalBulkSelected}</strong>
+            {pluralizeLogs(totalBulkSelected)}
         </div>
         <button
             type="button"
             class="btn btn-xs btn-transparent btn-outline p-l-5 p-r-5"
             on:click={() => deselectAllLogs()}
         >
-            <span class="txt">Reset</span>
+            <span class="txt">Сбросить</span>
         </button>
         <div class="flex-fill" />
         <button type="button" class="btn btn-sm" on:click={downloadSelected}>
-            <span class="txt">Download as JSON</span>
+            <span class="txt">Скачать как JSON</span>
         </button>
     </div>
 {/if}

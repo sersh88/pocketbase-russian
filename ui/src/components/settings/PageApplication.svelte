@@ -12,7 +12,7 @@
     import TrustedProxyAccordion from "@/components/settings/TrustedProxyAccordion.svelte";
     import RateLimitAccordion from "@/components/settings/RateLimitAccordion.svelte";
 
-    $pageTitle = "Application settings";
+    $pageTitle = "Настройки приложения";
 
     let originalFormSettings = {};
     let formSettings = {};
@@ -31,7 +31,7 @@
         try {
             healthData = ((await ApiClient.health.check()) || {})?.data || {};
         } catch (err) {
-            console.warn("Health check failed:", err);
+            console.warn("Проверка состояния (health check) не удалась:", err);
         }
     }
 
@@ -67,7 +67,7 @@
 
             setErrors({});
 
-            addSuccessToast("Successfully saved application settings.");
+            addSuccessToast("Настройки приложения успешно сохранены.");
         } catch (err) {
             ApiClient.error(err);
         }
@@ -173,8 +173,8 @@
 <PageWrapper>
     <header class="page-header">
         <nav class="breadcrumbs">
-            <div class="breadcrumb-item">Settings</div>
-            <div class="breadcrumb-item">Application</div>
+            <div class="breadcrumb-item">Настройки</div>
+            <div class="breadcrumb-item">Приложение</div>
         </nav>
     </header>
 
@@ -186,7 +186,7 @@
                 <div class="grid">
                     <div class="col-lg-6">
                         <Field class="form-field required" name="meta.appName" let:uniqueId>
-                            <label for={uniqueId}>Application name</label>
+                            <label for={uniqueId}>Название приложения</label>
                             <input
                                 type="text"
                                 id={uniqueId}
@@ -198,7 +198,7 @@
 
                     <div class="col-lg-6">
                         <Field class="form-field required" name="meta.appURL" let:uniqueId>
-                            <label for={uniqueId}>Application URL</label>
+                            <label for={uniqueId}>URL приложения</label>
                             <input type="text" id={uniqueId} required bind:value={formSettings.meta.appURL} />
                         </Field>
                     </div>
@@ -217,11 +217,11 @@
                                 bind:checked={formSettings.meta.hideControls}
                             />
                             <label for={uniqueId}>
-                                <span class="txt">Hide collection create and edit controls</span>
+                                <span class="txt">Скрыть кнопки создания и редактирования коллекций</span>
                                 <i
                                     class="ri-information-line link-hint"
                                     use:tooltip={{
-                                        text: `This could prevent making accidental schema changes when in production environment.`,
+                                        text: `Это поможет избежать случайных изменений схемы в продакшене.`,
                                         position: "right",
                                     }}
                                 />
@@ -240,7 +240,7 @@
                             disabled={isSaving}
                             on:click={() => reset()}
                         >
-                            <span class="txt">Cancel</span>
+                            <span class="txt">Отмена</span>
                         </button>
                     {/if}
 
@@ -251,7 +251,7 @@
                         disabled={!hasChanges || isSaving}
                         on:click={() => save()}
                     >
-                        <span class="txt">Save changes</span>
+                        <span class="txt">Сохранить изменения</span>
                     </button>
                 </div>
             {/if}

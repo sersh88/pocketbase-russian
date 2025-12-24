@@ -7,7 +7,7 @@
     import Field from "@/components/base/Field.svelte";
     import SettingsSidebar from "@/components/settings/SettingsSidebar.svelte";
 
-    $pageTitle = "Export collections";
+    $pageTitle = "Экспорт коллекций";
 
     const uniqueId = "export_" + CommonHelper.randomString(5);
 
@@ -58,7 +58,7 @@
 
     function copy() {
         CommonHelper.copyToClipboard(schema);
-        addInfoToast("The configuration was copied to your clipboard!", 3000);
+        addInfoToast("Конфигурация скопирована в буфер обмена!", 3000);
     }
 
     function toggleSelectAll() {
@@ -97,7 +97,7 @@
 <PageWrapper>
     <header class="page-header">
         <nav class="breadcrumbs">
-            <div class="breadcrumb-item">Settings</div>
+            <div class="breadcrumb-item">Настройки</div>
             <div class="breadcrumb-item">{$pageTitle}</div>
         </nav>
     </header>
@@ -109,8 +109,7 @@
             {:else}
                 <div class="content txt-xl m-b-base">
                     <p>
-                        Below you'll find your current collections configuration that you could import in
-                        another PocketBase environment.
+                        Ниже — текущая конфигурация коллекций. Её можно импортировать в другое окружение PocketBase.
                     </p>
                 </div>
 
@@ -125,7 +124,7 @@
                                     checked={areAllSelected}
                                     on:change={() => toggleSelectAll()}
                                 />
-                                <label for={uniqueId}>Select all</label>
+                                <label for={uniqueId}>Выбрать все</label>
                             </Field>
                         </div>
                         {#each collections as collection (collection.id)}
@@ -167,7 +166,7 @@
                             disabled={!totalBulkSelected}
                             on:click={() => copy()}
                         >
-                            <span class="txt">Copy</span>
+                            <span class="txt">Копировать</span>
                         </button>
 
                         <pre class="code-wrapper">{schema}</pre>
@@ -183,7 +182,7 @@
                         on:click={() => download()}
                     >
                         <i class="ri-download-line" />
-                        <span class="txt">Download as JSON</span>
+                        <span class="txt">Скачать как JSON</span>
                     </button>
                 </div>
             {/if}

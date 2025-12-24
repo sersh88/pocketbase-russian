@@ -72,7 +72,7 @@
     on:hide
 >
     <svelte:fragment slot="header">
-        <h4 class="popup-title txt-ellipsis">Restore <strong>{name}</strong></h4>
+        <h4 class="popup-title txt-ellipsis">Восстановить <strong>{name}</strong></h4>
     </svelte:fragment>
 
     <div class="alert alert-danger">
@@ -80,50 +80,49 @@
             <i class="ri-alert-line" />
         </div>
         <div class="content">
-            <p class="txt-bold">Please proceed with caution and use it only with trusted backups!</p>
+            <p class="txt-bold">Действуй осторожно и используй только проверенные бэкапы!</p>
 
-            <p>Backup restore is experimental and works only on UNIX based systems.</p>
+            <p>Восстановление бэкапа — экспериментальная функция и работает только на UNIX‑системах.</p>
             <p>
-                The restore operation will attempt to replace your existing <code>pb_data</code> with the one from
-                the backup and will restart the application process.
+                Восстановление попытается заменить текущую <code>pb_data</code> на версию из бэкапа и перезапустит
+                процесс приложения.
             </p>
             <p>
-                This means that on success all of your data (including app settings, users, superusers, etc.)
-                will be replaced with the ones from the backup.
+                То есть при успехе все данные (включая настройки приложения, пользователей, суперпользователей и т.д.)
+                будут заменены данными из бэкапа.
             </p>
             <p>
-                Nothing will happen if the backup is invalid (ex. missing
-                <code>data.db</code> file).
+                Если бэкап невалидный (например, нет файла <code>data.db</code>) — ничего не произойдёт.
             </p>
-            <p>Below is an oversimplified version of the restore flow:</p>
+            <p>Упрощённо процесс восстановления выглядит так:</p>
             <ol>
-                <li>Replaces the current <code>pb_data</code> with the content from the backup</li>
-                <li>Triggers app restart</li>
-                <li>Applies all migrations that are missing in the restored <code>pb_data</code></li>
-                <li>Initializes the app server as usual</li>
+                <li>Заменяет текущую <code>pb_data</code> содержимым из бэкапа</li>
+                <li>Перезапускает приложение</li>
+                <li>Применяет недостающие миграции в восстановленной <code>pb_data</code></li>
+                <li>Запускает сервер приложения как обычно</li>
             </ol>
         </div>
     </div>
 
     <div class="content m-b-xs">
-        Type the backup name
+        Введи имя бэкапа
         <div class="label">
             <span class="txt">{name}</span>
             <CopyIcon value={name} />
         </div>
-        to confirm:
+        чтобы подтвердить:
     </div>
 
     <form id={formId} autocomplete="off" on:submit|preventDefault={submit}>
         <Field class="form-field required m-0" name="name" let:uniqueId>
-            <label for={uniqueId}>Backup name</label>
+            <label for={uniqueId}>Имя бэкапа</label>
             <input type="text" id={uniqueId} required bind:value={nameConfirm} />
         </Field>
     </form>
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={hide} disabled={isSubmitting}>
-            Cancel
+            Отмена
         </button>
         <button
             type="submit"
@@ -132,7 +131,7 @@
             class:btn-loading={isSubmitting}
             disabled={!canSubmit || isSubmitting}
         >
-            <span class="txt">Restore backup</span>
+            <span class="txt">Восстановить бэкап</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

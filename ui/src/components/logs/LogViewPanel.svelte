@@ -53,7 +53,7 @@
             if (!err.isAbort) {
                 hide();
                 console.warn("resolveModel:", err);
-                addErrorToast(`Unable to load log with id "${modelOrId}"`);
+                addErrorToast(`Не удалось загрузить лог с id "${modelOrId}"`);
             }
         }
 
@@ -122,7 +122,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <OverlayPanel bind:this={logPanel} class="overlay-panel-lg log-panel" on:hide={onHide}>
     <svelte:fragment slot="header">
-        <h4>Log details</h4>
+        <h4>Детали лога</h4>
     </svelte:fragment>
 
     {#if isLoading}
@@ -133,7 +133,7 @@
         <table class="table-border">
             <tbody>
                 <tr>
-                    <td class="min-width txt-hint txt-bold">id</td>
+                    <td class="min-width txt-hint txt-bold">ID</td>
                     <td>
                         <span class="txt">{log.id}</span>
                         <div class="copy-icon-wrapper">
@@ -142,7 +142,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="min-width txt-hint txt-bold">level</td>
+                    <td class="min-width txt-hint txt-bold">Уровень</td>
                     <td>
                         <LogLevel level={log.level} />
                         <div class="copy-icon-wrapper">
@@ -151,7 +151,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="min-width txt-hint txt-bold">created</td>
+                    <td class="min-width txt-hint txt-bold">Создано</td>
                     <td>
                         <LogDate date={log.created} />
                         <div class="copy-icon-wrapper">
@@ -161,7 +161,7 @@
                 </tr>
                 {#if !isRequest}
                     <tr>
-                        <td class="min-width txt-hint txt-bold">message</td>
+                        <td class="min-width txt-hint txt-bold">Сообщение</td>
                         <td>
                             {#if log.message}
                                 <span class="txt">{log.message}</span>
@@ -170,7 +170,7 @@
                                     <CopyIcon value={log.message} />
                                 </div>
                             {:else}
-                                <span class="txt txt-hint">N/A</span>
+                                <span class="txt txt-hint">Н/Д</span>
                             {/if}
                         </td>
                     </tr>
@@ -185,7 +185,7 @@
                         </td>
                         <td>
                             {#if isEmpty}
-                                <span class="txt txt-hint">N/A</span>
+                                <span class="txt txt-hint">Н/Д</span>
                             {:else if isJson}
                                 <CodeBlock content={JSON.stringify(value, null, 2)} />
                             {:else if key == "error"}
@@ -214,12 +214,12 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={() => hide()}>
-            <span class="txt">Close</span>
+            <span class="txt">Закрыть</span>
         </button>
 
         <button type="button" class="btn btn-primary" disabled={isLoading} on:click={() => downloadJson()}>
             <i class="ri-download-line" />
-            <span class="txt">Download as JSON</span>
+            <span class="txt">Скачать как JSON</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

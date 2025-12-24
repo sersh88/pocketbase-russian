@@ -58,7 +58,7 @@
             $hideControls = !!settings?.meta?.hideControls;
         } catch (err) {
             if (!err?.isAbort) {
-                console.warn("Failed to load app settings.", err);
+                console.warn("Не удалось загрузить настройки приложения.", err);
             }
         }
     }
@@ -96,30 +96,30 @@
                 <a
                     href="/collections"
                     class="menu-item"
-                    aria-label="Collections"
+                    aria-label="Коллекции"
                     use:link
                     use:active={{ path: "/collections/?.*", className: "current-route" }}
-                    use:tooltip={{ text: "Collections", position: "right" }}
+                    use:tooltip={{ text: "Коллекции", position: "right" }}
                 >
                     <i class="ri-database-2-line" />
                 </a>
                 <a
                     href="/logs"
                     class="menu-item"
-                    aria-label="Logs"
+                    aria-label="Логи"
                     use:link
                     use:active={{ path: "/logs/?.*", className: "current-route" }}
-                    use:tooltip={{ text: "Logs", position: "right" }}
+                    use:tooltip={{ text: "Логи", position: "right" }}
                 >
                     <i class="ri-line-chart-line" />
                 </a>
                 <a
                     href="/settings"
                     class="menu-item"
-                    aria-label="Settings"
+                    aria-label="Настройки"
                     use:link
                     use:active={{ path: "/settings/?.*", className: "current-route" }}
-                    use:tooltip={{ text: "Settings", position: "right" }}
+                    use:tooltip={{ text: "Настройки", position: "right" }}
                 >
                     <i class="ri-tools-line" />
                 </a>
@@ -128,7 +128,7 @@
             <div
                 tabindex="0"
                 role="button"
-                aria-label="Logged superuser menu"
+                aria-label="Меню суперпользователя"
                 class="thumb thumb-circle link-hint"
                 title={$superuser.email}
             >
@@ -145,11 +145,11 @@
                         use:link
                     >
                         <i class="ri-shield-user-line" aria-hidden="true" />
-                        <span class="txt">Manage superusers</span>
+                        <span class="txt">Управление суперпользователями</span>
                     </a>
                     <button type="button" class="dropdown-item closable" role="menuitem" on:click={logout}>
                         <i class="ri-logout-circle-line" aria-hidden="true" />
-                        <span class="txt">Logout</span>
+                        <span class="txt">Выйти</span>
                     </button>
                 </Toggler>
             </div>

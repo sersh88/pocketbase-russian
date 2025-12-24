@@ -10,7 +10,7 @@
     import CommonHelper from "@/utils/CommonHelper";
     import { tick } from "svelte";
 
-    $pageTitle = "Import collections";
+    $pageTitle = "Импорт коллекций";
 
     let fileInput;
     let importPopup;
@@ -219,14 +219,14 @@
             await tick();
 
             if (!newCollections.length) {
-                addErrorToast("Invalid collections configuration.");
+                addErrorToast("Некорректная конфигурация коллекций.");
                 clear();
             }
         };
 
         reader.onerror = (err) => {
             console.warn(err);
-            addErrorToast("Failed to load the imported JSON.");
+            addErrorToast("Не удалось загрузить импортированный JSON.");
 
             isLoadingFile = false;
             fileInput.value = ""; // reset
@@ -255,7 +255,7 @@
 <PageWrapper>
     <header class="page-header">
         <nav class="breadcrumbs">
-            <div class="breadcrumb-item">Settings</div>
+            <div class="breadcrumb-item">Настройки</div>
             <div class="breadcrumb-item">{$pageTitle}</div>
         </nav>
     </header>
@@ -279,7 +279,7 @@
 
                 <div class="content txt-xl m-b-base">
                     <p>
-                        Paste below the collections configuration you want to import or
+                        Вставь ниже конфигурацию коллекций, которую хочешь импортировать, или
                         <button
                             class="btn btn-outline btn-sm m-l-5"
                             class:btn-loading={isLoadingFile}
@@ -287,13 +287,13 @@
                                 fileInput.click();
                             }}
                         >
-                            <span class="txt">Load from JSON file</span>
+                            <span class="txt">Загрузить из JSON файла</span>
                         </button>
                     </p>
                 </div>
 
                 <Field class="form-field {!isValid ? 'field-error' : ''}" name="collections" let:uniqueId>
-                    <label for={uniqueId} class="p-b-10">Collections</label>
+                    <label for={uniqueId} class="p-b-10">Коллекции</label>
                     <textarea
                         id={uniqueId}
                         class="code"
@@ -304,7 +304,7 @@
                     />
 
                     {#if !!schemas && !isValid}
-                        <div class="help-block help-block-error">Invalid collections configuration.</div>
+                        <div class="help-block help-block-error">Некорректная конфигурация коллекций.</div>
                     {/if}
                 </Field>
 
@@ -316,7 +316,7 @@
                             bind:checked={mergeWithOldCollections}
                             disabled={!isValid}
                         />
-                        <label for={uniqueId}>Merge with the existing collections</label>
+                        <label for={uniqueId}>Объединить с существующими коллекциями</label>
                     </Field>
                 {/if}
 
@@ -329,7 +329,7 @@
                             bind:checked={deleteMissing}
                             disabled={!isValid}
                         />
-                        <label for={uniqueId}>Delete missing collections and schema fields</label>
+                        <label for={uniqueId}>Удалять отсутствующие коллекции и поля схемы</label>
                     </Field>
                 {/if}
 
@@ -339,19 +339,19 @@
                             <i class="ri-information-line" />
                         </div>
                         <div class="content">
-                            <string>Your collections configuration is already up-to-date!</string>
+                            <string>Конфигурация коллекций уже актуальна!</string>
                         </div>
                     </div>
                 {/if}
 
                 {#if isValid && newCollections.length && hasChanges}
-                    <h5 class="section-title">Detected changes</h5>
+                    <h5 class="section-title">Найдены изменения</h5>
 
                     <div class="list">
                         {#if collectionsToDelete.length}
                             {#each collectionsToDelete as collection (collection.id)}
                                 <div class="list-item">
-                                    <span class="label label-danger list-label">Deleted</span>
+                                    <span class="label label-danger list-label">Удалено</span>
                                     <div class="inline-flex flex-gap-5">
                                         <strong>{collection.name}</strong>
                                         {#if collection.id}
@@ -365,7 +365,7 @@
                         {#if collectionsToUpdate.length}
                             {#each collectionsToUpdate as pair (pair.old.id + pair.new.id)}
                                 <div class="list-item">
-                                    <span class="label label-warning list-label">Changed</span>
+                                    <span class="label label-warning list-label">Изменено</span>
                                     <div class="inline-flex flex-gap-5">
                                         {#if pair.old.name !== pair.new.name}
                                             <strong class="txt-strikethrough txt-hint">
@@ -385,7 +385,7 @@
                         {#if collectionsToAdd.length}
                             {#each collectionsToAdd as collection (collection.id)}
                                 <div class="list-item">
-                                    <span class="label label-success list-label">Added</span>
+                                    <span class="label label-success list-label">Добавлено</span>
                                     <div class="inline-flex flex-gap-5">
                                         <strong>{collection.name}</strong>
                                         {#if collection.id}
@@ -405,9 +405,8 @@
                         </div>
                         <div class="content">
                             <string>
-                                Some of the imported collections share the same name and/or fields but are
-                                imported with different IDs. You can replace them in the import if you want
-                                to.
+                                Некоторые импортируемые коллекции имеют одинаковые имена и/или поля, но при этом
+                                импортируются с другими ID. Если хочешь — можно заменить их на оригинальные ID.
                             </string>
                         </div>
                         <button
@@ -415,7 +414,7 @@
                             class="btn btn-warning btn-sm btn-outline"
                             on:click={() => replaceIds()}
                         >
-                            <span class="txt">Replace with original ids</span>
+                            <span class="txt">Заменить на оригинальные ID</span>
                         </button>
                     </div>
                 {/if}
@@ -423,7 +422,7 @@
                 <div class="flex m-t-base">
                     {#if !!schemas}
                         <button type="button" class="btn btn-transparent link-hint" on:click={() => clear()}>
-                            <span class="txt">Clear</span>
+                            <span class="txt">Очистить</span>
                         </button>
                     {/if}
                     <div class="flex-fill" />
@@ -433,7 +432,7 @@
                         disabled={!canImport}
                         on:click={review}
                     >
-                        <span class="txt">Review</span>
+                        <span class="txt">Просмотреть</span>
                     </button>
                 </div>
             {/if}

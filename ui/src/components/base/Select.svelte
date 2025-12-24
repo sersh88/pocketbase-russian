@@ -5,9 +5,9 @@
     import CommonHelper from "@/utils/CommonHelper";
 
     export let id = "";
-    export let noOptionsText = "No options found";
-    export let selectPlaceholder = "- Select -";
-    export let searchPlaceholder = "Search...";
+    export let noOptionsText = "Ничего не найдено";
+    export let selectPlaceholder = "- Выберите -";
+    export let searchPlaceholder = "Поиск...";
     export let items = [];
     export let multiple = false;
     export let disabled = false;

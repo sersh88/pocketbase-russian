@@ -27,7 +27,7 @@
                 newPassword,
                 newPasswordConfirm,
             );
-            addSuccessToast("Successfully set a new superuser password.");
+            addSuccessToast("Новый пароль суперпользователя успешно установлен.");
             replace("/");
         } catch (err) {
             ApiClient.error(err);
@@ -41,30 +41,30 @@
     <form class="m-b-base" on:submit|preventDefault={submit}>
         <div class="content txt-center m-b-sm">
             <h4 class="m-b-xs">
-                Reset your superuser password
+                Сброс пароля суперпользователя
                 {#if email}
-                    for <strong class="txt-nowrap">{email}</strong>
+                    для <strong class="txt-nowrap">{email}</strong>
                 {/if}
             </h4>
         </div>
 
         <Field class="form-field required" name="password" let:uniqueId>
-            <label for={uniqueId}>New password</label>
+            <label for={uniqueId}>Новый пароль</label>
             <!-- svelte-ignore a11y-autofocus -->
             <input type="password" id={uniqueId} required autofocus bind:value={newPassword} />
         </Field>
 
         <Field class="form-field required" name="passwordConfirm" let:uniqueId>
-            <label for={uniqueId}>New password confirm</label>
+            <label for={uniqueId}>Подтверждение нового пароля</label>
             <input type="password" id={uniqueId} required bind:value={newPasswordConfirm} />
         </Field>
 
         <button type="submit" class="btn btn-lg btn-block" class:btn-loading={isLoading} disabled={isLoading}>
-            <span class="txt">Set new password</span>
+            <span class="txt">Установить новый пароль</span>
         </button>
     </form>
 
     <div class="content txt-center">
-        <a href="/login" class="link-hint" use:link>Back to login</a>
+        <a href="/login" class="link-hint" use:link>Назад ко входу</a>
     </div>
 </FullPage>

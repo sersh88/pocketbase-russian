@@ -43,7 +43,7 @@
                 confirmationPopup?.hide();
             }}
         >
-            <span class="txt">No</span>
+            <span class="txt">Нет</span>
         </button>
         <button
             type="button"
@@ -60,7 +60,7 @@
                 confirmationPopup?.hide();
             }}
         >
-            <span class="txt">Yes</span>
+            <span class="txt">Да</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

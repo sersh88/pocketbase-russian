@@ -13,7 +13,7 @@
     import LogsSettingsPanel from "@/components/logs/LogsSettingsPanel.svelte";
     import LogsLevelsInfo from "@/components/logs/LogsLevelsInfo.svelte";
 
-    $pageTitle = "Logs";
+    $pageTitle = "Логи";
 
     const LOG_QUERY_KEY = "logId";
     const ADMIN_REQUESTS_QUERY_KEY = "superuserRequests";
@@ -68,9 +68,9 @@
 
             <button
                 type="button"
-                aria-label="Logs settings"
+                aria-label="Настройки логов"
                 class="btn btn-transparent btn-circle"
-                use:tooltip={{ text: "Logs settings", position: "right" }}
+                use:tooltip={{ text: "Настройки логов", position: "right" }}
                 on:click={() => logsSettingsPanel?.show()}
             >
                 <i class="ri-settings-4-line" />
@@ -83,14 +83,14 @@
             <div class="inline-flex">
                 <Field class="form-field form-field-toggle m-0" let:uniqueId>
                     <input type="checkbox" id={uniqueId} bind:checked={withSuperuserLogs} />
-                    <label for={uniqueId}>Include requests by superusers</label>
+                    <label for={uniqueId}>Включать запросы от суперпользователей</label>
                 </Field>
             </div>
         </header>
 
         <Searchbar
             value={filter}
-            placeholder="Search term or filter like `level > 0 && data.auth = 'guest'`"
+            placeholder="Поиск или фильтр, например: `level > 0 && data.auth = 'guest'`"
             extraAutocompleteKeys={["level", "message", "data."]}
             on:submit={(e) => (filter = e.detail)}
         />

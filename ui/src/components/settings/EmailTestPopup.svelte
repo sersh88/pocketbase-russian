@@ -126,7 +126,7 @@
     on:hide
 >
     <svelte:fragment slot="header">
-        <h4 class="center txt-break">Send test email</h4>
+        <h4 class="center txt-break">Отправить тестовое письмо</h4>
     </svelte:fragment>
 
     <form id={formId} autocomplete="off" on:submit|preventDefault={() => submit()}>
@@ -147,13 +147,13 @@
 
         {#if showAuthCollections}
             <Field class="form-field required" name="collection" let:uniqueId>
-                <label for={uniqueId}>Auth collection</label>
+                <label for={uniqueId}>Auth коллекция</label>
                 <ObjectSelect
                     id={uniqueId}
                     selectPlaceholder={isAuthCollectionsLoading
-                        ? "Loading auth collections..."
-                        : "Select auth collection"}
-                    noOptionsText={"No auth collections found"}
+                        ? "Загружаю auth коллекции..."
+                        : "Выбери auth коллекцию"}
+                    noOptionsText={"Auth коллекции не найдены"}
                     selectionKey="id"
                     items={authCollections}
                     bind:keyOfSelected={collectionIdOrName}
@@ -162,7 +162,7 @@
         {/if}
 
         <Field class="form-field required m-0" name="email" let:uniqueId>
-            <label for={uniqueId}>To email address</label>
+            <label for={uniqueId}>Кому (email)</label>
             <!-- svelte-ignore a11y-autofocus -->
             <input type="email" id={uniqueId} autofocus required bind:value={email} />
         </Field>
@@ -170,7 +170,7 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={hide} disabled={isSubmitting}
-            >Close</button
+            >Закрыть</button
         >
         <button
             type="submit"
@@ -180,7 +180,7 @@
             disabled={!canSubmit || isSubmitting}
         >
             <i class="ri-mail-send-line" />
-            <span class="txt">Send</span>
+            <span class="txt">Отправить</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

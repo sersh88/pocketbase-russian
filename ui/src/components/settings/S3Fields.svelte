@@ -12,7 +12,7 @@
     export let originalConfig = {};
     export let config = {};
     export let configKey = "s3";
-    export let toggleLabel = "Enable S3";
+    export let toggleLabel = "Включить S3";
     export let testFilesystem = "storage"; // storage or backups
     export let testError = null;
     export let isTesting = false;
@@ -56,7 +56,7 @@
         clearTimeout(testTimeoutId);
         testTimeoutId = setTimeout(() => {
             ApiClient.cancelRequest(testRequestKey);
-            testError = new Error("S3 test connection timeout.");
+            testError = new Error("Таймаут проверки подключения к S3.");
             isTesting = false;
         }, 30000);
 
@@ -137,11 +137,11 @@
             <Field class="form-field" name="{configKey}.forcePathStyle" let:uniqueId>
                 <input type="checkbox" id={uniqueId} bind:checked={config.forcePathStyle} />
                 <label for={uniqueId}>
-                    <span class="txt">Force path-style addressing</span>
+                    <span class="txt">Принудительно использовать path‑style адресацию</span>
                     <i
                         class="ri-information-line link-hint"
                         use:tooltip={{
-                            text: 'Forces the request to use path-style addressing, eg. "https://s3.amazonaws.com/BUCKET/KEY" instead of the default "https://BUCKET.s3.amazonaws.com/KEY".',
+                            text: 'Заставляет использовать path‑style адресацию, например: "https://s3.amazonaws.com/BUCKET/KEY" вместо стандартной "https://BUCKET.s3.amazonaws.com/KEY".',
                             position: "top",
                         }}
                     />

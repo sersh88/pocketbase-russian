@@ -19,7 +19,7 @@
     <AutoExpandTextarea
         id={uniqueId}
         required={isRequired}
-        placeholder={hasAutogenerate ? "Leave empty to autogenerate..." : ""}
+        placeholder={hasAutogenerate ? "Оставь пустым для автогенерации..." : ""}
         bind:value
     />
 </Field>

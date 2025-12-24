@@ -27,6 +27,15 @@
     let isLoading = false;
     let isZoomedOrPanned = false;
 
+    function pluralizeLogs(count) {
+        const n = Math.abs(count) % 100;
+        const n1 = n % 10;
+        if (n > 10 && n < 20) return "логов";
+        if (n1 > 1 && n1 < 5) return "лога";
+        if (n1 === 1) return "лог";
+        return "логов";
+    }
+
     $: if (typeof filter !== "undefined" || typeof presets !== "undefined") {
         load();
     }
@@ -197,8 +206,8 @@
 
 <div class="chart-wrapper" class:loading={isLoading}>
     <div class="total-logs entrance-right" class:hidden={isLoading}>
-        Found {totalLogs}
-        {totalLogs == 1 ? "log" : "logs"}
+        Найдено {totalLogs}
+        {pluralizeLogs(totalLogs)}
     </div>
 
     {#if isLoading}
@@ -209,7 +218,7 @@
 
     {#if isZoomedOrPanned}
         <button type="button" class="btn btn-secondary btn-sm btn-chart-zoom" on:click={resetZoom}>
-            Reset zoom
+            Сбросить зум
         </button>
     {/if}
 </div>
