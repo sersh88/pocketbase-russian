@@ -149,7 +149,7 @@
 
 <OverlayPanel bind:this={panel} class="confirm-changes-panel" popup on:hide on:show>
     <svelte:fragment slot="header">
-        <h4>Confirm collection changes</h4>
+        <h4>Подтвердить изменения коллекции</h4>
     </svelte:fragment>
 
     {#if isCollectionRenamed || deletedFields.length || renamedFields.length}
@@ -159,23 +159,23 @@
             </div>
             <div class="content txt-bold">
                 <p>
-                    If any of the collection changes is part of another collection rule, filter or view query,
-                    you'll have to update it manually!
+                    Если какое-то изменение этой коллекции используется в правилах/фильтрах/вьюшках другой
+                    коллекции — тебе придётся обновить это вручную!
                 </p>
                 {#if deletedFields.length}
-                    <p>All data associated with the removed fields will be permanently deleted!</p>
+                    <p>Все данные, связанные с удалёнными полями, будут удалены навсегда!</p>
                 {/if}
             </div>
         </div>
     {/if}
 
     {#if showChanges}
-        <h6>Changes:</h6>
+        <h6>Изменения:</h6>
         <ul class="changes-list">
             {#if isCollectionRenamed}
                 <li>
                     <div class="inline-flex">
-                        Renamed collection
+                        Переименована коллекция
                         <strong class="txt-strikethrough txt-hint">{oldCollection?.name}</strong>
                         <i class="ri-arrow-right-line txt-sm" />
                         <strong class="txt"> {newCollection?.name}</strong>
@@ -186,16 +186,16 @@
             {#if !isNewCollectionView}
                 {#each multipleToSingleFields as field}
                     <li>
-                        Multiple to single value conversion of field
+                        Конвертация поля из “нескольких значений” в “одно значение”
                         <strong>{field.name}</strong>
-                        <em class="txt-sm">(will keep only the last array item)</em>
+                        <em class="txt-sm">(останется только последний элемент массива)</em>
                     </li>
                 {/each}
 
                 {#each renamedFields as field}
                     <li>
                         <div class="inline-flex">
-                            Renamed field
+                            Переименовано поле
                             <strong class="txt-strikethrough txt-hint">{field._originalName}</strong>
                             <i class="ri-arrow-right-line txt-sm" />
                             <strong class="txt">{field.name}</strong>
@@ -205,29 +205,29 @@
 
                 {#each deletedFields as field}
                     <li class="txt-danger">
-                        Removed field <span class="txt-bold">{field.name}</span>
+                        Удалено поле <span class="txt-bold">{field.name}</span>
                     </li>
                 {/each}
             {/if}
 
             {#each changedRules as ruleChange}
                 <li>
-                    Changed API rule <code class="txt-sm">{ruleChange.prop}</code>:
+                    Изменено API-правило <code class="txt-sm">{ruleChange.prop}</code>:
                     <br />
                     <small class="txt-mono txt-hint">
-                        <strong>Old</strong>:
+                        <strong>Было</strong>:
                         <span class="txt-preline">
                             {ruleChange.oldRule === null
-                                ? "null (superusers only)"
+                                ? "null (только суперпользователи)"
                                 : ruleChange.oldRule || '""'}
                         </span>
                     </small>
                     <br />
                     <small class="txt-mono txt-success">
-                        <strong>New</strong>:
+                        <strong>Стало</strong>:
                         <span class="txt-preline">
                             {ruleChange.newRule === null
-                                ? "null (superusers only)"
+                                ? "null (только суперпользователи)"
                                 : ruleChange.newRule || '""'}
                         </span>
                     </small>
@@ -236,7 +236,7 @@
 
             {#each conflictingOIDCs as oidc}
                 <li>
-                    Changed <code>{oidc.name}</code> host
+                    Изменён host у <code>{oidc.name}</code>
                     <div class="inline-flex m-l-5">
                         <strong class="txt-strikethrough txt-hint">{oidc.oldHost}</strong>
                         <i class="ri-arrow-right-line txt-sm" />
@@ -244,11 +244,11 @@
                     </div>
                     <br />
                     <em class="txt-hint">
-                        If the old and new OIDC configuration is not for the same provider consider deleting
-                        all old <code class="txt-sm">_externalAuths</code> records associated to the current
-                        collection and provider, otherwise it may result in account linking errors.
+                        Если старая и новая OIDC-конфигурации — это НЕ один и тот же провайдер, лучше удалить
+                        старые записи <code class="txt-sm">_externalAuths</code>, связанные с текущей коллекцией
+                        и провайдером — иначе можно словить ошибки привязки аккаунтов.
                         <a href={getExternalAuthsFilterLink(oidc.name)} target="_blank">
-                            Review existing <code class="txt-sm">_externalAuths</code> records
+                            Посмотреть существующие записи <code class="txt-sm">_externalAuths</code>
                             <i class="ri-external-link-line txt-sm"></i>
                         </a>.
                     </em>
@@ -260,10 +260,10 @@
     <svelte:fragment slot="footer">
         <!-- svelte-ignore a11y-autofocus -->
         <button autofocus type="button" class="btn btn-transparent" on:click={() => hide()}>
-            <span class="txt">Cancel</span>
+            <span class="txt">Отмена</span>
         </button>
         <button type="button" class="btn btn-expanded" on:click={() => confirm()}>
-            <span class="txt">Confirm</span>
+            <span class="txt">Подтвердить</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

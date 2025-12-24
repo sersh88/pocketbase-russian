@@ -87,7 +87,7 @@
             </div>
             <input
                 type="text"
-                placeholder="Search collections..."
+                placeholder="Искать коллекции..."
                 name="collections-search"
                 bind:value={searchTerm}
             />
@@ -102,7 +102,7 @@
         class:sidebar-content-compact={filtered.length > 20}
     >
         {#if pinnedCollections.length}
-            <div class="sidebar-title">Pinned</div>
+            <div class="sidebar-title">Закреплённые</div>
             {#each pinnedCollections as collection (collection.id)}
                 <CollectionSidebarItem {collection} bind:pinnedIds />
             {/each}
@@ -110,7 +110,7 @@
 
         {#if unpinnedRegularCollections.length}
             {#if pinnedCollections.length}
-                <div class="sidebar-title">Others</div>
+                <div class="sidebar-title">Остальные</div>
             {/if}
             {#each unpinnedRegularCollections as collection (collection.id)}
                 <CollectionSidebarItem {collection} bind:pinnedIds />
@@ -122,7 +122,7 @@
                 type="button"
                 class="sidebar-title m-b-xs"
                 class:link-hint={!normalizedSearch.length}
-                aria-label={showSystemSection ? "Expand system collections" : "Collapse system collections"}
+                aria-label={showSystemSection ? "Свернуть системные коллекции" : "Развернуть системные коллекции"}
                 aria-expanded={showSystemSection || normalizedSearch.length}
                 disabled={normalizedSearch.length}
                 on:click={() => {
@@ -131,7 +131,7 @@
                     }
                 }}
             >
-                <span class="txt">System</span>
+                <span class="txt">Системные</span>
                 {#if !normalizedSearch.length}
                     <i class="ri-arrow-{showSystemSection ? 'up' : 'down'}-s-line" aria-hidden="true" />
                 {/if}
@@ -144,7 +144,7 @@
         {/if}
 
         {#if normalizedSearch.length && !filtered.length}
-            <p class="txt-hint m-t-10 m-b-10 txt-center">No collections found.</p>
+            <p class="txt-hint m-t-10 m-b-10 txt-center">Коллекции не найдены.</p>
         {/if}
     </div>
 
@@ -152,7 +152,7 @@
         <footer class="sidebar-footer">
             <button type="button" class="btn btn-block btn-outline" on:click={() => collectionPanel?.show()}>
                 <i class="ri-add-line" />
-                <span class="txt">New collection</span>
+                <span class="txt">Новая коллекция</span>
             </button>
         </footer>
     {/if}

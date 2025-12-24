@@ -55,32 +55,32 @@
     </div>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>email</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The auth record email address to send the OTP request (if exists).</td>
+            <td>Email auth‑записи, на который отправить OTP (если запись существует).</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

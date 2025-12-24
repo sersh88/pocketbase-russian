@@ -4,66 +4,66 @@
 
     const baseTabs = {
         list: {
-            label: "List/Search",
+            label: "Список/Поиск",
             component: import("@/components/collections/docs/ListApiDocs.svelte"),
         },
         view: {
-            label: "View",
+            label: "Просмотр",
             component: import("@/components/collections/docs/ViewApiDocs.svelte"),
         },
         create: {
-            label: "Create",
+            label: "Создать",
             component: import("@/components/collections/docs/CreateApiDocs.svelte"),
         },
         update: {
-            label: "Update",
+            label: "Обновить",
             component: import("@/components/collections/docs/UpdateApiDocs.svelte"),
         },
         delete: {
-            label: "Delete",
+            label: "Удалить",
             component: import("@/components/collections/docs/DeleteApiDocs.svelte"),
         },
         realtime: {
-            label: "Realtime",
+            label: "Реалтайм",
             component: import("@/components/collections/docs/RealtimeApiDocs.svelte"),
         },
         batch: {
-            label: "Batch",
+            label: "Пакетный API",
             component: import("@/components/collections/docs/BatchApiDocs.svelte"),
         },
     };
 
     const authTabs = {
         "list-auth-methods": {
-            label: "List auth methods",
+            label: "Способы входа",
             component: import("@/components/collections/docs/AuthMethodsDocs.svelte"),
         },
         "auth-with-password": {
-            label: "Auth with password",
+            label: "Вход по паролю",
             component: import("@/components/collections/docs/AuthWithPasswordDocs.svelte"),
         },
         "auth-with-oauth2": {
-            label: "Auth with OAuth2",
+            label: "Вход через OAuth2",
             component: import("@/components/collections/docs/AuthWithOAuth2Docs.svelte"),
         },
         "auth-with-otp": {
-            label: "Auth with OTP",
+            label: "Вход через OTP",
             component: import("@/components/collections/docs/AuthWithOtpDocs.svelte"),
         },
         refresh: {
-            label: "Auth refresh",
+            label: "Обновление auth",
             component: import("@/components/collections/docs/AuthRefreshDocs.svelte"),
         },
         verification: {
-            label: "Verification",
+            label: "Подтверждение email",
             component: import("@/components/collections/docs/VerificationDocs.svelte"),
         },
         "password-reset": {
-            label: "Password reset",
+            label: "Сброс пароля",
             component: import("@/components/collections/docs/PasswordResetDocs.svelte"),
         },
         "email-change": {
-            label: "Email change",
+            label: "Смена email",
             component: import("@/components/collections/docs/EmailChangeDocs.svelte"),
         },
     };
@@ -124,7 +124,7 @@
                     {#if tab.disabled}
                         <div
                             class="sidebar-item disabled"
-                            use:tooltip={{ position: "left", text: "Not enabled for the collection" }}
+                            use:tooltip={{ position: "left", text: "Не включено для этой коллекции" }}
                         >
                             {tab.label}
                         </div>
@@ -156,7 +156,7 @@
     <!-- visible only on small screens -->
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={() => hide()}>
-            <span class="txt">Close</span>
+            <span class="txt">Закрыть</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

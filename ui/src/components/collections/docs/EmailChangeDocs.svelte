@@ -8,8 +8,8 @@
     export let collection;
 
     const apiTabs = [
-        { title: "Request email change", component: EmailChangeApiRequestDocs },
-        { title: "Confirm email change", component: EmailChangeApiConfirmDocs },
+        { title: "Запросить смену email", component: EmailChangeApiRequestDocs },
+        { title: "Подтвердить смену", component: EmailChangeApiConfirmDocs },
     ];
 
     let activeApiTab = 0;
@@ -17,12 +17,12 @@
     $: backendAbsUrl = CommonHelper.getApiExampleUrl(ApiClient.baseURL);
 </script>
 
-<h3 class="m-b-sm">Email change ({collection.name})</h3>
+<h3 class="m-b-sm">Смена email ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Sends <strong>{collection.name}</strong> email change request.</p>
+    <p>Отправляет запрос на смену email для аккаунта <strong>{collection.name}</strong>.</p>
     <p>
-        On successful email change all previously issued auth tokens for the specific record will be
-        automatically invalidated.
+        После успешной смены email все ранее выданные auth‑токены для конкретной записи будут автоматически
+        инвалидированы.
     </p>
 </div>
 
@@ -73,7 +73,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="tabs">
     <div class="tabs-header compact">
         {#each apiTabs as tab, i}

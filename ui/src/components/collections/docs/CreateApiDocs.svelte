@@ -68,19 +68,19 @@
     }
 </script>
 
-<h3 class="m-b-sm">Create ({collection.name})</h3>
+<h3 class="m-b-sm">Создание ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Create a new <strong>{collection.name}</strong> record.</p>
+    <p>Создать новую запись <strong>{collection.name}</strong>.</p>
     <p>
-        Body parameters could be sent as <code>application/json</code> or
+        Параметры тела можно отправлять как <code>application/json</code> или
         <code>multipart/form-data</code>.
     </p>
     <p>
-        File upload is supported only via <code>multipart/form-data</code>.
+        Загрузка файлов поддерживается только через <code>multipart/form-data</code>.
         <br />
-        For more info and examples you could check the detailed
+        Больше инфы и примеров — в подробной документации:
         <a href={import.meta.env.PB_FILE_UPLOAD_DOCS} target="_blank" rel="noopener noreferrer">
-            Files upload and handling docs
+            Загрузка и обработка файлов
         </a>.
     </p>
 </div>
@@ -123,7 +123,7 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
 )}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-success">
     <strong class="label label-primary">POST</strong>
     <div class="content">
@@ -132,31 +132,33 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
         </p>
     </div>
     {#if superusersOnly}
-        <p class="txt-hint txt-sm txt-right">Requires superuser <code>Authorization:TOKEN</code> header</p>
+        <p class="txt-hint txt-sm txt-right">
+            Нужен заголовок суперпользователя <code>Authorization:TOKEN</code>
+        </p>
     {/if}
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         {#if isAuth}
             <tr>
-                <td colspan="3" class="txt-hint txt-bold">Auth specific fields</td>
+                <td colspan="3" class="txt-hint txt-bold">Поля, специфичные для auth</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
                         {#if collection?.fields?.find((f) => f.name == "email")?.required}
-                            <span class="label label-success">Required</span>
+                            <span class="label label-success">Обязательно</span>
                         {:else}
-                            <span class="label label-warning">Optional</span>
+                            <span class="label label-warning">Опционально</span>
                         {/if}
                         <span>email</span>
                     </div>
@@ -164,15 +166,15 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 <td>
                     <span class="label">String</span>
                 </td>
-                <td>Auth record email address.</td>
+                <td>Email адрес auth‑записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
                         {#if collection?.fields?.find((f) => f.name == "emailVisibility")?.required}
-                            <span class="label label-success">Required</span>
+                            <span class="label label-success">Обязательно</span>
                         {:else}
-                            <span class="label label-warning">Optional</span>
+                            <span class="label label-warning">Опционально</span>
                         {/if}
                         <span>emailVisibility</span>
                     </div>
@@ -180,36 +182,36 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 <td>
                     <span class="label">Boolean</span>
                 </td>
-                <td>Whether to show/hide the auth record email when fetching the record data.</td>
+                <td>Показывать/скрывать email auth‑записи при получении данных записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-success">Required</span>
+                        <span class="label label-success">Обязательно</span>
                         <span>password</span>
                     </div>
                 </td>
                 <td>
                     <span class="label">String</span>
                 </td>
-                <td>Auth record password.</td>
+                <td>Пароль auth‑записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-success">Required</span>
+                        <span class="label label-success">Обязательно</span>
                         <span>passwordConfirm</span>
                     </div>
                 </td>
                 <td>
                     <span class="label">String</span>
                 </td>
-                <td>Auth record password confirmation.</td>
+                <td>Подтверждение пароля auth‑записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-warning">Optional</span>
+                        <span class="label label-warning">Опционально</span>
                         <span>verified</span>
                     </div>
                 </td>
@@ -217,13 +219,13 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                     <span class="label">Boolean</span>
                 </td>
                 <td>
-                    Indicates whether the auth record is verified or not.
+                    Показывает, подтверждена auth‑запись или нет.
                     <br />
-                    This field can be set only by superusers or auth records with "Manage" access.
+                    Это поле могут менять только суперпользователи или auth‑записи с доступом “Manage”.
                 </td>
             </tr>
             <tr>
-                <td colspan="3" class="txt-hint txt-bold">Other fields</td>
+                <td colspan="3" class="txt-hint txt-bold">Остальные поля</td>
             </tr>
         {/if}
 
@@ -232,9 +234,9 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 <td>
                     <div class="inline-flex">
                         {#if !field.required || (field.type == "text" && field.autogeneratePattern)}
-                            <span class="label label-warning">Optional</span>
+                            <span class="label label-warning">Опционально</span>
                         {:else}
-                            <span class="label label-success">Required</span>
+                            <span class="label label-success">Обязательно</span>
                         {/if}
                         <span>{field.name}</span>
                     </div>
@@ -244,26 +246,26 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 </td>
                 <td>
                     {#if field.type === "text"}
-                        Plain text value.
+                        Текстовое значение.
                         {#if field.autogeneratePattern}
-                            It is autogenerated if not set.
+                            Автогенерируется, если не задано.
                         {/if}
                     {:else if field.type === "number"}
-                        Number value.
+                        Числовое значение.
                     {:else if field.type === "json"}
-                        JSON array or object.
+                        JSON‑массив или объект.
                     {:else if field.type === "email"}
-                        Email address.
+                        Email адрес.
                     {:else if field.type === "url"}
-                        URL address.
+                        URL адрес.
                     {:else if field.type === "geoPoint"}
-                        <code>{`{"lon":x,"lat":y}`}</code> object.
+                        <code>{`{"lon":x,"lat":y}`}</code> объект.
                     {:else if field.type === "file"}
-                        File object.<br />
-                        Set to empty value (<code>null</code>, <code>""</code> or <code>[]</code>) to delete
-                        already uploaded file(s).
+                        Файловый объект.<br />
+                        Укажи пустое значение (<code>null</code>, <code>""</code> или <code>[]</code>), чтобы
+                        удалить уже загруженный(е) файл(ы).
                     {:else if field.type === "relation"}
-                        Relation record {field.maxSelect === 1 ? "id" : "ids"}.
+                        {field.maxSelect === 1 ? "id" : "ids"} связанной записи.
                     {/if}
                 </td>
             </tr>
@@ -271,13 +273,13 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
     </tbody>
 </table>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -287,20 +289,21 @@ await pb.collection('${collection?.name}').requestVerification('test@example.com
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand relations when returning the created record. Ex.:
+                Автоматически раскрывает связи при возврате созданной записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to the record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>).
                 <br />
-                Only the relations to which the request user has permissions to <strong>view</strong> will be expanded.
+                Будут раскрыты только те связи, на которые у пользователя запроса есть права
+                <strong>view</strong>.
             </td>
         </tr>
         <FieldsQueryParam />
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

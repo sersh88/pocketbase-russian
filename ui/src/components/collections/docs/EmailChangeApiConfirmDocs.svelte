@@ -38,44 +38,44 @@
     </div>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>token</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The token from the change email request email.</td>
+            <td>Токен из письма запроса смены email.</td>
         </tr>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>password</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The account password to confirm the email change.</td>
+            <td>Пароль аккаунта для подтверждения смены email.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

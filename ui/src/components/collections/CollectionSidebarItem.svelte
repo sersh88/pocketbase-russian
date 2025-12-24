@@ -35,7 +35,7 @@
         <i
             class="ri-alert-line txt-sm link-hint"
             aria-hidden="true"
-            use:tooltip={"OAuth2 auth is enabled but the collection doesn't have any registered providers"}
+            use:tooltip={"OAuth2 включён, но для коллекции не добавлен ни один провайдер"}
         />
     {/if}
 
@@ -43,9 +43,9 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <span
         class="btn btn-xs btn-circle btn-hint btn-transparent btn-pin-collection m-l-auto"
-        aria-label={"Pin collection"}
+        aria-label={"Закрепить коллекцию"}
         aria-hidden="true"
-        use:tooltip={{ position: "right", text: (isPinned ? "Unpin" : "Pin") + " collection" }}
+        use:tooltip={{ position: "right", text: isPinned ? "Открепить коллекцию" : "Закрепить коллекцию" }}
         on:click|preventDefault|stopPropagation={() => toggleCollectionPin(collection)}
     >
         {#if isPinned}

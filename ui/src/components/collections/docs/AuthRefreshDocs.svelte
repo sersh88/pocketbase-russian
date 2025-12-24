@@ -57,15 +57,15 @@
     ];
 </script>
 
-<h3 class="m-b-sm">Auth refresh ({collection.name})</h3>
+<h3 class="m-b-sm">Обновление auth ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
     <p>
-        Returns a new auth response (token and record data) for an
-        <strong>already authenticated record</strong>.
+        Возвращает новый auth‑ответ (token и данные записи) для
+        <strong>уже аутентифицированной записи</strong>.
     </p>
     <p>
-        This method is usually called by users on page/screen reload to ensure that the previously stored data
-        in <code>pb.authStore</code> is still valid and up-to-date.
+        Обычно этот метод вызывают при перезагрузке страницы/экрана, чтобы убедиться, что ранее сохранённые
+        данные в <code>pb.authStore</code> всё ещё валидны и актуальны.
     </p>
 </div>
 
@@ -100,7 +100,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-success">
     <strong class="label label-primary">POST</strong>
     <div class="content">
@@ -108,16 +108,16 @@
             /api/collections/<strong>{collection.name}</strong>/auth-refresh
         </p>
     </div>
-    <p class="txt-hint txt-sm txt-right">Requires <code>Authorization:TOKEN</code> header</p>
+    <p class="txt-hint txt-sm txt-right">Нужен заголовок <code>Authorization:TOKEN</code></p>
 </div>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -127,20 +127,20 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand record relations. Ex.:
+                Автоматически раскрывает связи записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to the record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>).
                 <br />
-                Only the relations to which the request user has permissions to <strong>view</strong> will be expanded.
+                Будут раскрыты только те связи, на которые у пользователя запроса есть права <strong>view</strong>.
             </td>
         </tr>
         <FieldsQueryParam prefix="record." />
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

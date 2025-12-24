@@ -16,39 +16,39 @@
     <svelte:fragment slot="header">
         <div class="inline-flex">
             <i class="ri-shield-check-line"></i>
-            <span class="txt"> Multi-factor authentication (MFA) </span>
+            <span class="txt">Многофакторная аутентификация (MFA)</span>
         </div>
 
         <div class="flex-fill" />
 
         {#if collection.mfa.enabled}
-            <span class="label label-success">Enabled</span>
+            <span class="label label-success">Включено</span>
         {:else}
-            <span class="label">Disabled</span>
+            <span class="label">Отключено</span>
         {/if}
 
         {#if hasErrors}
             <i
                 class="ri-error-warning-fill txt-danger"
                 transition:scale={{ duration: 150, start: 0.7 }}
-                use:tooltip={{ text: "Has errors", position: "left" }}
+                use:tooltip={{ text: "Есть ошибки", position: "left" }}
             />
         {/if}
     </svelte:fragment>
 
     <div class="content m-b-sm">
-        <p class="txt-bold">This feature is experimental and may change in the future.</p>
+        <p class="txt-bold">Фича экспериментальная и может поменяться в будущем.</p>
         <p>
-            Multi-factor authentication (MFA) requires the user to authenticate with any 2 different auth
-            methods (otp, identity/password, oauth2) before issuing an auth token.
+            MFA требует, чтобы пользователь прошёл аутентификацию любыми 2 разными способами (otp,
+            логин/пароль, oauth2) перед тем, как выдать auth-токен.
             <a
                 href={import.meta.env.PB_MFA_DOCS}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="txt-sm link-hint"
-                title="Learn more"
+                title="Подробнее"
             >
-                <em>(Learn more)</em>
+                <em>(Подробнее)</em>
             </a>.
         </p>
     </div>
@@ -57,27 +57,30 @@
         <Field class="form-field form-field-toggle" name="mfa.enabled" let:uniqueId>
             <input type="checkbox" id={uniqueId} bind:checked={collection.mfa.enabled} />
             <label for={uniqueId}>
-                <span class="txt">Enable</span>
+                <span class="txt">Включить</span>
             </label>
         </Field>
 
         <div class="content" class:fade={!collection.mfa.enabled}>
             <RuleField
-                label="MFA rule"
+                label="Правило MFA"
                 formKey="mfa.rule"
                 superuserToggle={false}
                 disabled={!collection.mfa.enabled}
-                placeholder="Leave empty to require MFA for everyone"
+                placeholder="Оставь пустым, чтобы требовать MFA для всех"
                 {collection}
                 bind:rule={collection.mfa.rule}
             >
                 <svelte:fragment>
-                    <p>This optional rule could be used to enable/disable MFA per account basis.</p>
                     <p>
-                        For example, to require MFA only for accounts with non-empty email you can set it to
+                        Это необязательное правило можно использовать, чтобы включать/выключать MFA для
+                        отдельных аккаунтов.
+                    </p>
+                    <p>
+                        Например, чтобы требовать MFA только для аккаунтов с непустым email, задай:
                         <code>email != ''</code>.
                     </p>
-                    <p>Leave the rule empty to require MFA for everyone.</p>
+                    <p>Оставь правило пустым, чтобы требовать MFA для всех.</p>
                 </svelte:fragment>
             </RuleField>
         </div>

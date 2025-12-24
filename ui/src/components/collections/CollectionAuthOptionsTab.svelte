@@ -28,31 +28,31 @@
     // predefined email template configs
     $: resetPasswordTemplate = {
         key: "resetPasswordTemplate",
-        label: "Default Password reset email template",
+        label: "Шаблон письма по умолчанию: сброс пароля",
         placeholders: ["APP_NAME", "APP_URL", "RECORD:*", "TOKEN"],
         config: collection.resetPasswordTemplate,
     };
     $: verificationTemplate = {
         key: "verificationTemplate",
-        label: "Default Verification email template",
+        label: "Шаблон письма по умолчанию: подтверждение email",
         placeholders: ["APP_NAME", "APP_URL", "RECORD:*", "TOKEN"],
         config: collection.verificationTemplate,
     };
     $: confirmEmailChangeTemplate = {
         key: "confirmEmailChangeTemplate",
-        label: "Default Confirm email change email template",
+        label: "Шаблон письма по умолчанию: подтверждение смены email",
         placeholders: ["APP_NAME", "APP_URL", "RECORD:*", "TOKEN"],
         config: collection.confirmEmailChangeTemplate,
     };
     $: otpTemplate = {
         key: "otp.emailTemplate",
-        label: "Default OTP email template",
+        label: "Шаблон письма по умолчанию: OTP",
         placeholders: ["APP_NAME", "APP_URL", "RECORD:*", "OTP", "OTP_ID"],
         config: collection.otp.emailTemplate,
     };
     $: authAlertTemplate = {
         key: "authAlert.emailTemplate",
-        label: "Default Login alert email template",
+        label: "Шаблон письма по умолчанию: уведомление о входе",
         placeholders: ["APP_NAME", "APP_URL", "RECORD:*", "ALERT_INFO"],
         config: collection.authAlert.emailTemplate,
     };
@@ -69,7 +69,7 @@
 
 <h4 class="section-title">
     <div class="flex">
-        <span class="txt">Auth methods</span>
+        <span class="txt">Способы входа</span>
         <div class="m-l-auto handle">
             <Field
                 class="form-field form-field-sm form-field-toggle m-0"
@@ -78,7 +78,7 @@
                 let:uniqueId
             >
                 <input type="checkbox" id={uniqueId} bind:checked={collection.authAlert.enabled} />
-                <label for={uniqueId}>Send email alert for new logins</label>
+                <label for={uniqueId}>Слать письмо при новом входе</label>
             </Field>
         </div>
     </div>
@@ -96,13 +96,13 @@
 </div>
 
 <h4 class="section-title">
-    <span class="txt">Mail templates</span>
+    <span class="txt">Шаблоны писем</span>
     <button
         type="button"
         class="btn btn-xs m-l-auto btn-secondary"
         on:click={() => emailTestPopup?.show(collection.id)}
     >
-        Send test email
+        Отправить тестовое письмо
     </button>
 </h4>
 <div class="accordions m-b-35">
@@ -119,7 +119,7 @@
     </div>
 </div>
 
-<h4 class="section-title">Other</h4>
+<h4 class="section-title">Другое</h4>
 <div class="accordions m-b-base">
     <TokenOptionsAccordion bind:collection />
 </div>

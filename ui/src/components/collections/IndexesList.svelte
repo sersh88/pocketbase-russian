@@ -26,7 +26,7 @@
 </script>
 
 <div class="section-title">
-    Unique constraints and indexes ({collection?.indexes?.length || 0})
+    Уникальные ограничения и индексы ({collection?.indexes?.length || 0})
     {#if $errors?.indexes?.message}
         <i
             class="ri-error-warning-fill txt-danger"
@@ -45,7 +45,7 @@
             on:click={() => upsertPanel?.show(rawIndex, i)}
         >
             {#if parsed.unique}
-                <strong>Unique:</strong>
+                <strong>Уникальный:</strong>
             {/if}
             <span class="txt">
                 {parsed.columns?.map((c) => c.name).join(", ")}
@@ -58,7 +58,7 @@
         on:click={() => upsertPanel?.show()}
     >
         <span class="txt">+</span>
-        <span class="txt">New index</span>
+        <span class="txt">Новый индекс</span>
     </button>
 </div>
 

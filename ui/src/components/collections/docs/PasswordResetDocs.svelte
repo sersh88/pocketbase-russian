@@ -8,8 +8,8 @@
     export let collection;
 
     const apiTabs = [
-        { title: "Request password reset", component: PasswordResetApiRequestDocs },
-        { title: "Confirm password reset", component: PasswordResetApiConfirmDocs },
+        { title: "Запросить сброс пароля", component: PasswordResetApiRequestDocs },
+        { title: "Подтвердить сброс", component: PasswordResetApiConfirmDocs },
     ];
 
     let activeApiTab = 0;
@@ -17,12 +17,12 @@
     $: backendAbsUrl = CommonHelper.getApiExampleUrl(ApiClient.baseURL);
 </script>
 
-<h3 class="m-b-sm">Password reset ({collection.name})</h3>
+<h3 class="m-b-sm">Сброс пароля ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Sends <strong>{collection.name}</strong> password reset email request.</p>
+    <p>Отправляет письмо для сброса пароля аккаунта <strong>{collection.name}</strong>.</p>
     <p>
-        On successful password reset all previously issued auth tokens for the specific record will be
-        automatically invalidated.
+        После успешного сброса пароля все ранее выданные auth‑токены для конкретной записи будут автоматически
+        инвалидированы.
     </p>
 </div>
 
@@ -69,7 +69,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="tabs">
     <div class="tabs-header compact">
         {#each apiTabs as tab, i}

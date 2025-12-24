@@ -13,10 +13,10 @@
             <div class="col-sm-6">
                 <Field class="form-field" name="fields.{key}.min" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Min length</span>
+                        <span class="txt">Мин. длина</span>
                         <i
                             class="ri-information-line link-hint"
-                            use:tooltip={"Clear the field or set it to 0 for no limit."}
+                            use:tooltip={"Очисти поле или поставь 0, чтобы убрать лимит."}
                         />
                     </label>
                     <input
@@ -25,7 +25,7 @@
                         step="1"
                         min="0"
                         max={Number.MAX_SAFE_INTEGER}
-                        placeholder="No min limit"
+                        placeholder="Без мин. лимита"
                         value={field.min || ""}
                         on:input={(e) => (field.min = parseInt(e.target.value, 10))}
                     />
@@ -35,17 +35,17 @@
             <div class="col-sm-6">
                 <Field class="form-field" name="fields.{key}.max" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Max length</span>
+                        <span class="txt">Макс. длина</span>
                         <i
                             class="ri-information-line link-hint"
-                            use:tooltip={"Clear the field or set it to 0 to fallback to the default limit."}
+                            use:tooltip={"Очисти поле или поставь 0, чтобы вернуться к лимиту по умолчанию."}
                         />
                     </label>
                     <input
                         type="number"
                         id={uniqueId}
                         step="1"
-                        placeholder="Default to max 5000 characters"
+                        placeholder="По умолчанию: 5000 символов"
                         min={field.min || 0}
                         max={Number.MAX_SAFE_INTEGER}
                         value={field.max || ""}
@@ -57,17 +57,17 @@
             <div class="col-sm-6">
                 <Field class="form-field" name="fields.{key}.pattern" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Validation pattern</span>
+                        <span class="txt">Паттерн валидации</span>
                         {#if field.primaryKey}
                             <i
                                 class="ri-information-line link-hint"
-                                use:tooltip={"All record ids have forbidden characters and unique case-insensitive (ASCII) validations in addition to the user defined regex pattern."}
+                                use:tooltip={"У всех id записей есть запрещённые символы и уникальность без учёта регистра (ASCII) — дополнительно к твоему regex-паттерну."}
                             />
                         {/if}
                     </label>
                     <input type="text" id={uniqueId} bind:value={field.pattern} />
                     <div class="help-block">
-                        <p>Ex. <code>{"^[a-z0-9]+$"}</code></p>
+                        <p>Пример: <code>{"^[a-z0-9]+$"}</code></p>
                     </div>
                 </Field>
             </div>
@@ -75,15 +75,15 @@
             <div class="col-sm-6">
                 <Field class="form-field" name="fields.{key}.autogeneratePattern" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Autogenerate pattern</span>
+                        <span class="txt">Паттерн автогенерации</span>
                         <i
                             class="ri-information-line link-hint"
-                            use:tooltip={"Set and autogenerate text matching the pattern on missing record create value."}
+                            use:tooltip={"Если при создании записи значение пустое — будет автогенерироваться текст по этому паттерну."}
                         />
                     </label>
                     <input type="text" id={uniqueId} bind:value={field.autogeneratePattern} />
                     <div class="help-block">
-                        <p>Ex. <code>{"[a-z0-9]{30}"}</code></p>
+                        <p>Пример: <code>{"[a-z0-9]{30}"}</code></p>
                     </div>
                 </Field>
             </div>

@@ -47,10 +47,10 @@
     ];
 </script>
 
-<h3 class="m-b-sm">Auth with password ({collection.name})</h3>
+<h3 class="m-b-sm">Вход по паролю ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
     <p>
-        Authenticate with combination of
+        Аутентификация по комбинации
         <strong>{identityFields.join("/")}</strong> and <strong>password</strong>.
     </p>
 </div>
@@ -98,7 +98,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-success">
     <strong class="label label-primary">POST</strong>
     <div class="content">
@@ -108,20 +108,20 @@
     </div>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>identity</span>
                 </div>
             </td>
@@ -130,34 +130,34 @@
             </td>
             <td>
                 {#each identityFields as name, i}
-                    {#if i > 0}or{/if}
+                    {#if i > 0}или{/if}
                     <strong>{name}</strong>
                 {/each}
-                of the record to authenticate.
+                записи, которую нужно аутентифицировать.
             </td>
         </tr>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>password</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The auth record password.</td>
+            <td>Пароль auth‑записи.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -167,20 +167,20 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand record relations. Ex.:
+                Автоматически раскрывает связи записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to the record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>).
                 <br />
-                Only the relations to which the request user has permissions to <strong>view</strong> will be expanded.
+                Будут раскрыты только те связи, на которые у пользователя запроса есть права <strong>view</strong>.
             </td>
         </tr>
         <FieldsQueryParam prefix="record." />
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

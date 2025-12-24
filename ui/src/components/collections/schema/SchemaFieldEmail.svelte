@@ -15,11 +15,11 @@
             <div class="col-sm-6">
                 <Field class="form-field" name="fields.{key}.exceptDomains" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Except domains</span>
+                        <span class="txt">Кроме доменов</span>
                         <i
                             class="ri-information-line link-hint"
                             use:tooltip={{
-                                text: 'List of domains that are NOT allowed. \n This field is disabled if "Only domains" is set.',
+                                text: 'Список доменов, которые НЕЛЬЗЯ использовать.\nЭто поле отключено, если задано «Только домены».',
                                 position: "top",
                             }}
                         />
@@ -29,18 +29,18 @@
                         disabled={!CommonHelper.isEmpty(field.onlyDomains)}
                         bind:value={field.exceptDomains}
                     />
-                    <div class="help-block">Use comma as separator.</div>
+                    <div class="help-block">Разделяй запятой.</div>
                 </Field>
             </div>
 
             <div class="col-sm-6">
                 <Field class="form-field" name="fields.{key}.onlyDomains" let:uniqueId>
                     <label for="{uniqueId}.onlyDomains">
-                        <span class="txt">Only domains</span>
+                        <span class="txt">Только домены</span>
                         <i
                             class="ri-information-line link-hint"
                             use:tooltip={{
-                                text: 'List of domains that are ONLY allowed. \n This field is disabled if "Except domains" is set.',
+                                text: 'Список доменов, которые МОЖНО использовать.\nЭто поле отключено, если задано «Кроме доменов».',
                                 position: "top",
                             }}
                         />
@@ -50,7 +50,7 @@
                         disabled={!CommonHelper.isEmpty(field.exceptDomains)}
                         bind:value={field.onlyDomains}
                     />
-                    <div class="help-block">Use comma as separator.</div>
+                    <div class="help-block">Разделяй запятой.</div>
                 </Field>
             </div>
         </div>

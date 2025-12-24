@@ -38,56 +38,56 @@
     </div>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>token</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The token from the password reset request email.</td>
+            <td>Токен из письма запроса сброса пароля.</td>
         </tr>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>password</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The new password to set.</td>
+            <td>Новый пароль.</td>
         </tr>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>passwordConfirm</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The new password confirmation.</td>
+            <td>Подтверждение нового пароля.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

@@ -8,8 +8,8 @@
     export let collection;
 
     const apiTabs = [
-        { title: "Request verification", component: VerificationApiRequestDocs },
-        { title: "Confirm verification", component: VerificationApiConfirmDocs },
+        { title: "Запросить подтверждение", component: VerificationApiRequestDocs },
+        { title: "Подтвердить", component: VerificationApiConfirmDocs },
     ];
 
     let activeApiTab = 0;
@@ -17,9 +17,9 @@
     $: backendAbsUrl = CommonHelper.getApiExampleUrl(ApiClient.baseURL);
 </script>
 
-<h3 class="m-b-sm">Account verification ({collection.name})</h3>
+<h3 class="m-b-sm">Подтверждение аккаунта ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Sends <strong>{collection.name}</strong> account verification request.</p>
+    <p>Отправляет запрос на подтверждение аккаунта <strong>{collection.name}</strong>.</p>
 </div>
 
 <SdkTabs
@@ -55,7 +55,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="tabs">
     <div class="tabs-header compact">
         {#each apiTabs as tab, i}

@@ -9,12 +9,12 @@
     $: backendAbsUrl = CommonHelper.getApiExampleUrl(ApiClient.baseURL);
 </script>
 
-<h3 class="m-b-sm">Realtime ({collection.name})</h3>
+<h3 class="m-b-sm">Реалтайм ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Subscribe to realtime changes via Server-Sent Events (SSE).</p>
+    <p>Подписаться на изменения в реалтайме через Server-Sent Events (SSE).</p>
     <p>
-        Events are sent for <strong>create</strong>, <strong>update</strong>
-        and <strong>delete</strong> record operations (see "Event data format" section below).
+        События отправляются для операций <strong>create</strong>, <strong>update</strong>
+        и <strong>delete</strong> (см. секцию “Формат данных события” ниже).
     </p>
 </div>
 <div class="alert alert-info m-t-10 m-b-sm">
@@ -23,17 +23,15 @@
     </div>
     <div class="contet">
         <p>
-            <strong>You could subscribe to a single record or to an entire collection.</strong>
+            <strong>Можно подписаться на одну запись или на всю коллекцию целиком.</strong>
         </p>
         <p>
-            When you subscribe to a <strong>single record</strong>, the collection's
-            <strong>ViewRule</strong> will be used to determine whether the subscriber has access to receive the
-            event message.
+            Если подписываешься на <strong>одну запись</strong>, используется <strong>ViewRule</strong> коллекции,
+            чтобы понять, есть ли у подписчика доступ получать событие.
         </p>
         <p>
-            When you subscribe to an <strong>entire collection</strong>, the collection's
-            <strong>ListRule</strong> will be used to determine whether the subscriber has access to receive the
-            event message.
+            Если подписываешься на <strong>всю коллекцию</strong>, используется <strong>ListRule</strong> коллекции,
+            чтобы понять, есть ли у подписчика доступ получать событие.
         </p>
     </div>
 </div>
@@ -95,7 +93,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert">
     <strong class="label label-primary">SSE</strong>
     <div class="content">
@@ -103,7 +101,7 @@
     </div>
 </div>
 
-<div class="section-title">Event data format</div>
+<div class="section-title">Формат данных события</div>
 <CodeBlock
     content={JSON.stringify(
         {

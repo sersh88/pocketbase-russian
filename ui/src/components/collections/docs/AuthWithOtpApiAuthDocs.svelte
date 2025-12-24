@@ -47,50 +47,50 @@
     </div>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>otpId</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The id of the OTP request.</td>
+            <td>ID OTP‑запроса.</td>
         </tr>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>password</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The one-time password.</td>
+            <td>Одноразовый пароль.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -100,20 +100,20 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand record relations. Ex.:
+                Автоматически раскрывает связи записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to the record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>).
                 <br />
-                Only the relations to which the request user has permissions to <strong>view</strong> will be expanded.
+                Будут раскрыты только те связи, на которые у пользователя запроса есть права <strong>view</strong>.
             </td>
         </tr>
         <FieldsQueryParam prefix="record." />
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

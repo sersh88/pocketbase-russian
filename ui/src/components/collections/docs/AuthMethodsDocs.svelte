@@ -44,9 +44,9 @@
     }
 </script>
 
-<h3 class="m-b-sm">List auth methods ({collection.name})</h3>
+<h3 class="m-b-sm">Список способов входа ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Returns a public list with all allowed <strong>{collection.name}</strong> authentication methods.</p>
+    <p>Возвращает публичный список всех разрешённых способов входа для <strong>{collection.name}</strong>.</p>
 </div>
 
 <SdkTabs
@@ -70,7 +70,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-info">
     <strong class="label label-primary">GET</strong>
     <div class="content">
@@ -80,13 +80,13 @@
     </div>
 </div>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -94,7 +94,7 @@
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

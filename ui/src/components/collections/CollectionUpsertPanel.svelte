@@ -32,7 +32,7 @@
     const TYPE_VIEW = "view";
 
     const collectionTypes = {};
-    collectionTypes[TYPE_BASE] = "Base";
+    collectionTypes[TYPE_BASE] = "Базовая";
     collectionTypes[TYPE_VIEW] = "View";
     collectionTypes[TYPE_AUTH] = "Auth";
 
@@ -49,6 +49,16 @@
     let initialFormHash = calculateFormHash(collection);
     let fieldsTabError = "";
     let baseCollectionKeys = [];
+    const defaultFieldsTabError = "Есть ошибки";
+    const defaultTabErrorTooltip = "Есть ошибки";
+    const copyJsonToastText = "JSON коллекции скопирован в буфер обмена!";
+    const createSuccessToastText = "Коллекция успешно создана.";
+    const updateSuccessToastText = "Коллекция успешно обновлена.";
+    const confirmCloseText = "У тебя есть несохранённые изменения. Точно хочешь закрыть панель?";
+    const confirmDiscardText = "У тебя есть несохранённые изменения. Точно хочешь их выкинуть?";
+    const confirmDeleteTextPrefix = "Ты точно хочешь удалить коллекцию";
+    const confirmTruncateTextPrefix = "Ты точно хочешь удалить все записи из";
+    const systemCollectionHintText = "Системная коллекция";
 
     $: baseCollectionKeys = Object.keys($scaffolds["base"] || {});
 
@@ -58,7 +68,7 @@
 
     $: if ($errors.fields || $errors.viewQuery || $errors.indexes) {
         // extract the direct fields list error, otherwise - return a generic message
-        fieldsTabError = CommonHelper.getNestedVal($errors, "fields.message") || "Has errors";
+        fieldsTabError = CommonHelper.getNestedVal($errors, "fields.message") || defaultFieldsTabError;
     } else {
         fieldsTabError = "";
     }
@@ -197,7 +207,7 @@
             }
 
             addSuccessToast(
-                !collection.id ? "Successfully created collection." : "Successfully updated collection.",
+                !collection.id ? createSuccessToastText : updateSuccessToastText,
             );
 
             dispatch("save", {
@@ -238,13 +248,13 @@
         }
 
         confirm(
-            `Do you really want to delete all "${original.name}" records, including their cascade delete references and files?`,
+            `${confirmTruncateTextPrefix} "${original.name}", включая каскадные ссылки и файлы?`,
             () => {
                 return ApiClient.collections
                     .truncate(original.id)
                     .then(() => {
                         forceHide();
-                        addSuccessToast(`Successfully truncated collection "${original.name}".`);
+                        addSuccessToast(`Коллекция "${original.name}" успешно очищена.`);
                         dispatch("truncate");
                     })
                     .catch((err) => {
@@ -259,12 +269,12 @@
             return; // nothing to delete
         }
 
-        confirm(`Do you really want to delete collection "${original.name}" and all its records?`, () => {
+        confirm(`${confirmDeleteTextPrefix} "${original.name}" и все её записи?`, () => {
             return ApiClient.collections
                 .delete(original.id)
                 .then(() => {
                     forceHide();
-                    addSuccessToast(`Successfully deleted collection "${original.name}".`);
+                    addSuccessToast(`Коллекция "${original.name}" успешно удалена.`);
                     dispatch("delete", original);
                     removeCollection(original);
                 })
@@ -290,7 +300,7 @@
 
     function duplicateConfirm() {
         if (hasChanges) {
-            confirm("You have unsaved changes. Do you really want to discard them?", () => {
+            confirm(confirmDiscardText, () => {
                 duplicate();
             });
         } else {
@@ -349,7 +359,7 @@
 
     function copyJSON() {
         CommonHelper.copyToClipboard(JSON.stringify(original, null, 2));
-        addInfoToast("The collection JSON was copied to your clipboard!", 3000);
+        addInfoToast(copyJsonToastText, 3000);
     }
 </script>
 
@@ -362,7 +372,7 @@
     overlayClose={!isSaving}
     beforeHide={() => {
         if (hasChanges && confirmClose) {
-            confirm("You have unsaved changes. Do you really want to close the panel?", () => {
+            confirm(confirmCloseText, () => {
                 confirmClose = false;
                 hide();
             });
@@ -375,7 +385,7 @@
 >
     <svelte:fragment slot="header">
         <h4 class="upsert-panel-title">
-            {!collection.id ? "New collection" : "Edit collection"}
+            {!collection.id ? "Новая коллекция" : "Редактировать коллекцию"}
         </h4>
 
         {#if !!collection.id && (!collection.system || !isView)}
@@ -383,7 +393,7 @@
             <div
                 tabindex="0"
                 role="button"
-                aria-label="More collection options"
+                aria-label="Ещё опции коллекции"
                 class="btn btn-sm btn-circle btn-transparent flex-gap-0"
             >
                 <i class="ri-more-line" aria-hidden="true" />
@@ -395,7 +405,7 @@
                         on:click={() => copyJSON()}
                     >
                         <i class="ri-braces-line" aria-hidden="true" />
-                        <span class="txt">Copy raw JSON</span>
+                        <span class="txt">Скопировать raw JSON</span>
                     </button>
                     {#if !collection.system}
                         <button
@@ -405,7 +415,7 @@
                             on:click={() => duplicateConfirm()}
                         >
                             <i class="ri-file-copy-line" aria-hidden="true" />
-                            <span class="txt">Duplicate</span>
+                            <span class="txt">Дублировать</span>
                         </button>
                         <hr />
                     {/if}
@@ -417,7 +427,7 @@
                             on:click={() => truncateConfirm()}
                         >
                             <i class="ri-eraser-line" aria-hidden="true"></i>
-                            <span class="txt">Truncate</span>
+                            <span class="txt">Очистить</span>
                         </button>
                     {/if}
                     {#if !collection.system}
@@ -428,7 +438,7 @@
                             on:click|preventDefault|stopPropagation={() => deleteConfirm()}
                         >
                             <i class="ri-delete-bin-7-line" aria-hidden="true" />
-                            <span class="txt">Delete</span>
+                            <span class="txt">Удалить</span>
                         </button>
                     {/if}
                 </Toggler>
@@ -442,7 +452,7 @@
             }}
         >
             <Field class="form-field collection-field-name required m-b-0" name="name" let:uniqueId>
-                <label for={uniqueId}>Name</label>
+                <label for={uniqueId}>Имя</label>
 
                 <!-- svelte-ignore a11y-autofocus -->
                 <input
@@ -453,7 +463,7 @@
                     spellcheck="false"
                     class:txt-bold={collection.system}
                     autofocus={!collection.id}
-                    placeholder={isAuth ? `eg. "users"` : `eg. "posts"`}
+                    placeholder={isAuth ? `например "users"` : `например "posts"`}
                     value={collection.name}
                     on:input={(e) => {
                         collection.name = CommonHelper.slugify(e.target.value);
@@ -465,13 +475,13 @@
                     <div
                         tabindex={!collection.id ? 0 : -1}
                         role={!collection.id ? "button" : ""}
-                        aria-label="View types"
+                        aria-label="Выбрать тип"
                         class="btn btn-sm p-r-10 p-l-10 {!collection.id ? 'btn-outline' : 'btn-transparent'}"
                         class:btn-disabled={!!collection.id}
                     >
                         <!-- empty span for alignment -->
                         <span aria-hidden="true" />
-                        <span class="txt">Type: {collectionTypes[collection.type] || "N/A"}</span>
+                        <span class="txt">Тип: {collectionTypes[collection.type] || "н/д"}</span>
                         {#if !collection.id}
                             <i class="ri-arrow-down-s-fill" aria-hidden="true" />
                             <Toggler class="dropdown dropdown-right dropdown-nowrap m-t-5">
@@ -487,7 +497,7 @@
                                             class={CommonHelper.getCollectionTypeIcon(type)}
                                             aria-hidden="true"
                                         />
-                                        <span class="txt">{label} collection</span>
+                                        <span class="txt">{label} коллекция</span>
                                     </button>
                                 {/each}
                             </Toggler>
@@ -496,7 +506,7 @@
                 </div>
 
                 {#if collection.system}
-                    <div class="help-block">System collection</div>
+                    <div class="help-block">{systemCollectionHintText}</div>
                 {/if}
             </Field>
 
@@ -510,7 +520,7 @@
                 class:active={activeTab === TAB_SCHEMA}
                 on:click={() => changeTab(TAB_SCHEMA)}
             >
-                <span class="txt">{isView ? "Query" : "Fields"}</span>
+                <span class="txt">{isView ? "Запрос" : "Поля"}</span>
                 {#if !CommonHelper.isEmpty(fieldsTabError)}
                     <i
                         class="ri-error-warning-fill txt-danger"
@@ -527,12 +537,12 @@
                     class:active={activeTab === TAB_RULES}
                     on:click={() => changeTab(TAB_RULES)}
                 >
-                    <span class="txt">API Rules</span>
+                    <span class="txt">API-правила</span>
                     {#if !CommonHelper.isEmpty($errors?.listRule) || !CommonHelper.isEmpty($errors?.viewRule) || !CommonHelper.isEmpty($errors?.createRule) || !CommonHelper.isEmpty($errors?.updateRule) || !CommonHelper.isEmpty($errors?.deleteRule) || !CommonHelper.isEmpty($errors?.authRule) || !CommonHelper.isEmpty($errors?.manageRule)}
                         <i
                             class="ri-error-warning-fill txt-danger"
                             transition:scale={{ duration: 150, start: 0.7 }}
-                            use:tooltip={"Has errors"}
+                            use:tooltip={defaultTabErrorTooltip}
                         />
                     {/if}
                 </button>
@@ -545,12 +555,12 @@
                     class:active={activeTab === TAB_OPTIONS}
                     on:click={() => changeTab(TAB_OPTIONS)}
                 >
-                    <span class="txt">Options</span>
+                    <span class="txt">Опции</span>
                     {#if $errors && hasOtherKeys($errors, baseCollectionKeys.concat( ["manageRule", "authRule"], ))}
                         <i
                             class="ri-error-warning-fill txt-danger"
                             transition:scale={{ duration: 150, start: 0.7 }}
-                            use:tooltip={"Has errors"}
+                            use:tooltip={defaultTabErrorTooltip}
                         />
                     {/if}
                 </button>
@@ -583,13 +593,13 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" disabled={isSaving} on:click={() => hide()}>
-            <span class="txt">Cancel</span>
+            <span class="txt">Отмена</span>
         </button>
 
         <div class="btns-group no-gap">
             <button
                 type="button"
-                title="Save and close"
+                title="Сохранить и закрыть"
                 class="btn"
                 class:btn-expanded={!collection.id}
                 class:btn-expanded-sm={!!collection.id}
@@ -597,7 +607,7 @@
                 disabled={!canSave || isSaving || isLoadingConfirmation}
                 on:click={() => saveConfirm()}
             >
-                <span class="txt">{!collection.id ? "Create" : "Save changes"}</span>
+                <span class="txt">{!collection.id ? "Создать" : "Сохранить изменения"}</span>
             </button>
 
             {#if collection.id}
@@ -615,7 +625,7 @@
                             role="menuitem"
                             on:click={() => saveConfirm(false)}
                         >
-                            <span class="txt">Save and continue</span>
+                            <span class="txt">Сохранить и продолжить</span>
                         </button>
                     </Toggler>
                 </button>

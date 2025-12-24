@@ -58,9 +58,9 @@
     }
 </script>
 
-<h3 class="m-b-sm">Delete ({collection.name})</h3>
+<h3 class="m-b-sm">Удаление ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Delete a single <strong>{collection.name}</strong> record.</p>
+    <p>Удалить одну запись <strong>{collection.name}</strong>.</p>
 </div>
 
 <SdkTabs
@@ -84,7 +84,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-danger">
     <strong class="label label-primary">DELETE</strong>
     <div class="content">
@@ -93,17 +93,17 @@
         </p>
     </div>
     {#if superusersOnly}
-        <p class="txt-hint txt-sm txt-right">Requires superuser <code>Authorization:TOKEN</code> header</p>
+        <p class="txt-hint txt-sm txt-right">Нужен заголовок суперпользователя <code>Authorization:TOKEN</code></p>
     {/if}
 </div>
 
-<div class="section-title">Path parameters</div>
+<div class="section-title">Path‑параметры</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -112,12 +112,12 @@
             <td>
                 <span class="label">String</span>
             </td>
-            <td>ID of the record to delete.</td>
+            <td>ID записи, которую надо удалить.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

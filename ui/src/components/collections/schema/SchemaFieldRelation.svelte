@@ -10,13 +10,13 @@
     export let key = "";
 
     const isSingleOptions = [
-        { label: "Single", value: true },
-        { label: "Multiple", value: false },
+        { label: "Один вариант", value: true },
+        { label: "Несколько вариантов", value: false },
     ];
 
     const defaultOptions = [
-        { label: "False", value: false },
-        { label: "True", value: true },
+        { label: "Нет", value: false },
+        { label: "Да", value: true },
     ];
 
     let upsertPanel = null;
@@ -64,8 +64,8 @@
             <ObjectSelect
                 id={uniqueId}
                 searchable={selectCollections.length > 5}
-                selectPlaceholder={"Select collection *"}
-                noOptionsText="No collections found"
+                selectPlaceholder={"Выбери коллекцию *"}
+                noOptionsText="Коллекции не найдены"
                 selectionKey="id"
                 items={selectCollections}
                 readonly={!interactive || field.id}
@@ -79,7 +79,7 @@
                         on:click={() => upsertPanel?.show()}
                     >
                         <i class="ri-add-line" />
-                        <span class="txt">New collection</span>
+                        <span class="txt">Новая коллекция</span>
                     </button>
                 </svelte:fragment>
             </ObjectSelect>
@@ -108,13 +108,13 @@
             {#if !isSingle}
                 <div class="col-sm-6">
                     <Field class="form-field" name="fields.{key}.minSelect" let:uniqueId>
-                        <label for={uniqueId}>Min select</label>
+                        <label for={uniqueId}>Мин. выбор</label>
                         <input
                             type="number"
                             id={uniqueId}
                             step="1"
                             min="0"
-                            placeholder="No min limit"
+                            placeholder="Без мин. лимита"
                             value={field.minSelect || ""}
                             on:input={(e) => (field.minSelect = e.target.value << 0)}
                         />
@@ -122,12 +122,12 @@
                 </div>
                 <div class="col-sm-6">
                     <Field class="form-field" name="fields.{key}.maxSelect" let:uniqueId>
-                        <label for={uniqueId}>Max select</label>
+                        <label for={uniqueId}>Макс. выбор</label>
                         <input
                             type="number"
                             id={uniqueId}
                             step="1"
-                            placeholder="Default to single"
+                            placeholder="По умолчанию: один"
                             min={field.minSelect || 1}
                             bind:value={field.maxSelect}
                         />
@@ -138,14 +138,14 @@
             <div class="col-sm-12">
                 <Field class="form-field" name="fields.{key}.cascadeDelete" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Cascade delete</span>
+                        <span class="txt">Каскадное удаление</span>
                         <!-- prettier-ignore -->
                         <i
                             class="ri-information-line link-hint"
                             use:tooltip={{
                                 text: [
-                                    `Whether on ${selectedColection?.name || "relation"} record deletion to delete also the current corresponding collection record(s).`,
-                                    !isSingle ? `For "Multiple" relation fields the cascade delete is triggered only when all ${selectedColection?.name || "relation"} ids are removed from the corresponding record.` : null
+                                    `Удалять ли связанные записи текущей коллекции при удалении записи из ${selectedColection?.name || "связи"}.`,
+                                    !isSingle ? `Для связей «Несколько вариантов» каскадное удаление сработает только когда из соответствующей записи будут удалены все id из ${selectedColection?.name || "связи"}.` : null
                                 ].filter(Boolean).join("\n\n"),
                                 position: "top",
                             }}

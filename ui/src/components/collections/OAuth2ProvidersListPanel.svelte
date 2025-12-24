@@ -51,14 +51,14 @@
 
 <OverlayPanel bind:this={panel} on:show on:hide btnClose={false}>
     <svelte:fragment slot="header">
-        <h4 class="center txt-break">Add OAuth2 provider</h4>
+        <h4 class="center txt-break">Добавить OAuth2‑провайдера</h4>
     </svelte:fragment>
 
     <Field class="searchbar m-b-sm" let:uniqueId>
         <label for={uniqueId} class="m-l-10 txt-xl">
             <i class="ri-search-line" />
         </label>
-        <input id={uniqueId} type="text" placeholder="Search provider" bind:value={searchTerm} />
+        <input id={uniqueId} type="text" placeholder="Искать провайдера" bind:value={searchTerm} />
         {#if searchTerm != ""}
             <button
                 type="button"
@@ -66,7 +66,7 @@
                 transition:fly={{ duration: 150, x: 5 }}
                 on:click={() => (searchTerm = "")}
             >
-                <span class="txt">Clear</span>
+                <span class="txt">Очистить</span>
             </button>
         {/if}
     </Field>
@@ -79,7 +79,7 @@
                         {#if provider.logo}
                             <img
                                 src="{import.meta.env.BASE_URL}images/oauth2/{provider.logo}"
-                                alt="{provider.title} logo"
+                                alt="{provider.title} — логотип"
                             />
                         {/if}
                     </figure>
@@ -91,10 +91,10 @@
             </div>
         {:else}
             <div class="flex inline-flex">
-                <span class="txt-hint">No providers to select.</span>
+                <span class="txt-hint">Нет провайдеров для выбора.</span>
                 {#if searchTerm != ""}
                     <button type="button" class="btn btn-sm btn-secondary" on:click={clearSearch}>
-                        Clear filter
+                        Сбросить фильтр
                     </button>
                 {/if}
             </div>
@@ -102,6 +102,6 @@
     </div>
 
     <svelte:fragment slot="footer">
-        <button type="button" class="btn btn-transparent" on:click={hide}>Cancel</button>
+        <button type="button" class="btn btn-transparent" on:click={hide}>Отмена</button>
     </svelte:fragment>
 </OverlayPanel>

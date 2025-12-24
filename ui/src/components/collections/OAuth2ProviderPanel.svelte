@@ -47,7 +47,7 @@
 
     async function remove() {
         confirm(
-            `Do you really want to remove the "${uiOptions.title}" OAuth2 provider from the collection?`,
+            `Ты точно хочешь убрать OAuth2‑провайдера "${uiOptions.title}" из коллекции?`,
             () => {
                 dispatch("remove", { uiOptions });
                 hide();
@@ -62,7 +62,7 @@
             {#if uiOptions.logo}
                 <img
                     src="{import.meta.env.BASE_URL}images/oauth2/{uiOptions.logo}"
-                    alt="{uiOptions.title} logo"
+                    alt="{uiOptions.title} — логотип"
                 />
             {:else}
                 <i class="ri-puzzle-line txt-sm txt-hint"></i>
@@ -99,17 +99,17 @@
             <button
                 type="button"
                 class="btn btn-transparent btn-circle btn-hint btn-sm"
-                aria-label="Remove provider"
-                use:tooltip={{ text: "Remove provider", position: "right" }}
+                aria-label="Удалить провайдера"
+                use:tooltip={{ text: "Удалить провайдера", position: "right" }}
                 on:click={remove}
             >
                 <i class="ri-delete-bin-7-line" aria-hidden="true" />
             </button>
             <div class="flex-fill"></div>
         {/if}
-        <button type="button" class="btn btn-transparent" on:click={hide}>Cancel</button>
+        <button type="button" class="btn btn-transparent" on:click={hide}>Отмена</button>
         <button type="submit" form={formId} class="btn btn-expanded" disabled={!hasChanges}>
-            <span class="txt">Set provider config</span>
+            <span class="txt">Сохранить настройки провайдера</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

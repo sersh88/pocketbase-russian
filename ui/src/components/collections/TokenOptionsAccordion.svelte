@@ -14,16 +14,16 @@
 
     $: tokensList = isSuperusers
         ? [
-              { key: "authToken", label: "Auth" },
-              { key: "passwordResetToken", label: "Password reset" },
-              { key: "fileToken", label: "Protected file access" },
+              { key: "authToken", label: "Вход" },
+              { key: "passwordResetToken", label: "Сброс пароля" },
+              { key: "fileToken", label: "Доступ к защищённым файлам" },
           ]
         : [
-              { key: "authToken", label: "Auth" },
-              { key: "verificationToken", label: "Email verification" },
-              { key: "passwordResetToken", label: "Password reset" },
-              { key: "emailChangeToken", label: "Email change" },
-              { key: "fileToken", label: "Protected file access" },
+              { key: "authToken", label: "Вход" },
+              { key: "verificationToken", label: "Подтверждение email" },
+              { key: "passwordResetToken", label: "Сброс пароля" },
+              { key: "emailChangeToken", label: "Смена email" },
+              { key: "fileToken", label: "Доступ к защищённым файлам" },
           ];
 
     $: hasErrors = hasTokenError($errors);
@@ -47,7 +47,7 @@
     <svelte:fragment slot="header">
         <div class="inline-flex">
             <i class="ri-key-2-line"></i>
-            <span class="txt">Tokens options (invalidate, duration)</span>
+            <span class="txt">Опции токенов (инвалидация, срок)</span>
         </div>
 
         <div class="flex-fill" />
@@ -56,7 +56,7 @@
             <i
                 class="ri-error-warning-fill txt-danger"
                 transition:scale={{ duration: 150, start: 0.7 }}
-                use:tooltip={{ text: "Has errors", position: "left" }}
+                use:tooltip={{ text: "Есть ошибки", position: "left" }}
             />
         {/if}
     </svelte:fragment>

@@ -54,7 +54,7 @@
 
             isSubmitting = false;
 
-            addSuccessToast("Successfully generated client secret.");
+            addSuccessToast("Client secret успешно сгенерирован.");
 
             dispatch("submit", result);
 
@@ -77,7 +77,7 @@
     on:hide
 >
     <svelte:fragment slot="header">
-        <h4 class="center txt-break">Generate Apple client secret</h4>
+        <h4 class="center txt-break">Сгенерировать Apple client secret</h4>
     </svelte:fragment>
 
     <form id={formId} autocomplete="off" on:submit|preventDefault={() => submit()}>
@@ -103,11 +103,11 @@
             <div class="col-lg-6">
                 <Field class="form-field required" name="duration" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Duration (in seconds)</span>
+                        <span class="txt">Срок (в секундах)</span>
                         <i
                             class="ri-information-line link-hint"
                             use:tooltip={{
-                                text: `Max ${maxDuration} seconds (~${
+                                text: `Макс ${maxDuration} секунд (~${
                                     (maxDuration / (60 * 60 * 24 * 30)) << 0
                                 } months).`,
                                 position: "top",
@@ -119,7 +119,7 @@
             </div>
 
             <Field class="form-field required" name="privateKey" let:uniqueId>
-                <label for={uniqueId}>Private key</label>
+                <label for={uniqueId}>Приватный ключ</label>
                 <textarea
                     id={uniqueId}
                     required
@@ -128,7 +128,7 @@
                     bind:value={privateKey}
                 />
                 <div class="help-block">
-                    The key is not stored on the server and it is used only for generating the signed JWT.
+                    Ключ не сохраняется на сервере и используется только для генерации подписанного JWT.
                 </div>
             </Field>
         </div>
@@ -136,7 +136,7 @@
 
     <svelte:fragment slot="footer">
         <button type="button" class="btn btn-transparent" on:click={hide} disabled={isSubmitting}
-            >Close</button
+            >Закрыть</button
         >
         <button
             type="submit"
@@ -146,7 +146,7 @@
             disabled={!canSubmit || isSubmitting}
         >
             <i class="ri-key-line" />
-            <span class="txt">Generate and set secret</span>
+            <span class="txt">Сгенерировать и установить секрет</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

@@ -25,22 +25,22 @@
     <svelte:fragment slot="header">
         <div class="inline-flex">
             <i class="ri-time-line"></i>
-            <span class="txt">One-time password (OTP)</span>
+            <span class="txt">Одноразовый пароль (OTP)</span>
         </div>
 
         <div class="flex-fill" />
 
         {#if collection.otp.enabled}
-            <span class="label label-success">Enabled</span>
+            <span class="label label-success">Включено</span>
         {:else}
-            <span class="label">Disabled</span>
+            <span class="label">Отключено</span>
         {/if}
 
         {#if hasErrors}
             <i
                 class="ri-error-warning-fill txt-danger"
                 transition:scale={{ duration: 150, start: 0.7 }}
-                use:tooltip={{ text: "Has errors", position: "left" }}
+                use:tooltip={{ text: "Есть ошибки", position: "left" }}
             />
         {/if}
     </svelte:fragment>
@@ -56,12 +56,12 @@
                 }
             }}
         />
-        <label for={uniqueId}>Enable</label>
+        <label for={uniqueId}>Включить</label>
         {#if isSuperusers}
             <i
                 class="ri-information-line link-hint"
                 use:tooltip={{
-                    text: "Superusers can have OTP only as part of Two-factor authentication.",
+                    text: "У суперпользователей OTP доступен только как часть MFA (2FA).",
                     position: "right",
                 }}
             />
@@ -71,7 +71,7 @@
     <div class="grid grid-sm">
         <div class="col-sm-6">
             <Field class="form-field form-field-toggle required" name="otp.duration" let:uniqueId>
-                <label for={uniqueId}>Duration (in seconds)</label>
+                <label for={uniqueId}>Срок действия (в секундах)</label>
                 <input
                     type="number"
                     min="0"
@@ -84,7 +84,7 @@
         </div>
         <div class="col-sm-6">
             <Field class="form-field form-field-toggle required" name="otp.length" let:uniqueId>
-                <label for={uniqueId}>Generated password length</label>
+                <label for={uniqueId}>Длина генерируемого пароля</label>
                 <input
                     type="number"
                     min="0"

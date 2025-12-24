@@ -90,7 +90,7 @@
 
 <OverlayPanel bind:this={panel} popup on:hide on:show {...$$restProps}>
     <svelte:fragment slot="header">
-        <h4>{original ? "Update" : "Create"} index</h4>
+        <h4>{original ? "Обновить" : "Создать"} индекс</h4>
     </svelte:fragment>
 
     <Field class="form-field form-field-toggle m-b-sm" let:uniqueId>
@@ -104,17 +104,17 @@
                 index = CommonHelper.buildIndex(indexParts);
             }}
         />
-        <label for={uniqueId}>Unique</label>
+        <label for={uniqueId}>Уникальный</label>
     </Field>
 
     <Field class="form-field required m-b-sm" name={`indexes.${key || ""}`} let:uniqueId>
         {#if isCodeEditorComponentLoading}
-            <textarea disabled rows="7" placeholder="Loading..." />
+            <textarea disabled rows="7" placeholder="Загрузка..." />
         {:else}
             <svelte:component
                 this={codeEditorComponent}
                 id={uniqueId}
-                placeholder={`eg. CREATE INDEX idx_test on ${collection?.name} (created)`}
+                placeholder={`например: CREATE INDEX idx_test on ${collection?.name} (created)`}
                 language="sql-create-index"
                 minHeight="85"
                 bind:value={index}
@@ -124,7 +124,7 @@
 
     {#if presetColumns.length > 0}
         <div class="inline-flex gap-10">
-            <span class="txt txt-hint">Presets</span>
+            <span class="txt txt-hint">Пресеты</span>
             {#each presetColumns as column}
                 <button
                     type="button"
@@ -143,14 +143,14 @@
             <button
                 type="button"
                 class="btn btn-sm btn-circle btn-hint btn-transparent m-r-auto"
-                use:tooltip={{ text: "Delete", position: "top" }}
+                use:tooltip={{ text: "Удалить", position: "top" }}
                 on:click={() => remove()}
             >
                 <i class="ri-delete-bin-7-line" />
             </button>
         {/if}
         <button type="button" class="btn btn-transparent" on:click={() => hide()}>
-            <span class="txt">Cancel</span>
+            <span class="txt">Отмена</span>
         </button>
         <button
             type="button"
@@ -158,7 +158,7 @@
             class:btn-disabled={lowerCasedIndexColumns.length <= 0}
             on:click={() => submit()}
         >
-            <span class="txt">Set index</span>
+            <span class="txt">Сохранить индекс</span>
         </button>
     </svelte:fragment>
 </OverlayPanel>

@@ -13,8 +13,8 @@
     export let key = "";
 
     const isSingleOptions = [
-        { label: "Single", value: true },
-        { label: "Multiple", value: false },
+        { label: "Один файл", value: true },
+        { label: "Несколько файлов", value: false },
     ];
 
     let mimeTypesList = baseMimeTypesList.slice();
@@ -93,11 +93,11 @@
             <div class="col-sm-12">
                 <Field class="form-field" name="fields.{key}.mimeTypes" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Allowed mime types</span>
+                        <span class="txt">Разрешённые mime-типы</span>
                         <i
                             class="ri-information-line link-hint"
                             use:tooltip={{
-                                text: "Allow files ONLY with the listed mime types. \n Leave empty for no restriction.",
+                                text: "Разрешать файлы ТОЛЬКО с указанными mime-типами.\nОставь пустым — без ограничений.",
                                 position: "top",
                             }}
                         />
@@ -108,7 +108,7 @@
                         searchable
                         closable={false}
                         selectionKey="mimeType"
-                        selectPlaceholder="No restriction"
+                        selectPlaceholder="Без ограничений"
                         items={mimeTypesList}
                         labelComponent={MimeTypeSelectOption}
                         optionComponent={MimeTypeSelectOption}
@@ -116,7 +116,7 @@
                     />
                     <div class="help-block">
                         <div tabindex="0" role="button" class="inline-flex flex-gap-0">
-                            <span class="txt link-primary">Choose presets</span>
+                            <span class="txt link-primary">Выбрать пресет</span>
                             <i class="ri-arrow-drop-down-fill" aria-hidden="true" />
                             <Toggler class="dropdown dropdown-sm dropdown-nowrap dropdown-left">
                                 <button
@@ -133,7 +133,7 @@
                                         ];
                                     }}
                                 >
-                                    <span class="txt">Images (jpg, png, svg, gif, webp)</span>
+                                    <span class="txt">Картинки (jpg, png, svg, gif, webp)</span>
                                 </button>
                                 <button
                                     type="button"
@@ -149,7 +149,7 @@
                                         ];
                                     }}
                                 >
-                                    <span class="txt">Documents (pdf, doc/docx, xls/xlsx)</span>
+                                    <span class="txt">Документы (pdf, doc/docx, xls/xlsx)</span>
                                 </button>
                                 <button
                                     type="button"
@@ -164,7 +164,7 @@
                                         ];
                                     }}
                                 >
-                                    <span class="txt">Videos (mp4, avi, mov, 3gp)</span>
+                                    <span class="txt">Видео (mp4, avi, mov, 3gp)</span>
                                 </button>
                                 <button
                                     type="button"
@@ -178,7 +178,7 @@
                                         ];
                                     }}
                                 >
-                                    <span class="txt">Archives (zip, 7zip, rar)</span>
+                                    <span class="txt">Архивы (zip, 7zip, rar)</span>
                                 </button>
                             </Toggler>
                         </div>
@@ -189,50 +189,50 @@
             <div class={!isSingle ? "col-sm-6" : "col-sm-8"}>
                 <Field class="form-field" name="fields.{key}.thumbs" let:uniqueId>
                     <label for={uniqueId}>
-                        <span class="txt">Thumb sizes</span>
+                        <span class="txt">Размеры превью</span>
                         <i
                             class="ri-information-line link-hint"
                             use:tooltip={{
-                                text: "List of additional thumb sizes for image files, along with the default thumb size of 100x100. The thumbs are generated lazily on first access.",
+                                text: "Список дополнительных размеров превью для картинок, плюс дефолтное превью 100x100. Превью генерируются лениво при первом обращении.",
                                 position: "top",
                             }}
                         />
                     </label>
                     <MultipleValueInput
                         id={uniqueId}
-                        placeholder="e.g. 50x50, 480x720"
+                        placeholder="например: 50x50, 480x720"
                         bind:value={field.thumbs}
                     />
                     <div class="help-block">
-                        <span class="txt">Use comma as separator.</span>
+                        <span class="txt">Разделяй запятой.</span>
                         <button type="button" class="inline-flex flex-gap-0">
-                            <span class="txt link-primary">Supported formats</span>
+                            <span class="txt link-primary">Поддерживаемые форматы</span>
                             <i class="ri-arrow-drop-down-fill" aria-hidden="true" />
                             <Toggler class="dropdown dropdown-sm dropdown-center dropdown-nowrap p-r-10">
                                 <ul class="m-0">
                                     <li>
                                         <strong>WxH</strong>
-                                        (e.g. 100x50) - crop to WxH viewbox (from center)
+                                        (например 100x50) — обрезать до WxH (по центру)
                                     </li>
                                     <li>
                                         <strong>WxHt</strong>
-                                        (e.g. 100x50t) - crop to WxH viewbox (from top)
+                                        (например 100x50t) — обрезать до WxH (сверху)
                                     </li>
                                     <li>
                                         <strong>WxHb</strong>
-                                        (e.g. 100x50b) - crop to WxH viewbox (from bottom)
+                                        (например 100x50b) — обрезать до WxH (снизу)
                                     </li>
                                     <li>
                                         <strong>WxHf</strong>
-                                        (e.g. 100x50f) - fit inside a WxH viewbox (without cropping)
+                                        (например 100x50f) — вписать в WxH (без обрезки)
                                     </li>
                                     <li>
                                         <strong>0xH</strong>
-                                        (e.g. 0x50) - resize to H height preserving the aspect ratio
+                                        (например 0x50) — высота H, ширина по пропорциям
                                     </li>
                                     <li>
                                         <strong>Wx0</strong>
-                                        (e.g. 100x0) - resize to W width preserving the aspect ratio
+                                        (например 100x0) — ширина W, высота по пропорциям
                                     </li>
                                 </ul>
                             </Toggler>
@@ -243,7 +243,7 @@
 
             <div class={!isSingle ? "col-sm-3" : "col-sm-4"}>
                 <Field class="form-field" name="fields.{key}.maxSize" let:uniqueId>
-                    <label for={uniqueId}>Max file size</label>
+                    <label for={uniqueId}>Макс. размер файла</label>
                     <input
                         type="number"
                         id={uniqueId}
@@ -252,16 +252,16 @@
                         max={Number.MAX_SAFE_INTEGER}
                         value={field.maxSize || ""}
                         on:input={(e) => (field.maxSize = parseInt(e.target.value, 10))}
-                        placeholder="Default to max ~5MB"
+                        placeholder="По умолчанию: ~5MB"
                     />
-                    <div class="help-block">Must be in bytes.</div>
+                    <div class="help-block">В байтах.</div>
                 </Field>
             </div>
 
             {#if !isSingle}
                 <div class="col-sm-3">
                     <Field class="form-field" name="fields.{key}.maxSelect" let:uniqueId>
-                        <label for={uniqueId}>Max select</label>
+                        <label for={uniqueId}>Макс. выбор</label>
                         <input
                             id={uniqueId}
                             type="number"
@@ -269,7 +269,7 @@
                             min="2"
                             max={Number.MAX_SAFE_INTEGER}
                             required
-                            placeholder="Default to single"
+                            placeholder="По умолчанию: один"
                             bind:value={field.maxSelect}
                         />
                     </Field>
@@ -279,17 +279,17 @@
             <Field class="form-field form-field-toggle" name="fields.{key}.protected" let:uniqueId>
                 <input type="checkbox" id={uniqueId} bind:checked={field.protected} />
                 <label for={uniqueId}>
-                    <span class="txt">Protected</span>
+                    <span class="txt">Защищено</span>
                 </label>
                 <small class="txt-hint">
-                    it will require View API rule permissions and file token to be accessible
+                    для доступа потребуются права по View API rule и file token
                     <a
                         href={import.meta.env.PB_PROTECTED_FILE_DOCS}
                         class="toggle-info"
                         target="_blank"
                         rel="noopener"
                     >
-                        (Learn more)
+                        (Подробнее)
                     </a>
                 </small>
             </Field>

@@ -18,9 +18,9 @@
 <div class="block m-b-sm handle">
     <div class="flex txt-sm txt-hint m-b-5">
         <p>
-            All rules follow the
+            Все правила используют
             <a href={import.meta.env.PB_RULES_SYNTAX_DOCS} target="_blank" rel="noopener noreferrer">
-                PocketBase filter syntax and operators
+                синтаксис фильтров и операторы PocketBase
             </a>.
         </p>
         <button
@@ -28,7 +28,7 @@
             class="expand-handle txt-sm txt-bold txt-nowrap link-hint"
             on:click={() => (showFiltersInfo = !showFiltersInfo)}
         >
-            {showFiltersInfo ? "Hide available fields" : "Show available fields"}
+            {showFiltersInfo ? "Скрыть доступные поля" : "Показать доступные поля"}
         </button>
     </div>
 
@@ -36,7 +36,7 @@
         <div transition:slide={{ duration: 150 }}>
             <div class="alert alert-warning m-0">
                 <div class="content">
-                    <p class="m-b-0">The following record fields are available:</p>
+                    <p class="m-b-0">Доступны такие поля записи:</p>
                     <div class="inline-flex flex-gap-5">
                         {#each fieldNames as name}
                             {#if !hiddenFieldNames.includes(name)}
@@ -48,7 +48,7 @@
                     <hr class="m-t-10 m-b-5" />
 
                     <p class="m-b-0">
-                        The request fields could be accessed with the special <em>@request</em> filter:
+                        Поля запроса можно получить через специальный фильтр <em>@request</em>:
                     </p>
                     <div class="inline-flex flex-gap-5">
                         <code>@request.headers.*</code>
@@ -60,8 +60,8 @@
                     <hr class="m-t-10 m-b-5" />
 
                     <p class="m-b-0">
-                        You could also add constraints and query other collections using the
-                        <em>@collection</em> filter:
+                        Ещё можно добавлять ограничения и обращаться к другим коллекциям через фильтр
+                        <em>@collection</em>:
                     </p>
                     <div class="inline-flex flex-gap-5">
                         <code>@collection.ANY_COLLECTION_NAME.*</code>
@@ -70,7 +70,7 @@
                     <hr class="m-t-10 m-b-5" />
 
                     <p>
-                        Example rule:
+                        Пример правила:
                         <br />
                         <code>@request.auth.id != "" && created > "2022-01-01 00:00:00"</code>
                     </p>
@@ -80,18 +80,18 @@
     {/if}
 </div>
 
-<RuleField label="List/Search rule" formKey="listRule" {collection} bind:rule={collection.listRule} />
+<RuleField label="Правило списка/поиска" formKey="listRule" {collection} bind:rule={collection.listRule} />
 
-<RuleField label="View rule" formKey="viewRule" {collection} bind:rule={collection.viewRule} />
+<RuleField label="Правило просмотра" formKey="viewRule" {collection} bind:rule={collection.viewRule} />
 
 {#if collection?.type !== "view"}
-    <RuleField label="Create rule" formKey="createRule" {collection} bind:rule={collection.createRule}>
+    <RuleField label="Правило создания" formKey="createRule" {collection} bind:rule={collection.createRule}>
         <svelte:fragment slot="afterLabel" let:isSuperuserOnly>
             {#if !isSuperuserOnly}
                 <i
                     class="ri-information-line link-hint"
                     use:tooltip={{
-                        text: `The main record fields hold the values that are going to be inserted in the database.`,
+                        text: `Основные поля записи содержат значения, которые будут вставлены в базу данных.`,
                         position: "top",
                     }}
                 />
@@ -99,13 +99,13 @@
         </svelte:fragment>
     </RuleField>
 
-    <RuleField label="Update rule" formKey="updateRule" {collection} bind:rule={collection.updateRule}>
+    <RuleField label="Правило обновления" formKey="updateRule" {collection} bind:rule={collection.updateRule}>
         <svelte:fragment slot="afterLabel" let:isSuperuserOnly>
             {#if !isSuperuserOnly}
                 <i
                     class="ri-information-line link-hint"
                     use:tooltip={{
-                        text: `The main record fields represent the old/existing record field values.\nTo target the newly submitted ones you can use @request.body.*`,
+                        text: `Основные поля записи содержат старые/текущие значения.\nЧтобы обратиться к новым отправленным значениям, используй @request.body.*`,
                         position: "top",
                     }}
                 />
@@ -113,7 +113,7 @@
         </svelte:fragment>
     </RuleField>
 
-    <RuleField label="Delete rule" formKey="deleteRule" {collection} bind:rule={collection.deleteRule} />
+    <RuleField label="Правило удаления" formKey="deleteRule" {collection} bind:rule={collection.deleteRule} />
 {/if}
 
 {#if collection?.type === "auth"}
@@ -126,7 +126,7 @@
             showExtraRules = !showExtraRules;
         }}
     >
-        <strong class="txt">Additional auth collection rules</strong>
+        <strong class="txt">Доп. правила для auth-коллекции</strong>
         {#if showExtraRules}
             <i class="ri-arrow-up-s-line txt-sm" />
         {:else}
@@ -137,7 +137,7 @@
     {#if showExtraRules}
         <div class="block" transition:slide={{ duration: 150 }}>
             <RuleField
-                label="Authentication rule"
+                label="Правило аутентификации"
                 formKey="authRule"
                 placeholder=""
                 {collection}
@@ -145,20 +145,20 @@
             >
                 <svelte:fragment>
                     <p>
-                        This rule is executed every time before authentication allowing you to restrict who
-                        can authenticate.
+                        Это правило выполняется каждый раз перед аутентификацией и позволяет ограничить,
+                        кто вообще может входить.
                     </p>
                     <p>
-                        For example, to allow only verified users you can set it to
+                        Например, чтобы пускать только подтверждённых пользователей, задай:
                         <code>verified = true</code>.
                     </p>
-                    <p>Leave it empty to allow anyone with an account to authenticate.</p>
-                    <p>To disable authentication entirely you can change it to "Set superusers only".</p>
+                    <p>Оставь пустым, чтобы вход был доступен всем, у кого есть аккаунт.</p>
+                    <p>Чтобы полностью отключить вход, можно поставить «Только суперпользователи».</p>
                 </svelte:fragment>
             </RuleField>
 
             <RuleField
-                label="Manage rule"
+                label="Правило управления"
                 formKey="manageRule"
                 placeholder=""
                 required={collection.manageRule !== null}
@@ -167,13 +167,13 @@
             >
                 <svelte:fragment>
                     <p>
-                        This rule is executed in addition to the <code>create</code> and <code>update</code> API
-                        rules.
+                        Это правило выполняется дополнительно к API-правилам <code>create</code> и
+                        <code>update</code>.
                     </p>
                     <p>
-                        It enables superuser-like permissions to allow fully managing the auth record(s), eg.
-                        changing the password without requiring to enter the old one, directly updating the
-                        verified state or email, etc.
+                        Оно включает “суперпользовательские” права для полного управления auth-записью(ями):
+                        например, менять пароль без ввода старого, напрямую переключать verified, менять email
+                        и т.д.
                     </p>
                 </svelte:fragment>
             </RuleField>

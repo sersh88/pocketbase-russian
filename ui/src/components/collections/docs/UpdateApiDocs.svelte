@@ -80,27 +80,27 @@
     }
 </script>
 
-<h3 class="m-b-sm">Update ({collection.name})</h3>
+<h3 class="m-b-sm">Обновление ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Update a single <strong>{collection.name}</strong> record.</p>
+    <p>Обновить одну запись <strong>{collection.name}</strong>.</p>
     <p>
-        Body parameters could be sent as <code>application/json</code> or
+        Параметры тела можно отправлять как <code>application/json</code> или
         <code>multipart/form-data</code>.
     </p>
     <p>
-        File upload is supported only via <code>multipart/form-data</code>.
+        Загрузка файлов поддерживается только через <code>multipart/form-data</code>.
         <br />
-        For more info and examples you could check the detailed
+        Больше инфы и примеров — в подробной документации:
         <a href={import.meta.env.PB_FILE_UPLOAD_DOCS} target="_blank" rel="noopener noreferrer">
-            Files upload and handling docs
+            Загрузка и обработка файлов
         </a>.
     </p>
     {#if isAuth}
         <p>
             <em>
-                Note that in case of a password change all previously issued tokens for the current record
-                will be automatically invalidated and if you want your user to remain signed in you need to
-                reauthenticate manually after the update call.
+                Учти: при смене пароля все ранее выданные токены для текущей записи будут автоматически
+                инвалидированы. Если хочешь, чтобы пользователь остался залогинен — после update придётся
+                переавторизоваться вручную.
             </em>
         </p>
     {/if}
@@ -134,7 +134,7 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-warning">
     <strong class="label label-primary">PATCH</strong>
     <div class="content">
@@ -143,17 +143,17 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
         </p>
     </div>
     {#if superusersOnly}
-        <p class="txt-hint txt-sm txt-right">Requires superuser <code>Authorization:TOKEN</code> header</p>
+        <p class="txt-hint txt-sm txt-right">Нужен заголовок суперпользователя <code>Authorization:TOKEN</code></p>
     {/if}
 </div>
 
-<div class="section-title">Path parameters</div>
+<div class="section-title">Path‑параметры</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -162,29 +162,29 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
             <td>
                 <span class="label">String</span>
             </td>
-            <td>ID of the record to update.</td>
+            <td>ID записи, которую надо обновить.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         {#if isAuth}
             <tr>
-                <td colspan="3" class="txt-hint txt-bold">Auth specific fields</td>
+                <td colspan="3" class="txt-hint txt-bold">Поля, специфичные для auth</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-warning">Optional</span>
+                        <span class="label label-warning">Опционально</span>
                         <span>email</span>
                     </div>
                 </td>
@@ -192,20 +192,20 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                     <span class="label">String</span>
                 </td>
                 <td>
-                    The auth record email address.
+                    Email адрес auth‑записи.
                     <br />
-                    This field can be updated only by superusers or auth records with "Manage" access.
+                    Это поле могут менять только суперпользователи или auth‑записи с доступом “Manage”.
                     <br />
-                    Regular accounts can update their email by calling "Request email change".
+                    Обычные аккаунты могут менять email через “Request email change”.
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
                         {#if collection?.fields?.find((f) => f.name == "emailVisibility")?.required}
-                            <span class="label label-success">Required</span>
+                            <span class="label label-success">Обязательно</span>
                         {:else}
-                            <span class="label label-warning">Optional</span>
+                            <span class="label label-warning">Опционально</span>
                         {/if}
                         <span>emailVisibility</span>
                     </div>
@@ -213,12 +213,12 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                 <td>
                     <span class="label">Boolean</span>
                 </td>
-                <td>Whether to show/hide the auth record email when fetching the record data.</td>
+                <td>Показывать/скрывать email auth‑записи при получении данных записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-warning">Optional</span>
+                        <span class="label label-warning">Опционально</span>
                         <span>oldPassword</span>
                     </div>
                 </td>
@@ -226,40 +226,40 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                     <span class="label">String</span>
                 </td>
                 <td>
-                    Old auth record password.
+                    Старый пароль auth‑записи.
                     <br />
-                    This field is required only when changing the record password. Superusers and auth records
-                    with "Manage" access can skip this field.
+                    Это поле нужно только при смене пароля. Суперпользователи и auth‑записи с доступом “Manage”
+                    могут пропустить это поле.
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-warning">Optional</span>
+                        <span class="label label-warning">Опционально</span>
                         <span>password</span>
                     </div>
                 </td>
                 <td>
                     <span class="label">String</span>
                 </td>
-                <td>New auth record password.</td>
+                <td>Новый пароль auth‑записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-warning">Optional</span>
+                        <span class="label label-warning">Опционально</span>
                         <span>passwordConfirm</span>
                     </div>
                 </td>
                 <td>
                     <span class="label">String</span>
                 </td>
-                <td>New auth record password confirmation.</td>
+                <td>Подтверждение нового пароля auth‑записи.</td>
             </tr>
             <tr>
                 <td>
                     <div class="inline-flex">
-                        <span class="label label-warning">Optional</span>
+                        <span class="label label-warning">Опционально</span>
                         <span>verified</span>
                     </div>
                 </td>
@@ -267,13 +267,13 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                     <span class="label">Boolean</span>
                 </td>
                 <td>
-                    Indicates whether the auth record is verified or not.
+                    Показывает, подтверждена auth‑запись или нет.
                     <br />
-                    This field can be set only by superusers or auth records with "Manage" access.
+                    Это поле могут менять только суперпользователи или auth‑записи с доступом “Manage”.
                 </td>
             </tr>
             <tr>
-                <td colspan="3" class="txt-hint txt-bold">Other fields</td>
+                <td colspan="3" class="txt-hint txt-bold">Остальные поля</td>
             </tr>
         {/if}
 
@@ -282,9 +282,9 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                 <td>
                     <div class="inline-flex">
                         {#if field.required}
-                            <span class="label label-success">Required</span>
+                            <span class="label label-success">Обязательно</span>
                         {:else}
-                            <span class="label label-warning">Optional</span>
+                            <span class="label label-warning">Опционально</span>
                         {/if}
                         <span>{field.name}</span>
                     </div>
@@ -294,22 +294,22 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                 </td>
                 <td>
                     {#if field.type === "text"}
-                        Plain text value.
+                        Текстовое значение.
                     {:else if field.type === "number"}
-                        Number value.
+                        Числовое значение.
                     {:else if field.type === "json"}
-                        JSON array or object.
+                        JSON‑массив или объект.
                     {:else if field.type === "email"}
-                        Email address.
+                        Email адрес.
                     {:else if field.type === "url"}
-                        URL address.
+                        URL адрес.
                     {:else if field.type === "geoPoint"}
-                        <code>{`{"lon":x,"lat":y}`}</code> object.
+                        <code>{`{"lon":x,"lat":y}`}</code> объект.
                     {:else if field.type === "file"}
-                        File object.<br />
-                        Set to <code>null</code> to delete already uploaded file(s).
+                        Файловый объект.<br />
+                        Укажи <code>null</code>, чтобы удалить уже загруженный(е) файл(ы).
                     {:else if field.type === "relation"}
-                        Relation record {field.maxSelect == 1 ? "id" : "ids"}.
+                        {field.maxSelect == 1 ? "id" : "ids"} связанной записи.
                     {/if}
                 </td>
             </tr>
@@ -317,13 +317,13 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
     </tbody>
 </table>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-lg">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -333,19 +333,19 @@ final record = await pb.collection('${collection?.name}').update('RECORD_ID', bo
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand relations when returning the updated record. Ex.:
+                Автоматически раскрывает связи при возврате обновлённой записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField21`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to the record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>). Only
-                the relations that the user has permissions to <strong>view</strong> will be expanded.
+                те связи, на которые у пользователя есть права <strong>view</strong>, будут раскрыты.
             </td>
         </tr>
         <FieldsQueryParam />
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

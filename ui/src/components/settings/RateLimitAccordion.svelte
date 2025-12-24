@@ -13,9 +13,9 @@
     export let formSettings;
 
     const audienceOptions = [
-        { value: "", label: "All" },
-        { value: "@guest", label: "Guest only" },
-        { value: "@auth", label: "Auth only" },
+        { value: "", label: "Все" },
+        { value: "@guest", label: "Только гости" },
+        { value: "@auth", label: "Только авторизованные" },
     ];
 
     const basePredefinedTags = [
@@ -24,10 +24,10 @@
         { value: "*:create" },
         { value: "*:update" },
         { value: "*:delete" },
-        { value: "*:file", description: "targets the files download endpoint" },
+        { value: "*:file", description: "для эндпоинта скачивания файлов" },
         { value: "*:listAuthMethods" },
         { value: "*:authRefresh" },
-        { value: "*:auth", description: "targets all auth methods" },
+        { value: "*:auth", description: "для всех auth-методов" },
         { value: "*:authWithPassword" },
         { value: "*:authWithOAuth2" },
         { value: "*:authWithOTP" },
@@ -128,7 +128,7 @@
     <svelte:fragment slot="header">
         <div class="inline-flex">
             <i class="ri-pulse-fill"></i>
-            <span class="txt">Rate limiting</span>
+            <span class="txt">Лимиты запросов</span>
         </div>
 
         <div class="flex-fill" />
@@ -137,30 +137,30 @@
             <i
                 class="ri-error-warning-fill txt-danger"
                 transition:scale={{ duration: 150, start: 0.7 }}
-                use:tooltip={{ text: "Has errors", position: "left" }}
+                use:tooltip={{ text: "Есть ошибки", position: "left" }}
             />
         {/if}
 
         {#if formSettings.rateLimits.enabled}
-            <span class="label label-success">Enabled</span>
+            <span class="label label-success">Включено</span>
         {:else}
-            <span class="label">Disabled</span>
+            <span class="label">Отключено</span>
         {/if}
     </svelte:fragment>
 
     <Field class="form-field form-field-toggle m-b-xs" name="rateLimits.enabled" let:uniqueId>
         <input type="checkbox" id={uniqueId} bind:checked={formSettings.rateLimits.enabled} />
-        <label for={uniqueId}>Enable <small class="txt-hint">(experimental)</small></label>
+        <label for={uniqueId}>Включить <small class="txt-hint">(экспериментально)</small></label>
     </Field>
 
     {#if !CommonHelper.isEmpty(formSettings.rateLimits.rules)}
         <table class="rate-limit-table">
             <thead>
                 <tr>
-                    <th class="col-label">Rate limit label</th>
-                    <th class="col-requests">Max requests<br /><small>(per IP)</small></th>
-                    <th class="col-duration">Interval<br /><small>(in seconds)</small></th>
-                    <th class="col-audience">Targeted users</th>
+                    <th class="col-label">Метка лимита</th>
+                    <th class="col-requests">Макс. запросов<br /><small>(на IP)</small></th>
+                    <th class="col-duration">Интервал<br /><small>(в секундах)</small></th>
+                    <th class="col-audience">Кто попадает под лимит</th>
                     <th></th>
                 </tr>
             </thead>
@@ -171,7 +171,7 @@
                             <Field class="form-field" name={"rateLimits.rules." + i + ".label"} inlineError>
                                 <AutocompleteInput
                                     required
-                                    placeholder="tag (users:create) or path (/api/)"
+                                    placeholder="тег (users:create) или путь (/api/)"
                                     options={predefinedTags}
                                     bind:value={rule.label}
                                 />
@@ -186,7 +186,7 @@
                                 <input
                                     type="number"
                                     required
-                                    placeholder="Max requests*"
+                                    placeholder="Макс. запросов*"
                                     min="1"
                                     step="1"
                                     bind:value={rule.maxRequests}
@@ -202,7 +202,7 @@
                                 <input
                                     type="number"
                                     required
-                                    placeholder="Interval*"
+                                    placeholder="Интервал*"
                                     min="1"
                                     step="1"
                                     bind:value={rule.duration}
@@ -227,8 +227,8 @@
                         <td class="col-action">
                             <button
                                 type="button"
-                                title="Remove rule"
-                                aria-label="Remove rule"
+                                title="Удалить правило"
+                                aria-label="Удалить правило"
                                 class="btn btn-xs btn-circle btn-hint btn-transparent"
                                 on:click={() => removeRule(i)}
                             >
@@ -249,21 +249,21 @@
             on:click={() => newRule()}
         >
             <i class="ri-add-line"></i>
-            <span class="txt">Add rate limit rule</span>
+            <span class="txt">Добавить правило лимита</span>
         </button>
 
         <button type="button" class="txt-nowrap txt-sm link-hint" on:click={() => formatInfoPanel?.show()}>
-            <em>Learn more about the rate limit rules</em>
+            <em>Подробнее про правила лимитов</em>
         </button>
     </div>
 </Accordion>
 
 <OverlayPanel bind:this={formatInfoPanel}>
     <svelte:fragment slot="header">
-        <h4 class="center txt-break">Rate limit label format</h4>
+        <h4 class="center txt-break">Формат метки лимита</h4>
     </svelte:fragment>
 
-    <p>The rate limit rules are resolved in the following order (stops on the first match):</p>
+    <p>Правила лимитов применяются в таком порядке (останавливается на первом совпадении):</p>
     <ol>
         <li>exact tag (e.g. <code>users:create</code>)</li>
         <li>wildcard tag (e.g. <code>*:create</code>)</li>
@@ -273,17 +273,17 @@
         <li>prefix path (e.g. <code>/a/b<strong>/</strong></code>)</li>
     </ol>
     <p>
-        In case of multiple rules with the same label but different target user audience (e.g. "guest" vs
-        "auth"), only the matching audience rule is taken in consideration.
+        Если есть несколько правил с одной и той же меткой, но разной аудиторией (например, "guest" vs
+        "auth"), будет учитываться только правило, которое подходит по аудитории.
     </p>
 
     <hr class="m-t-xs m-b-xs" />
 
-    <p>The rate limit label could be in one of the following formats:</p>
+    <p>Метка лимита может быть в одном из форматов:</p>
     <ul>
         <li class="m-b-sm">
             <code>[METHOD ]/my/path</code> - full exact route match (
-            <strong>must be without trailing slash </strong>; "METHOD" is optional).
+            <strong>должно быть без слэша на конце</strong>; "METHOD" — опционально).
             <br /> For example:
             <ul class="m-0">
                 <li class="m-0">
@@ -296,7 +296,7 @@
         </li>
         <li class="m-b-sm">
             <code>[METHOD ]/my/prefix<strong>/</strong></code> - path prefix (
-            <strong>must end with trailing slash;</strong>
+            <strong>должно заканчиваться слэшем;</strong>
             "METHOD" is optional). For example:
             <ul class="m-0">
                 <li class="m-0">
@@ -310,11 +310,11 @@
             </ul>
         </li>
         <li>
-            <code>collectionName:predefinedTag</code> - targets a specific action of a single collection. To
-            apply the rule for all collections you can use the <code>*</code> wildcard. For example:
+            <code>collectionName:predefinedTag</code> — для конкретного действия одной коллекции. Чтобы
+            применить ко всем коллекциям, используй wildcard <code>*</code>. Например:
             <code>posts:create</code>, <code>users:listAuthMethods</code>, <code>*:auth</code>.
             <br />
-            The predifined collection tags are (<em>there should be autocomplete once you start typing</em>):
+            Предопределённые теги коллекций (<em>должно быть автодополнение, когда начнёшь печатать</em>):
             <ul>
                 {#each basePredefinedTags as tag}
                     <li class="m-0">

@@ -11,21 +11,21 @@
     </td>
     <td>
         <p>
-            Comma separated string of the fields to return in the JSON response
-            <em>(by default returns all fields)</em>. Ex.:
+            Строка со списком полей (через запятую), которые нужно вернуть в JSON-ответе
+            <em>(по умолчанию возвращаются все поля)</em>. Например:
             <CodeBlock content="?fields=*,{prefix}expand.relField.name" />
         </p>
         <p>
-            <code>*</code> targets all keys from the specific depth level.
+            <code>*</code> выбирает все ключи на конкретном уровне вложенности.
         </p>
-        <p>In addition, the following field modifiers are also supported:</p>
+        <p>Также поддерживаются такие модификаторы полей:</p>
         <ul>
             <li>
                 <code>:excerpt(maxLength, withEllipsis?)</code>
                 <br />
-                Returns a short plain text version of the field string value.
+                Возвращает короткую plain text версию строкового значения поля.
                 <br />
-                Ex.:
+                Например:
                 <code>?fields=*,{prefix}description:excerpt(200,true)</code>
             </li>
         </ul>

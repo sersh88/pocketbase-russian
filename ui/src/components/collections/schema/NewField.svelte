@@ -10,22 +10,22 @@
 
     const types = [
         {
-            label: "Plain text",
+            label: "Текст",
             value: "text",
             icon: CommonHelper.getFieldTypeIcon("text"),
         },
         {
-            label: "Rich editor",
+            label: "Редактор",
             value: "editor",
             icon: CommonHelper.getFieldTypeIcon("editor"),
         },
         {
-            label: "Number",
+            label: "Число",
             value: "number",
             icon: CommonHelper.getFieldTypeIcon("number"),
         },
         {
-            label: "Bool",
+            label: "Да/Нет",
             value: "bool",
             icon: CommonHelper.getFieldTypeIcon("bool"),
         },
@@ -40,27 +40,27 @@
             icon: CommonHelper.getFieldTypeIcon("url"),
         },
         {
-            label: "Datetime",
+            label: "Дата/время",
             value: "date",
             icon: CommonHelper.getFieldTypeIcon("date"),
         },
         {
-            label: "Autodate",
+            label: "Автодата",
             value: "autodate",
             icon: CommonHelper.getFieldTypeIcon("autodate"),
         },
         {
-            label: "Select",
+            label: "Выбор",
             value: "select",
             icon: CommonHelper.getFieldTypeIcon("select"),
         },
         {
-            label: "File",
+            label: "Файл",
             value: "file",
             icon: CommonHelper.getFieldTypeIcon("file"),
         },
         {
-            label: "Relation",
+            label: "Связь",
             value: "relation",
             icon: CommonHelper.getFieldTypeIcon("relation"),
         },
@@ -70,7 +70,7 @@
             icon: CommonHelper.getFieldTypeIcon("json"),
         },
         {
-            label: "Geo Point",
+            label: "Гео-точка",
             value: "geoPoint",
             icon: CommonHelper.getFieldTypeIcon("geoPoint"),
         },
@@ -88,7 +88,7 @@
 
 <div tabindex="0" role="button" class="field-types-btn {classes}">
     <i class="ri-add-line" aria-hidden="true" />
-    <div class="txt">New field</div>
+    <div class="txt">Новое поле</div>
     <Toggler class="dropdown field-types-dropdown">
         {#each types as item}
             <button type="button" role="menuitem" class="dropdown-item" on:click={() => select(item.value)}>

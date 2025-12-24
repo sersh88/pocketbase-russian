@@ -8,8 +8,8 @@
     export let collection;
 
     const apiTabs = [
-        { title: "OTP Request", component: AuthWithOtpApiRequestDocs },
-        { title: "OTP Auth", component: AuthWithOtpApiAuthDocs },
+        { title: "Запрос OTP", component: AuthWithOtpApiRequestDocs },
+        { title: "Вход по OTP", component: AuthWithOtpApiAuthDocs },
     ];
 
     let activeApiTab = 0;
@@ -17,12 +17,12 @@
     $: backendAbsUrl = CommonHelper.getApiExampleUrl(ApiClient.baseURL);
 </script>
 
-<h3 class="m-b-sm">Auth with OTP ({collection.name})</h3>
+<h3 class="m-b-sm">Вход через OTP ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Authenticate with an one-time password (OTP).</p>
+    <p>Аутентификация через одноразовый пароль (OTP).</p>
     <p>
-        Note that when requesting an OTP we return an <code>otpId</code> even if a user with the provided email
-        doesn't exist as a very basic enumeration protection.
+        Учти: при запросе OTP мы возвращаем <code>otpId</code> даже если пользователя с таким email не существует
+        — это базовая защита от перечисления аккаунтов.
     </p>
 </div>
 
@@ -81,7 +81,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="tabs">
     <div class="tabs-header compact">
         {#each apiTabs as tab, i}

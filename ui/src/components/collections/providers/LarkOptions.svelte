@@ -8,8 +8,8 @@
     const DOMAIN_LARKSUITE = "larksuite.com";
 
     const domainOptions = [
-        { label: "Feishu (China)", value: DOMAIN_FEISHU },
-        { label: "Lark (International)", value: DOMAIN_LARKSUITE },
+        { label: "Feishu (Китай)", value: DOMAIN_FEISHU },
+        { label: "Lark (международный)", value: DOMAIN_LARKSUITE },
     ];
 
     let domain = DOMAIN_FEISHU;
@@ -26,7 +26,7 @@
 </script>
 
 <Field class="form-field" let:uniqueId>
-    <label for={uniqueId}>Site</label>
+    <label for={uniqueId}>Сайт</label>
     <ObjectSelect id={uniqueId} items={domainOptions} bind:keyOfSelected={domain} />
 </Field>
 
@@ -35,14 +35,14 @@
         <i class="ri-information-line" />
     </div>
     <div class="content">
-        Note that the Lark user's <strong>Union ID</strong> will be used for the association with the
-        PocketBase user (see
+        Учти: у пользователя Lark будет использоваться <strong>Union ID</strong> для привязки к пользователю
+        PocketBase (см.
         <a
             href="https://open.feishu.cn/document/platform-overveiw/basic-concepts/user-identity-introduction/introduction#3f2d4b63"
             target="_blank"
             rel="noopener noreferrer"
         >
-            Different Types of Lark IDs
+            разные типы Lark ID
         </a>
         ).
     </div>

@@ -15,7 +15,7 @@
     export let required = false;
     export let disabled = false;
     export let superuserToggle = true;
-    export let placeholder = "Leave empty to grant everyone access...";
+    export let placeholder = "Оставь пустым, чтобы дать доступ всем...";
 
     let editorRef = null;
     let tempValue = null;
@@ -67,7 +67,7 @@
         <div
             class="input-wrapper"
             use:tooltip={collection.system
-                ? { text: "System collection rule cannot be changed.", position: "top" }
+                ? { text: "Правило системной коллекции нельзя изменить.", position: "top" }
                 : undefined}
         >
             <label for={uniqueId}>
@@ -75,7 +75,7 @@
 
                 <span class="txt" class:txt-hint={isSuperuserOnly}>
                     {label}
-                    {isSuperuserOnly ? "- Superusers only" : ""}
+                    {isSuperuserOnly ? " — только суперпользователи" : ""}
                 </span>
 
                 <slot name="afterLabel" {isSuperuserOnly} />
@@ -89,7 +89,7 @@
                         on:click={lock}
                     >
                         <i class="ri-lock-line" aria-hidden="true" />
-                        <span class="txt">Set Superusers only</span>
+                        <span class="txt">Только суперпользователи</span>
                     </button>
                 {/if}
             </label>
@@ -114,7 +114,7 @@
                     on:click={unlock}
                 >
                     {#if !isDisabled}
-                        <small class="txt">Unlock and set custom rule</small>
+                        <small class="txt">Разблокировать и задать своё правило</small>
                     {/if}
                     <div class="icon" aria-hidden="true">
                         <i class="ri-lock-unlock-line" />

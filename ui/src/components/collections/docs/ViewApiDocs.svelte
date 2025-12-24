@@ -46,9 +46,9 @@
     }
 </script>
 
-<h3 class="m-b-sm">View ({collection.name})</h3>
+<h3 class="m-b-sm">Просмотр ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Fetch a single <strong>{collection.name}</strong> record.</p>
+    <p>Получить одну запись <strong>{collection.name}</strong>.</p>
 </div>
 
 <SdkTabs
@@ -76,7 +76,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-info">
     <strong class="label label-primary">GET</strong>
     <div class="content">
@@ -85,17 +85,17 @@
         </p>
     </div>
     {#if superusersOnly}
-        <p class="txt-hint txt-sm txt-right">Requires superuser <code>Authorization:TOKEN</code> header</p>
+        <p class="txt-hint txt-sm txt-right">Нужен заголовок суперпользователя <code>Authorization:TOKEN</code></p>
     {/if}
 </div>
 
-<div class="section-title">Path Parameters</div>
+<div class="section-title">Path‑параметры</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -104,18 +104,18 @@
             <td>
                 <span class="label">String</span>
             </td>
-            <td>ID of the record to view.</td>
+            <td>ID записи, которую надо получить.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -125,20 +125,20 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand record relations. Ex.:
+                Автоматически раскрывает связи записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to the record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>).
                 <br />
-                Only the relations to which the request user has permissions to <strong>view</strong> will be expanded.
+                Будут раскрыты только те связи, на которые у пользователя запроса есть права <strong>view</strong>.
             </td>
         </tr>
         <FieldsQueryParam />
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

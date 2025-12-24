@@ -61,10 +61,10 @@
     }
 </script>
 
-<h3 class="m-b-sm">List/Search ({collection.name})</h3>
+<h3 class="m-b-sm">Список/Поиск ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
     <p>
-        Fetch a paginated <strong>{collection.name}</strong> records list, supporting sorting and filtering.
+        Получить список записей <strong>{collection.name}</strong> с пагинацией, сортировкой и фильтрацией.
     </p>
 </div>
 
@@ -118,7 +118,7 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="alert alert-info">
     <strong class="label label-primary">GET</strong>
     <div class="content">
@@ -127,17 +127,17 @@
         </p>
     </div>
     {#if superusersOnly}
-        <p class="txt-hint txt-sm txt-right">Requires superuser <code>Authorization:TOKEN</code> header</p>
+        <p class="txt-hint txt-sm txt-right">Нужен заголовок суперпользователя <code>Authorization:TOKEN</code></p>
     {/if}
 </div>
 
-<div class="section-title">Query parameters</div>
+<div class="section-title">Параметры запроса</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="60%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="60%">Описание</th>
         </tr>
     </thead>
     <tbody>
@@ -146,14 +146,14 @@
             <td>
                 <span class="label">Number</span>
             </td>
-            <td>The page (aka. offset) of the paginated list (default to 1).</td>
+            <td>Номер страницы (aka offset) для пагинированного списка (по умолчанию: 1).</td>
         </tr>
         <tr>
             <td>perPage</td>
             <td>
                 <span class="label">Number</span>
             </td>
-            <td>Specify the max returned records per page (default to 30).</td>
+            <td>Максимум записей на страницу (по умолчанию: 30).</td>
         </tr>
         <tr>
             <td>sort</td>
@@ -161,9 +161,9 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Specify the records order attribute(s). <br />
-                Add <code>-</code> / <code>+</code> (default) in front of the attribute for DESC / ASC order.
-                Ex.:
+                Укажи поля сортировки. <br />
+                Добавь <code>-</code> / <code>+</code> (по умолчанию) перед именем поля для DESC / ASC.
+                Например:
                 <CodeBlock
                     content={`
                         // DESC by created and ASC by id
@@ -171,7 +171,7 @@
                     `}
                 />
                 <p>
-                    <strong>Supported record sort fields:</strong> <br />
+                    <strong>Поддерживаемые поля сортировки записей:</strong> <br />
                     <code>@random</code>,
                     <code>@rowid</code>,
                     {#each fieldNames as name, i}
@@ -186,7 +186,7 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Filter the returned records. Ex.:
+                Фильтрует возвращаемые записи. Например:
                 <CodeBlock
                     content={`
                         ?filter=(id='abc' && created>'2022-01-01')
@@ -201,13 +201,13 @@
                 <span class="label">String</span>
             </td>
             <td>
-                Auto expand record relations. Ex.:
+                Автоматически раскрывает связи записи. Например:
                 <CodeBlock content={`?expand=relField1,relField2.subRelField`} />
-                Supports up to 6-levels depth nested relations expansion. <br />
-                The expanded relations will be appended to each individual record under the
+                Поддерживает вложенность до 6 уровней. <br />
+                Раскрытые связи будут добавлены к каждой записи в поле
                 <code>expand</code> property (eg. <code>{`"expand": {"relField1": {...}, ...}`}</code>).
                 <br />
-                Only the relations to which the request user has permissions to <strong>view</strong> will be expanded.
+                Будут раскрыты только те связи, на которые у пользователя запроса есть права <strong>view</strong>.
             </td>
         </tr>
         <FieldsQueryParam />
@@ -217,22 +217,21 @@
                 <span class="label">Boolean</span>
             </td>
             <td>
-                If it is set the total counts query will be skipped and the response fields
-                <code>totalItems</code> and <code>totalPages</code> will have <code>-1</code> value.
+                Если включено — запрос подсчёта totals пропускается, а поля ответа <code>totalItems</code> и
+                <code>totalPages</code> будут иметь значение <code>-1</code>.
                 <br />
-                This could drastically speed up the search queries when the total counters are not needed or cursor
-                based pagination is used.
+                Это может сильно ускорить запросы, когда totals не нужны или используется cursor‑пагинация.
                 <br />
-                For optimization purposes, it is set by default for the
+                Для оптимизации по умолчанию включено для методов SDK
                 <code>getFirstListItem()</code>
                 and
-                <code>getFullList()</code> SDKs methods.
+                <code>getFullList()</code>.
             </td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

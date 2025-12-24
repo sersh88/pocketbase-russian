@@ -75,9 +75,9 @@
     }
 </script>
 
-<h3 class="m-b-sm">Batch create/update/upsert/delete ({collection.name})</h3>
+<h3 class="m-b-sm">Пакетные create/update/upsert/delete ({collection.name})</h3>
 <div class="content txt-lg m-b-sm">
-    <p>Batch and transactional create/update/upsert/delete of multiple records in a single request.</p>
+    <p>Пакетные и транзакционные create/update/upsert/delete для нескольких записей одним запросом.</p>
 </div>
 
 <div class="alert alert-warning">
@@ -86,15 +86,15 @@
     </div>
     <div class="content">
         <p>
-            The batch Web API need to be explicitly enabled and configured from the
+            Batch Web API нужно явно включить и настроить в
             <a href="/settings" use:link>Dashboard settings</a>.
         </p>
         <p>
-            Because this endpoint process the requests in a single DB transaction it could degrade the
-            performance of your application if not used with proper care and configuration
+            Так как этот эндпоинт обрабатывает запросы в одной транзакции БД, он может просадить
+            производительность приложения, если использовать без головы и нормальной конфигурации
             <em
-                >(prefer smaller max processing and body size limits, avoid large file uploads over slow S3
-                networks and custom hooks that communicate with slow external APIs)</em
+                >(лучше ставить небольшие лимиты на обработку/размер тела, избегать больших загрузок файлов по
+                медленным S3‑сетям и кастомных хуков, которые общаются с медленными внешними API)</em
             >.
         </p>
     </div>
@@ -135,56 +135,56 @@
     `}
 />
 
-<h6 class="m-b-xs">API details</h6>
+<h6 class="m-b-xs">Детали API</h6>
 <div class="api-route alert alert-success">
     <strong class="label label-primary">POST</strong>
     <div class="content">/api/batch</div>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <p>
-    Body parameters could be sent as <em>application/json</em> or <em>multipart/form-data</em>.
+    Параметры тела можно отправлять как <em>application/json</em> или <em>multipart/form-data</em>.
     <br />
-    File upload is supported only via <em>multipart/form-data</em> (see below for more details).
+    Загрузка файлов поддерживается только через <em>multipart/form-data</em> (подробнее — ниже).
 </p>
 <table class="table-compact table-border m-t-xs m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th width="80%">Description</th>
+            <th>Параметр</th>
+            <th width="80%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td valign="top">
                 <div class="flex txt-nowrap">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>requests</span>
                 </div>
             </td>
             <td>
                 <span class="label">{`Array<Request>`}</span> - List of the requests to process.
 
-                <p>The supported batch request actions are:</p>
+                <p>Поддерживаемые batch‑действия:</p>
                 <ul>
-                    <li>record create - <code>POST /api/collections/{`{collection}`}/records</code></li>
+                    <li>создание записи — <code>POST /api/collections/{`{collection}`}/records</code></li>
                     <li>
-                        record update -
+                        обновление записи —
                         <code>PATCH /api/collections/{`{collection}`}/records/{`{id}`}</code>
                     </li>
                     <li>
-                        record upsert - <code>PUT /api/collections/{`{collection}`}/records</code>
+                        upsert записи — <code>PUT /api/collections/{`{collection}`}/records</code>
                         <br />
                         <small class="txt-hint">
                             (the body must have <code class="txt-sm">id</code> field)
                         </small>
                     </li>
                     <li>
-                        record delete -
+                        удаление записи —
                         <code>DELETE /api/collections/{`{collection}`}/records/{`{id}`}</code>
                     </li>
                 </ul>
-                <p>Each batch Request element have the following properties:</p>
+                <p>Каждый элемент batch Request содержит такие поля:</p>
                 <ul>
                     <li><code>url path</code> <em>(could include query parameters)</em></li>
                     <li><code>method</code> <em>(GET, POST, PUT, PATCH, DELETE)</em></li>
@@ -199,7 +199,7 @@
                     <li><code>body</code></li>
                 </ul>
                 <p>
-                    <strong>NB!</strong> When the batch request is send as
+                    <strong>Важно!</strong> Когда batch‑запрос отправляется как
                     <code>multipart/form-data</code>, the regular batch action fields are expected to be
                     submitted as serailized json under the <code>@jsonPayload</code> field and file keys need
                     to follow the pattern <code>requests.N.fileField</code> or
@@ -209,8 +209,8 @@
                         is used)
                     </em>.
                     <br />
-                    If you don't use the SDKs or prefer manually to construct the <code>FormData</code>
-                    body, then it could look something like:
+                    Если не используешь SDK или хочешь собрать <code>FormData</code> вручную — это может
+                    выглядеть примерно так:
                     <CodeBlock
                         language="javascript"
                         content={`
@@ -244,7 +244,7 @@
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

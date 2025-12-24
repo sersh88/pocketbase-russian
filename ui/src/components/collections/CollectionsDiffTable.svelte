@@ -88,15 +88,15 @@
 
 <div class="section-title">
     {#if !collectionA?.id}
-        <span class="label label-success">Added</span>
+        <span class="label label-success">Добавлено</span>
         <strong>{collectionB?.name}</strong>
     {:else if !collectionB?.id}
-        <span class="label label-danger">Deleted</span>
+        <span class="label label-danger">Удалено</span>
         <strong>{collectionA?.name}</strong>
     {:else}
         <div class="inline-flex fleg-gap-5">
             {#if hasAnyChange}
-                <span class="label label-warning">Changed</span>
+                <span class="label label-warning">Изменено</span>
             {/if}
             {#if collectionA.name !== collectionB.name}
                 <strong class="txt-strikethrough txt-hint">{collectionA.name}</strong>
@@ -110,9 +110,9 @@
 <table class="table collections-diff-table m-b-base">
     <thead>
         <tr>
-            <th>Props</th>
-            <th width="10%">Old</th>
-            <th width="10%">New</th>
+            <th>Свойства</th>
+            <th width="10%">Было</th>
+            <th width="10%">Стало</th>
         </tr>
     </thead>
 
@@ -145,8 +145,8 @@
                     <th class="min-width" colspan="3">
                         <span class="txt">field: {field.name}</span>
                         <span class="label label-danger m-l-5">
-                            Deleted - <small>
-                                All stored data related to <strong>{field.name}</strong> will be deleted!
+                            Удалено — <small>
+                                Все сохранённые данные, связанные с <strong>{field.name}</strong>, будут удалены!
                             </small>
                         </span>
                     </th>
@@ -169,7 +169,7 @@
                 <th class="min-width" colspan="3">
                     <span class="txt">field: {field.name}</span>
                     {#if hasChanges(getFieldById(fieldsListA, field.id), getFieldById(fieldsListB, field.id))}
-                        <span class="label label-warning m-l-5">Changed</span>
+                        <span class="label label-warning m-l-5">Изменено</span>
                     {/if}
                 </th>
             </tr>
@@ -201,7 +201,7 @@
             <tr>
                 <th class="min-width" colspan="3">
                     <span class="txt">field: {field.name}</span>
-                    <span class="label label-success m-l-5">Added</span>
+                    <span class="label label-success m-l-5">Добавлено</span>
                 </th>
             </tr>
 

@@ -4,7 +4,7 @@
     export let key = "";
     export let config = {};
     export let required = false;
-    export let title = "Provider endpoints";
+    export let title = "Эндпоинты провайдера";
 
     $: isRequired = required && config?.enabled;
 </script>

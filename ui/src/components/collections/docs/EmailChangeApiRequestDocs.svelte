@@ -56,35 +56,35 @@
             /api/collections/<strong>{collection.name}</strong>/request-email-change
         </p>
     </div>
-    <p class="txt-hint txt-sm txt-right">Requires <code>Authorization:TOKEN</code></p>
+    <p class="txt-hint txt-sm txt-right">Нужен <code>Authorization:TOKEN</code></p>
 </div>
 
-<div class="section-title">Body Parameters</div>
+<div class="section-title">Параметры тела</div>
 <table class="table-compact table-border m-b-base">
     <thead>
         <tr>
-            <th>Param</th>
-            <th>Type</th>
-            <th width="50%">Description</th>
+            <th>Параметр</th>
+            <th>Тип</th>
+            <th width="50%">Описание</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
                 <div class="inline-flex">
-                    <span class="label label-success">Required</span>
+                    <span class="label label-success">Обязательно</span>
                     <span>newEmail</span>
                 </div>
             </td>
             <td>
                 <span class="label">String</span>
             </td>
-            <td>The new email address to send the change email request.</td>
+            <td>Новый email, на который нужно отправить запрос смены.</td>
         </tr>
     </tbody>
 </table>
 
-<div class="section-title">Responses</div>
+<div class="section-title">Ответы</div>
 <div class="tabs">
     <div class="tabs-header compact combined left">
         {#each responses as response (response.code)}

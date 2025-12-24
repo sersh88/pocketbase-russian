@@ -61,16 +61,16 @@
 
 <Field class="form-field required {fieldsErrors.length ? 'error' : ''}" name="viewQuery" let:uniqueId>
     <label for={uniqueId}>
-        <span class="txt">Select query</span>
+        <span class="txt">SELECT-запрос</span>
     </label>
 
     {#if isCodeEditorComponentLoading}
-        <textarea disabled rows="7" placeholder="Loading..." />
+        <textarea disabled rows="7" placeholder="Загрузка..." />
     {:else}
         <svelte:component
             this={codeEditorComponent}
             id={uniqueId}
-            placeholder="eg. SELECT id, name from posts"
+            placeholder="например: SELECT id, name from posts"
             language="sql-select"
             minHeight="150"
             on:change={() => {
@@ -84,19 +84,19 @@
 
     <div class="help-block">
         <ul>
-            <li>Wildcard columns (<code>*</code>) are not supported.</li>
+            <li>Колонки с подстановкой (<code>*</code>) не поддерживаются.</li>
             <li>
-                The query must have a unique <code>id</code> column.
+                Запрос должен возвращать уникальную колонку <code>id</code>.
                 <br />
-                If your query doesn't have a suitable one, you can use the universal
+                Если в запросе нет подходящей — можешь использовать универсальный вариант:
                 <code>(ROW_NUMBER() OVER()) as id</code>.
             </li>
             <li>
-                Expressions must be aliased with a valid formatted field name, e.g.
+                Выражения должны иметь алиас с валидным именем поля, например:
                 <code>MAX(balance) as maxBalance</code>.
             </li>
             <li>
-                Combined/multi-spaced expressions must be wrapped in parenthesis, e.g.
+                Составные/многочастные выражения нужно оборачивать в скобки, например:
                 <code>(MAX(balance) + 1) as maxBalance</code>.
             </li>
         </ul>
